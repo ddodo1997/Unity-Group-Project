@@ -20,6 +20,8 @@ public class PlayerStatus : IStatus
     {
 #if UNITY_EDITOR
         Agility = 5f;
+        Range = 0.8f;
+        CoolTime = 0.8f;
 #endif
     }
 }

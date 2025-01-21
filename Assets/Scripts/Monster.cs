@@ -26,7 +26,7 @@ public class Monster : MonoBehaviour, IAction
     public float statusStartTime = 0f;
     public float maxIdleTime;
     public float maxMoveTime;
-    public int minAggroLevel = 40;
+    private int minAggroLevel = 40;
 
     public MonsterStatus status = new MonsterStatus();
     public void Attack()
@@ -103,13 +103,11 @@ public class Monster : MonoBehaviour, IAction
                 direction = (player.transform.position - transform.position).normalized;
                 transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
                 Move();
-                rb.velocity *= 2f;
                 break;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision");
         if (status.Level >= minAggroLevel && collision.CompareTag("Player"))
             SetStatus(Status.Aggro);
     }
