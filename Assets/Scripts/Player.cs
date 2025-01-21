@@ -4,19 +4,15 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Player : MonoBehaviour, IEntity
+public class Player : MonoBehaviour, IAction
 {
     public VirtualJoyStick moveJoystick;
     public VirtualJoyStick attackJoystick;
+    public PlayerStatus status = new PlayerStatus();
     private Rigidbody2D rb;
 
-    [SerializeField]
     private Vector2 moveDirection;
-    [SerializeField]
     private Vector2 lookDirection;
-
-    public float HP { get; set; }
-    public float Speed { get; set; }
 
     public void Attack()
     {
@@ -29,7 +25,7 @@ public class Player : MonoBehaviour, IEntity
     public void Move()
     {
         moveDirection = new Vector2(moveJoystick.Input.x, moveJoystick.Input.y);
-        rb.velocity = moveDirection * Speed;
+        rb.velocity = moveDirection * status.Agility;
     }
 
     public void OnDamage(float damage)
@@ -44,7 +40,7 @@ public class Player : MonoBehaviour, IEntity
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Speed = 5f;
+        status.SetStatus();
     }
 
     // Update is called once per frame
