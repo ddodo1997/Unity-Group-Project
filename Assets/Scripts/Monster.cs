@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : MonoBehaviour, IAction
+public class Monster : Entity
 {
     public enum Type
     {
@@ -14,45 +14,57 @@ public class Monster : MonoBehaviour, IAction
     {
         Idle,
         Move,
-        Aggro
+        Aggro,
+        Attack,
+        Die
     };
-    private Rigidbody2D rb;
+    public Animator animator;
+
     private CircleCollider2D circleCollider;
+    private Rigidbody2D rb;
+    public GameObject player;
+    
+    private Status currentStauts = Status.Idle;
+    private Vector2 direction;
+    private float statusStartTime = 0f;
+    private float maxIdleTime;
+    private float maxMoveTime;
+    private float targetDistance;
+    private readonly int minAggroLevel = 40;
+    private bool isMoving = false;
+    public int tempLevel;
 
-    public Type type;
-    public Status currentStauts = Status.Idle;
-    public Player player;
-    public Vector2 direction;
-    public float statusStartTime = 0f;
-    public float maxIdleTime;
-    public float maxMoveTime;
-    private int minAggroLevel = 40;
-
-    public MonsterStatus status = new MonsterStatus();
-    public void Attack()
+    private MonsterStatus status = new MonsterStatus();
+    public override void Attack()
     {
-
+        if (Time.time - statusStartTime > status.CoolTime)
+        {
+            animator.SetTrigger(attackTrigger);
+            statusStartTime = Time.time;
+        }
     }
-    public void Move()
+    public override void Move()
     {
         rb.velocity = direction * status.Agility;
     }
-    public void OnDamage(float damage)
-    {
 
-    }
-    public void OnDie()
+    public override void OnDamage(float damage)
     {
-
+        animator.SetTrigger(damageTrigger);
     }
+
+    public override void OnDie()
+    {
+        animator.SetTrigger(deathTrigger);
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         circleCollider = GetComponent<CircleCollider2D>();
         status.SetStatus("TEST");
         circleCollider.radius = status.Distance;
-        
-        type = Type.Elite;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
     private void SetStatus(Status stat)
     {
@@ -63,6 +75,7 @@ public class Monster : MonoBehaviour, IAction
             case Status.Idle:
                 maxIdleTime = Random.Range(2f, 4f);
                 rb.velocity = Vector2.zero;
+                isMoving = false;
                 break;
             case Status.Move:
                 direction = Random.insideUnitCircle.normalized;
@@ -72,19 +85,23 @@ public class Monster : MonoBehaviour, IAction
             case Status.Aggro:
                 direction = (player.transform.position - transform.position).normalized;
                 break;
+            case Status.Attack:
+                rb.velocity = Vector2.zero;
+                break;
         }
     }
     private void Update()
     {
-
+        isMoving = rb.velocity.magnitude > 0;
     }
 
     private void FixedUpdate()
     {
+        targetDistance = (player.transform.position - transform.position).magnitude;
         switch (currentStauts)
         {
             case Status.Idle:
-                if(Time.time - statusStartTime > maxIdleTime)
+                if (Time.time - statusStartTime > maxIdleTime)
                 {
                     SetStatus(Status.Move);
                 }
@@ -101,14 +118,36 @@ public class Monster : MonoBehaviour, IAction
                 break;
             case Status.Aggro:
                 direction = (player.transform.position - transform.position).normalized;
-                transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
-                Move();
+                if (targetDistance > 3f)
+                {
+                    Move();
+                }
+                else
+                {
+                    SetStatus(Status.Attack);
+                }
+                break;
+            case Status.Attack:
+                if (targetDistance > 3f)
+                    SetStatus(Status.Aggro);
+                else
+                    Attack();
                 break;
         }
+
+        if (direction.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, Mathf.Atan2(0, 1) * Mathf.Rad2Deg, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, Mathf.Atan2(0, -1) * Mathf.Rad2Deg, 0);
+        }
+        animator.SetBool(moveBool, isMoving);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (status.Level >= minAggroLevel && collision.CompareTag("Player"))
+        if (tempLevel >= minAggroLevel && collision.CompareTag("Player"))
             SetStatus(Status.Aggro);
     }
 }

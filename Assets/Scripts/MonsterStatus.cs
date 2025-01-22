@@ -21,7 +21,7 @@ public class MonsterStatus : IStatus
 #if UNITY_EDITOR
         Agility = 3f;
         Distance = 5f;
-        Level = 30;
+        CoolTime = 1.8f;
 #endif
     }
 }
