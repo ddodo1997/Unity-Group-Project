@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MonsterStatus : IStatus
 {
+    public string Id { get; set; }
+    public int Stage { get; set; }
+    public string Name { get; set; }
+    public string Class {  get; set; }
     public int Level { get; private set; }
     public float Strength { get; set; }
     public float Defense { get; set; }
@@ -19,9 +23,12 @@ public class MonsterStatus : IStatus
     public void SetStatus(string key)
     {
 #if UNITY_EDITOR
+        Strength = 100;
+        Health = 300;
         Agility = 3f;
+        Range = 2f;
         Distance = 5f;
-        Level = 30;
+        CoolTime = 1.8f;
 #endif
     }
 }
