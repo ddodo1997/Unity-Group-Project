@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStatus : IStatus
 {
     public string Id { get; set; }
+    public string Name { get; set; }
     public float Strength { get; set; }
 
 
@@ -71,8 +72,4 @@ public class PlayerStatus : IStatus
         CoolTime = data.CoolTime;
     }
 
-    public void UpdateStatus(ItemData itemData)
-    {
-
-    }
 }

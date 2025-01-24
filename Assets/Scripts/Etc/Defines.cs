@@ -26,6 +26,7 @@ public static class DataTableIds
     public static readonly string[] EntityStatus =
     {
         "PlayerStatusTable",
+        "MonsterStatusTable"
     };
     public static readonly string[] ItemStatus =
     {

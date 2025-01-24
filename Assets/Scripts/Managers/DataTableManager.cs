@@ -10,20 +10,38 @@ public static class DataTableManager
     {
         get { return Get<CharacterTable>(DataTableIds.EntityStatus[(int)EntityStatus.Player]); }
     }
+
+    public static MonsterTable MonsterTable
+    {
+        get => Get<MonsterTable>(DataTableIds.EntityStatus[(int)EntityStatus.Monsters]);
+    }
     static DataTableManager()
     {
-#if UNITY_EDITOR
+#if !UNITY_EDITOR
         foreach (var id in DataTableIds.EntityStatus)
         {
             var table = new CharacterTable();
             table.Load(id);
             tables.Add(id, table);
         }
+
+        foreach (var id in DataTableIds.EntityStatus)
+        {
+            var table = new MonsterTable();
+            table.Load(id);
+            tables.Add(id, table);
+        }
 #else
-        var table = new CharacterTable();
+
+        var characterTable = new CharacterTable();
         var characterTableId = DataTableIds.EntityStatus[(int)EntityStatus.Player];
-        table.Load(characterTableId);
-        tables.Add(characterTableId, table);
+        characterTable.Load(characterTableId);
+        tables.Add(characterTableId, characterTable);
+
+        var monsterTable = new CharacterTable();
+        var monsterTableId = DataTableIds.EntityStatus[(int)EntityStatus.Monsters];
+        monsterTable.Load(monsterTableId);
+        tables.Add(monsterTableId, monsterTable);
 #endif
     }
 

@@ -1,4 +1,4 @@
 Id,Name,Strength,Defense,Agility,Health,Intelligence,Luck,Critical,Range,MotionSpeed,BulletSpeed,BulletLivingTime,CoolTime
-Warrior,Warrior,200,200,120,120,120,120,100,1,1,0,0,1.1
-Archor,Archor,10,10,24,8,25,10,11,1,1,150,1,1.5
-Wizard,Wizard,200,150,50,100,250,100,150,1,1,200,1,0.8
+Warrior,01,200,200,120,120,120,120,100,1,1,0,0,1.1
+Archer,02,120,100,240,80,250,100,110,1,1,150,1,1.5
+Sorcerer,03,200,150,50,100,250,100,150,1,1,200,1,0.8
