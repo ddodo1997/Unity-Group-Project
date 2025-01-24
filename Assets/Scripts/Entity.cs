@@ -8,6 +8,7 @@ public abstract class Entity : MonoBehaviour, IAction
     protected readonly int damageTrigger = Animator.StringToHash("3_Damaged");
     protected readonly int deathTrigger = Animator.StringToHash("4_Death");
     protected readonly string moveBool = "1_Move";
+    protected readonly string dieBool = "isDeath";
 
     public abstract void Attack();
     public abstract void Move();

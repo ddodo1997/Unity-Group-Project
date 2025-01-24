@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemData : ScriptableObject, IStatus
 {
+    public string Id { get; set; }
     public string itemName;
     public string ItemName { get; set; }
     public float str;

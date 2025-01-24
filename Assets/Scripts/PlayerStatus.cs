@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerStatus : IStatus
 {
+    public string Id { get; set; }
     public float Strength { get; set; }
 
 
@@ -11,8 +12,8 @@ public class PlayerStatus : IStatus
 
     //민첩 관련
     public float Agility { get; set; }
-    public float MovementSpeed { get; set; }
-    public float EvasionRate { get; set; }
+    public float MovementSpeed;
+    public float EvasionRate;
 
 
     public float Health { get; set; }
@@ -22,13 +23,13 @@ public class PlayerStatus : IStatus
 
     //행운 관련
     public float Luck { get; set; }
-    public float Accuracy { get; set; }
-    public float CriticalChance { get; set; }
-    public float EquipmentDropRate { get; set; }
+    public float Accuracy;
+    public float CriticalChance;
+    public float EquipmentDropRate;
 
     //크리티컬 관련
     public float Critical { get; set; }
-    public float CriticalDamage { get; set; }
+    public float CriticalDamage;
 
     //공격 범위
     public float Range { get; set; }
@@ -43,21 +44,31 @@ public class PlayerStatus : IStatus
     //투사체 시간
     public float BulletLivingTime { get; set; }
 
-    //사용X
-    public float Distance { get; set; }
-
     //공격간 딜레이
     public float CoolTime { get; set; }
 
-
-
     public void SetStatus(string key)
     {
-#if UNITY_EDITOR
-        Agility = 5f;
-        Range = 0.8f;
-        CoolTime = 0.8f;
-#endif
+        var data = DataTableManager.CharacterTable.Get(key);
+        Id = data.Id;
+        Strength = data.Strength;
+        Defense = data.Defense;
+        Agility = data.Agility;
+        MovementSpeed = Agility * 0.02f;
+        
+        
+
+        Health = data.Health;
+        Intelligence = data.Intelligence;
+        Luck = data.Luck;
+
+
+        Critical = data.Critical;
+        Range = data.Range;
+        MotionSpeed = data.MotionSpeed;
+        BulletSpeed = data.BulletSpeed;
+        BulletLivingTime = data.BulletLivingTime;
+        CoolTime = data.CoolTime;
     }
 
     public void UpdateStatus(ItemData itemData)
