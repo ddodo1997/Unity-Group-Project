@@ -17,20 +17,16 @@ public static class DataTableManager
     }
     static DataTableManager()
     {
-#if !UNITY_EDITOR
-        foreach (var id in DataTableIds.EntityStatus)
-        {
-            var table = new CharacterTable();
-            table.Load(id);
-            tables.Add(id, table);
-        }
+#if UNITY_EDITOR
+        var characterTable = new CharacterTable();
+        var characterTableId = DataTableIds.EntityStatus[(int)EntityStatus.Player];
+        characterTable.Load(characterTableId);
+        tables.Add(characterTableId, characterTable);
 
-        foreach (var id in DataTableIds.EntityStatus)
-        {
-            var table = new MonsterTable();
-            table.Load(id);
-            tables.Add(id, table);
-        }
+        var monsterTable = new MonsterTable();
+        var monsterTableId = DataTableIds.EntityStatus[(int)EntityStatus.Monsters];
+        monsterTable.Load(monsterTableId);
+        tables.Add(monsterTableId, monsterTable);
 #else
 
         var characterTable = new CharacterTable();
@@ -38,7 +34,7 @@ public static class DataTableManager
         characterTable.Load(characterTableId);
         tables.Add(characterTableId, characterTable);
 
-        var monsterTable = new CharacterTable();
+        var monsterTable = new MonsterTable();
         var monsterTableId = DataTableIds.EntityStatus[(int)EntityStatus.Monsters];
         monsterTable.Load(monsterTableId);
         tables.Add(monsterTableId, monsterTable);

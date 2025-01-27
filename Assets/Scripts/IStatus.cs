@@ -16,7 +16,6 @@ public interface IStatus
     public abstract float Intelligence { get; set; }
     public abstract float Critical { get; set; }
     public abstract float Range { get; set; }
-    public abstract float MotionSpeed { get; set; }
     public abstract float CoolTime { get; set; }
     public abstract float BulletSpeed { get; set; }
     public abstract float BulletLivingTime { get; set; }

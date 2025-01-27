@@ -23,6 +23,7 @@ public class Monster : Entity
     private Rigidbody2D rb;
     public Player player;
     private BoxCollider2D attackArea;
+    private GameObject prefab;
 
     public Status currentStauts = Status.Idle;
     private Vector2 direction;
@@ -32,7 +33,6 @@ public class Monster : Entity
     private float maxMoveTime;
     public float targetDistance;
 
-    private readonly int minAggroLevel = 40;
     public int tempLevel;
 
     private bool isMoving = false;
@@ -79,11 +79,17 @@ public class Monster : Entity
         animator.SetTrigger(deathTrigger);
         animator.SetBool(dieBool, isDie);
     }
-
+    public void StartGame(string name)
+    {
+        status.SetStatus(name);
+        var path = string.Format(PathFormats.prefabs, name);
+        prefab = (GameObject)Instantiate(Resources.Load(path), transform.position, transform.rotation);
+        prefab.transform.SetParent(transform, false);
+    }
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        status.SetStatus("TEST");
+        StartGame("SPUM_20241203203032691");
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         attackArea = GetComponent<BoxCollider2D>();
 
@@ -100,6 +106,9 @@ public class Monster : Entity
                 break;
             }
         }
+
+
+        transform.position = new Vector3(-9,0,0);
     }
     private void SetStatus(Status stat)
     {
@@ -173,7 +182,7 @@ public class Monster : Entity
 
                 //¼±°ø¸÷ Ã³¸®
                 {
-                    if (tempLevel >= minAggroLevel && targetDistance < status.Distance)
+                    if (tempLevel >= status.Level && targetDistance < status.Distance)
                         SetStatus(Status.Aggro);
                 }
                 break;

@@ -24,7 +24,6 @@ public class MonsterStatus : IStatus
     public float Intelligence { get; set; }
     public float Luck { get; set; }
     public float Critical { get; set; }
-    public float MotionSpeed { get; set; } //애니메이션 재생 속도
     public float Range { get; set; } //공격 범위
     public float Distance { get; set; } //시야 반지름
     public float CoolTime { get; set; } //공격 주기
@@ -35,16 +34,25 @@ public class MonsterStatus : IStatus
 
     public void SetStatus(string key)
     {
-#if UNITY_EDITOR
-        Strength = 100;
-        Health = 300;
-        Agility = 3f;
-        Range = 2f;
-        Distance = 5f;
-        CoolTime = 1.8f;
-#endif
-        //var data = DataTableManager.MonsterTable.Get(key);
-
+        var data = DataTableManager.MonsterTable.Get(key);
+        Id = data.Id;
+        Stage = data.Stage;
+        StringId = data.StringId;
+        Rate = data.Rate;
+        Name = data.Name;
+        Level = data.Level;
+        Strength = data.Strength;
+        Defense = data.Defense;
+        Agility = data.Agility;
+        Health = data.Health;
+        Intelligence = data.Intelligence;
+        Luck = data.Luck;
+        Critical = data.Critical;
+        Range = data.Range;
+        Distance = data.Distance;
+        CoolTime = data.CoolTime;
+        BulletSpeed = data.BulletSpeed;
+        BulletLivingTime = data.BulletLivingTime;
 
     }
 }

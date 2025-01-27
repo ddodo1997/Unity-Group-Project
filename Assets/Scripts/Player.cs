@@ -21,7 +21,8 @@ public class Player : Entity
 
     private Vector2 moveDirection;
     private Vector2 lookDirection;
-
+    private static readonly Quaternion left = Quaternion.Euler(0, Mathf.Atan2(0, 1) * Mathf.Rad2Deg, 0);
+    private static readonly Quaternion right = Quaternion.Euler(0, Mathf.Atan2(0, -1) * Mathf.Rad2Deg, 0);
     private float startAttackTime;
     private bool isMoving = false;
     public bool isDie = false;
@@ -33,22 +34,22 @@ public class Player : Entity
             if (attackJoystick.Input.x < 0)
             {
                 lookDirection = attackJoystick.Input;
-                transform.rotation = Quaternion.Euler(0, Mathf.Atan2(0, 1) * Mathf.Rad2Deg, 0);
+                transform.rotation = left;
             }
             else
             {
-                transform.rotation = Quaternion.Euler(0, Mathf.Atan2(0, -1) * Mathf.Rad2Deg, 0);
+                transform.rotation = right;
             }
         }
         else if (moveJoystick.Input.magnitude != 0) {
             if (moveJoystick.Input.x < 0)
             {
                 lookDirection = moveJoystick.Input;
-                transform.rotation = Quaternion.Euler(0, Mathf.Atan2(0, 1) * Mathf.Rad2Deg, 0);
+                transform.rotation = left;
             }
             else
             {
-                transform.rotation = Quaternion.Euler(0, Mathf.Atan2(0, -1) * Mathf.Rad2Deg, 0);
+                transform.rotation = right;
             }
         }
     }
@@ -100,6 +101,7 @@ public class Player : Entity
     public override void OnDie()
     {
         isDie = true;
+        rb.velocity = Vector2.zero;
         animator.SetTrigger(deathTrigger);
         animator.SetBool(dieBool, isDie);
     }
@@ -110,6 +112,7 @@ public class Player : Entity
         var path = string.Format(PathFormats.prefabs, name);
         prefab = (GameObject)Instantiate( Resources.Load(path), transform.position, transform.rotation);
         prefab.transform.SetParent(transform, false);
+        prefab.transform.position = Vector3.zero;
     }
 
     private void Start()
@@ -169,7 +172,6 @@ public class Player : Entity
         if (isDie)
             return;
         Attack();
-        Rotation();
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("ATTACK"))
             OnColliderEnable();
         else
@@ -180,6 +182,7 @@ public class Player : Entity
     {
         if (isDie)
             return;
+        Rotation();
         Move();
     }
 }
