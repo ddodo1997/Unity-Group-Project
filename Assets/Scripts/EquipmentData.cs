@@ -2,15 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EquipType
+public enum ArmorType
 {
     Helmet,
     Armor,
-    Acceaccessorie,
+    Shoes,
     Cloak,
-    Shoose,
+    Ring,
 };
 
 public class EquipmentData : ItemData
 {
+    public ArmorType Type {  get; set; }
+
+    public override void SetStatus(string key)
+    {
+        base.SetStatus(key);
+
+
+    }
 }

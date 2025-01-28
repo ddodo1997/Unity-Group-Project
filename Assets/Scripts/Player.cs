@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Player : Entity
+public class Player : Creature
 {
     public VirtualJoyStick moveJoystick;
     public VirtualJoyStick attackJoystick;
@@ -21,8 +21,7 @@ public class Player : Entity
 
     private Vector2 moveDirection;
     private Vector2 lookDirection;
-    private static readonly Quaternion left = Quaternion.Euler(0, Mathf.Atan2(0, 1) * Mathf.Rad2Deg, 0);
-    private static readonly Quaternion right = Quaternion.Euler(0, Mathf.Atan2(0, -1) * Mathf.Rad2Deg, 0);
+
     private float startAttackTime;
     private bool isMoving = false;
     public bool isDie = false;
@@ -34,22 +33,22 @@ public class Player : Entity
             if (attackJoystick.Input.x < 0)
             {
                 lookDirection = attackJoystick.Input;
-                transform.rotation = left;
+                transform.rotation = Direction.Left;
             }
             else
             {
-                transform.rotation = right;
+                transform.rotation = Direction.Right;
             }
         }
         else if (moveJoystick.Input.magnitude != 0) {
             if (moveJoystick.Input.x < 0)
             {
                 lookDirection = moveJoystick.Input;
-                transform.rotation = left;
+                transform.rotation = Direction.Left;
             }
             else
             {
-                transform.rotation = right;
+                transform.rotation = Direction.Right;
             }
         }
     }
@@ -89,8 +88,7 @@ public class Player : Entity
     public override void OnDamage(float damage)
     {
         status.Health -= damage;
-        Debug.Log(status.Health);
-        if (status.Health < 0f)
+        if (status.Health <= 0f)
         {
             OnDie();
             return;
@@ -157,9 +155,7 @@ public class Player : Entity
 
         if (collision.CompareTag(Tags.Monster) && !collision.isTrigger)
         {
-            Debug.Log("Attack");
             var monster = collision.GetComponent<Monster>();
-            Debug.Log(monster.isDie);
             if (monster != null && !monster.isDie)
             {
                 monster.OnDamage(status.Strength);

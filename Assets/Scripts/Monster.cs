@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : Entity
+public class Monster : Creature
 {
     public enum Type
     {
@@ -24,6 +24,7 @@ public class Monster : Entity
     public Player player;
     private BoxCollider2D attackArea;
     private GameObject prefab;
+    private ItemDrop itemDrop;
 
     public Status currentStauts = Status.Idle;
     private Vector2 direction;
@@ -57,13 +58,11 @@ public class Monster : Entity
     public override void OnDamage(float damage)
     {
         //비선공몹용 코드
-        {
-            if (currentStauts != Status.Aggro)
-                SetStatus(Status.Aggro);
-        }
+        if (currentStauts != Status.Aggro)
+            SetStatus(Status.Aggro);
+
         status.Health -= damage;
-        Debug.Log(status.Health);
-        if (status.Health < 0f)
+        if (status.Health <=0f)
         {
             OnDie();
             return;
@@ -75,9 +74,13 @@ public class Monster : Entity
     {
         StartCoroutine(AfterDie());
 
+
+        rb.isKinematic = true;
         isDie = true;
         animator.SetTrigger(deathTrigger);
         animator.SetBool(dieBool, isDie);
+
+        itemDrop.Drop(status);
     }
     public void StartGame(string name)
     {
@@ -89,6 +92,7 @@ public class Monster : Entity
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        itemDrop = GetComponent<ItemDrop>();
         StartGame("SPUM_20241203203032691");
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         attackArea = GetComponent<BoxCollider2D>();
@@ -107,8 +111,8 @@ public class Monster : Entity
             }
         }
 
-
-        transform.position = new Vector3(-9,0,0);
+        //테스트용 코드
+        transform.position = new Vector3(-9, 0, 0);
     }
     private void SetStatus(Status stat)
     {
@@ -144,7 +148,18 @@ public class Monster : Entity
             OnColliderEnable();
         else
             OnColliderDisable();
+
+
+
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            itemDrop.Drop(status);
+        }
+#endif
     }
+
     public void OnColliderEnable()
     {
         attackArea.enabled = true;
@@ -181,10 +196,8 @@ public class Monster : Entity
                 }
 
                 //선공몹 처리
-                {
-                    if (tempLevel >= status.Level && targetDistance < status.Distance)
-                        SetStatus(Status.Aggro);
-                }
+                if (tempLevel >= status.Level && targetDistance < status.Distance)
+                    SetStatus(Status.Aggro);
                 break;
             case Status.Aggro:
                 direction = (player.transform.position - transform.position).normalized;
@@ -212,11 +225,11 @@ public class Monster : Entity
 
         if (direction.x < 0)
         {
-            transform.rotation = Quaternion.Euler(0, Mathf.Atan2(0, 1) * Mathf.Rad2Deg, 0);
+            transform.rotation = Direction.Left;
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, Mathf.Atan2(0, -1) * Mathf.Rad2Deg, 0);
+            transform.rotation = Direction.Right;
         }
         animator.SetBool(moveBool, isMoving);
     }

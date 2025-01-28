@@ -15,9 +15,13 @@ public static class DataTableManager
     {
         get => Get<MonsterTable>(DataTableIds.EntityStatus[(int)EntityStatus.Monsters]);
     }
+
+    public static ArmorTable ArmorTable
+    {
+        get => Get<ArmorTable>(DataTableIds.ItemStatus[(int)EquipType.Armor]);
+    }
     static DataTableManager()
     {
-#if UNITY_EDITOR
         var characterTable = new CharacterTable();
         var characterTableId = DataTableIds.EntityStatus[(int)EntityStatus.Player];
         characterTable.Load(characterTableId);
@@ -27,18 +31,11 @@ public static class DataTableManager
         var monsterTableId = DataTableIds.EntityStatus[(int)EntityStatus.Monsters];
         monsterTable.Load(monsterTableId);
         tables.Add(monsterTableId, monsterTable);
-#else
 
-        var characterTable = new CharacterTable();
-        var characterTableId = DataTableIds.EntityStatus[(int)EntityStatus.Player];
-        characterTable.Load(characterTableId);
-        tables.Add(characterTableId, characterTable);
-
-        var monsterTable = new MonsterTable();
-        var monsterTableId = DataTableIds.EntityStatus[(int)EntityStatus.Monsters];
-        monsterTable.Load(monsterTableId);
-        tables.Add(monsterTableId, monsterTable);
-#endif
+        //var armorTable = new ArmorTable();
+        //var armorTableId = DataTableIds.ItemStatus[((int)EquipType.Armor)];
+        //armorTable.Load(armorTableId);
+        //tables.Add(armorTableId, armorTable);
     }
 
     public static T Get<T>(string id) where T : DataTable

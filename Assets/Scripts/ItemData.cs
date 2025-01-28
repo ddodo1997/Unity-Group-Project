@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemData : ScriptableObject, IStatus
+public class ItemData : MonoBehaviour, IStatus
 {
+    public string Rate {  get; set; }
     public string Id { get; set; }
+    public ArmorType Type { get; set; }
     public string Name { get; set; }
     public float Strength { get; set; }
     public float Defense { get; set; }
@@ -18,6 +20,8 @@ public class ItemData : ScriptableObject, IStatus
     public float CoolTime { get; set; }
     public float BulletSpeed { get; set; }
     public float BulletLivingTime { get; set; }
+    public float LevelUpExperienceRequired {  get; set; }
+    public float ExperienceValue {  get; set; }
 
     public Sprite sprite;
 

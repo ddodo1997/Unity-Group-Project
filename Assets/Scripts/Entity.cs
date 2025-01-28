@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Entity : MonoBehaviour, IAction
+public abstract class Creature : MonoBehaviour, IAction
 {
     protected readonly int attackTrigger = Animator.StringToHash("2_Attack");
     protected readonly int damageTrigger = Animator.StringToHash("3_Damaged");

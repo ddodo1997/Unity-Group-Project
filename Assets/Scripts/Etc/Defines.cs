@@ -11,15 +11,11 @@ public enum EntityStatus
     Player,
     Monsters,
 }
-public enum ItemStatus
+public enum EquipType
 {
-    Weapon,
-    Helmet,
     Armor,
-    Acceaccessorie,
-    Cloak,
-    Shoose,
-}
+    Weapon
+};
 
 public static class DataTableIds
 {
@@ -30,7 +26,8 @@ public static class DataTableIds
     };
     public static readonly string[] ItemStatus =
     {
-        "ItemTable"
+        "ArmorTable",
+        "WeaponTable"
     };
 }
 public static class PathFormats
@@ -42,12 +39,20 @@ public static class PathFormats
 public static class Variables
 {
     public static Language currentLang = Language.Korea;
+    public static readonly int MaxDropCnt = 3;
+}
+
+public static class Direction
+{
+    public static readonly Quaternion Left = Quaternion.Euler(0, Mathf.Atan2(0, 1) * Mathf.Rad2Deg, 0);
+    public static readonly Quaternion Right = Quaternion.Euler(0, Mathf.Atan2(0, -1) * Mathf.Rad2Deg, 0);
 }
 
 public static class Tags
 {
     public static readonly string Player = "Player";
     public static readonly string Monster = "Monster";
+    public static readonly string InventoryManager = "InventoryManager";
 }
 
 public static class SortingLayers
