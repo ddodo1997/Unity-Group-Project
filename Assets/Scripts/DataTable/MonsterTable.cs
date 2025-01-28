@@ -6,7 +6,6 @@ using System.Linq;
 
 public class MonsterTable : DataTable
 {
-
     private readonly Dictionary<string, MonsterStatus> dictionary = new Dictionary<string, MonsterStatus>();
 
     public override void Load(string fileName)

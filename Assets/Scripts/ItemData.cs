@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemData : MonoBehaviour, IStatus
+[System.Serializable]
+public class ItemData : IStatus
 {
     public string Rate {  get; set; }
     public string Id { get; set; }
-    public ArmorType Type { get; set; }
     public string Name { get; set; }
     public float Strength { get; set; }
     public float Defense { get; set; }

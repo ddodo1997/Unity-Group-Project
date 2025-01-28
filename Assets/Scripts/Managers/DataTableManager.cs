@@ -32,10 +32,10 @@ public static class DataTableManager
         monsterTable.Load(monsterTableId);
         tables.Add(monsterTableId, monsterTable);
 
-        //var armorTable = new ArmorTable();
-        //var armorTableId = DataTableIds.ItemStatus[((int)EquipType.Armor)];
-        //armorTable.Load(armorTableId);
-        //tables.Add(armorTableId, armorTable);
+        var armorTable = new ArmorTable();
+        var armorTableId = DataTableIds.ItemStatus[((int)EquipType.Armor)];
+        armorTable.Load(armorTableId);
+        tables.Add(armorTableId, armorTable);
     }
 
     public static T Get<T>(string id) where T : DataTable

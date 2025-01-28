@@ -13,8 +13,7 @@ public enum ArmorType
 
 public class EquipmentData : ItemData
 {
-    public ArmorType Type {  get; set; }
-
+    public ArmorType Type { get; set; }
     public override void SetStatus(string key)
     {
         base.SetStatus(key);

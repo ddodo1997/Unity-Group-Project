@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
 
-public class FieldDropItem : ItemData
+public class FieldDropItem : MonoBehaviour
 {
-
+    public ItemData item;
     public InventoryManager inventory;
     private Rigidbody2D rb;
     private float yPos;
@@ -56,7 +56,7 @@ public class FieldDropItem : ItemData
         if (collision.CompareTag(Tags.Player) && inventory.items.Count < InventoryManager.maxItemSlot)
         {
             Destroy(gameObject);
-            inventory.OnPickUpItem(this);
+            inventory.OnPickUpItem(item);
         }
     }
 }

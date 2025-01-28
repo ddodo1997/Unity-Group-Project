@@ -11,9 +11,6 @@ public class ItemDrop : MonoBehaviour
     {
         monster = GetComponent<Monster>(); 
     }
-
-
-
     public void Drop(MonsterStatus status)
     {
         startPos = transform.position + Random.onUnitSphere;

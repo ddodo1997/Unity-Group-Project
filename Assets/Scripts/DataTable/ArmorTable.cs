@@ -6,7 +6,7 @@ using System.Linq;
 
 public class ArmorTable : DataTable
 {
-    private readonly Dictionary<string, ItemData> dictionary = new Dictionary<string, ItemData>();
+    private readonly Dictionary<string, EquipmentData> dictionary = new Dictionary<string, EquipmentData>();
 
     public override void Load(string fileName)
     {
@@ -14,7 +14,7 @@ public class ArmorTable : DataTable
 
         var textAsset = Resources.Load<TextAsset>(path);
 
-        var list = LoadCSV<ItemData>(textAsset.text);  //씨1발 도대체 무슨일이 벌어진거야
+        var list = LoadCSV<EquipmentData>(textAsset.text);  //씨1발 도대체 무슨일이 벌어진거야
 
         dictionary.Clear();
         foreach (var armor in list)
@@ -30,7 +30,7 @@ public class ArmorTable : DataTable
         }
     }
 
-    public ItemData Get(string key)
+    public EquipmentData Get(string key)
     {
         if (!dictionary.ContainsKey(key))
         {
