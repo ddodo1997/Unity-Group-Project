@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using CsvHelper;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class MonsterTable : DataTable
 {
@@ -38,5 +39,26 @@ public class MonsterTable : DataTable
             return null;
         }
         return dictionary[key];
+    }
+
+    public List<MonsterStatus> GetList()
+    {
+        List<MonsterStatus > list = new List<MonsterStatus>();
+
+        foreach (var monster in dictionary.Values)
+        { 
+            list.Add(monster); 
+        }
+
+        return list;
+    }
+
+    public List<MonsterStatus> GetList(int stage)
+    {
+        var result = from l in GetList()
+                        where l.Stage == stage
+                        select l;
+
+        return result.ToList();
     }
 }

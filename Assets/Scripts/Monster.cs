@@ -52,7 +52,7 @@ public class Monster : Creature
     }
     public override void Move()
     {
-        rb.velocity = direction * status.Agility;
+        rb.velocity = direction * status.MovementSpeed;
     }
 
     public override void OnDamage(float damage)
@@ -192,7 +192,7 @@ public class Monster : Creature
                 }
                 else
                 {
-                    //Move();
+                    Move();
                 }
 
                 //¼±°ø¸÷ Ã³¸®

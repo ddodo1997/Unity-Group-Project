@@ -20,6 +20,7 @@ public class MonsterStatus : IStatus
     public float Strength { get; set; }
     public float Defense { get; set; }
     public float Agility { get; set; }
+    public float MovementSpeed;
     public float Health { get; set; }
     public float Intelligence { get; set; }
     public float Luck { get; set; }
@@ -44,6 +45,8 @@ public class MonsterStatus : IStatus
         Strength = data.Strength;
         Defense = data.Defense;
         Agility = data.Agility;
+        MovementSpeed = Agility * 0.02f;
+
         Health = data.Health;
         Intelligence = data.Intelligence;
         Luck = data.Luck;

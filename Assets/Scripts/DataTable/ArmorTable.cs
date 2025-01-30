@@ -39,4 +39,26 @@ public class ArmorTable : DataTable
         }
         return dictionary[key];
     }
+
+
+    public List<EquipmentData> GetList()
+    {
+        List<EquipmentData> list = new List<EquipmentData>();
+
+        foreach (var armor in dictionary.Values)
+        {
+            list.Add(armor);
+        }
+
+        return list;
+    }
+
+    public List<EquipmentData> GetList(ArmorType type)
+    {
+        var result = from l in GetList()
+                        where l.Type == type
+                        select l;
+
+        return result.ToList();
+    }
 }

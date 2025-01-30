@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+using System;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -35,11 +37,17 @@ public class InventoryManager : MonoBehaviour
 
     public void OnSortingWeapon()
     {
+        var query = from item in items
+                    where item.GetType() == typeof(WeaponData)
+                    select item;
 
     }
 
     public void OnSortingArmor()
     {
+        var query = from item in items
+                    where item.GetType() == typeof(EquipmentData)
+                    select item;
 
     }
 
@@ -51,4 +59,6 @@ public class InventoryManager : MonoBehaviour
             image.sprite = items[i].sprite;
         }
     }
+
+
 }
