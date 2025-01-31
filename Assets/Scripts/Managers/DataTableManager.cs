@@ -36,6 +36,11 @@ public static class DataTableManager
         var armorTableId = DataTableIds.ItemStatus[((int)EquipType.Armor)];
         armorTable.Load(armorTableId);
         tables.Add(armorTableId, armorTable);
+
+        var weaponTable = new WeaponTable();
+        var weaponTableId = DataTableIds.ItemStatus[((int)EquipType.Weapon)];
+        weaponTable.Load(weaponTableId);
+        tables.Add(weaponTableId, weaponTable);
     }
 
     public static T Get<T>(string id) where T : DataTable

@@ -111,6 +111,7 @@ public class Player : Creature
         prefab = (GameObject)Instantiate( Resources.Load(path), transform.position, transform.rotation);
         prefab.transform.SetParent(transform, false);
         prefab.transform.position = Vector3.zero;
+        prefab.layer = LayerMask.NameToLayer(Tags.Player);
     }
 
     private void Start()

@@ -1,11 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum ClassName
+{
+    Warrior,
+    Archer,
+    Sorcerer
+}
 public class PlayerStatus : IStatus
 {
     public string Id { get; set; }
     public string Name { get; set; }
+    public ClassName className;
     public float Strength { get; set; }
 
 
@@ -52,6 +59,9 @@ public class PlayerStatus : IStatus
     {
         var data = DataTableManager.CharacterTable.Get(key);
         Id = data.Id;
+        Name = data.Name;
+        className = Enum.Parse<ClassName>(Name);
+
         Strength = data.Strength;
         Defense = data.Defense;
         Agility = data.Agility;

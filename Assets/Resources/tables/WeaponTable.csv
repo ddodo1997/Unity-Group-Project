@@ -1,0 +1,39 @@
+Rate,Id,Type,Name,Strength,Defense,Agility,Health,Intelligence,Luck,Critical,Range,MotionSpeed,BulletSpeed,BulletLivingTime,CoolTime,LevelUpExperienceRequired,ExperienceValue
+Common,Axe_1,Sword,손도끼,50,0,0,0,0,0,50,0,0,0,0,0,10000,5000
+Common,Orc_Weapon_01,Sword,나무몽둥이,100,0,0,0,0,0,0,0,0,0,0,0,10000,5000
+Common,F_SR_Hammer,Sword,나무망치,70,0,10,0,0,0,20,0,0,0,0,0,10000,5000
+Common,Orc_Weapon_07,Sword,도끼,60,0,0,20,0,0,20,0,0,0,0,0,10000,5000
+Common,Weapon_Rogue_1,Sword,날쎈 단검,40,0,20,0,0,10,30,0,0,0,0,0,10000,5000
+Common,Sword_4,Sword,기본 검,20,0,20,20,0,20,20,0,0,0,0,0,10000,5000
+UnCommon,Spear_1,Sword,감지창,70,0,30,60,0,20,20,0,0,0,0,0,20000,15000
+UnCommon,Undead_Weapon_03,Sword,해적칼,80,0,20,50,0,0,50,0,0,0,0,0,20000,15000
+UnCommon,Orc_Weapon_06,Sword,배틀엑스,120,0,0,40,0,0,40,0,0,0,0,0,20000,15000
+UnCommon,Orc_Weapon_05,Sword,대도,90,0,10,10,0,10,80,0,0,0,0,0,20000,15000
+UnCommon,Soon_Spear,Sword,그레이트 랜스,200,0,0,0,0,0,0,0,0,0,0,0,20000,15000
+Rare,Weapon_Rogue_2,Sword,피의 단검,120,0,40,40,0,20,80,0,0,0,0,0,25000,17500
+Rare,Sword_3,Sword,잘 벼려진 칼,100,0,50,50,0,40,60,0,0,0,0,0,25000,17500
+Rare,Orc_Weapon_02,Sword,그레이트 랜스,150,0,25,75,0,0,50,0,0,0,0,0,25000,17500
+Hero,Weapon_Knight_1,Sword,전대 용사의 검,185,0,50,15,10,100,40,0,0,0,0,0,35000,22000
+Hero,Undead_Weapon_06,Sword,살벌한 배틀엑스,200,0,0,0,0,0,200,0,0,0,0,0,35000,22000
+Hero,Undead_Weapon_08,Sword,고대의 낡은 검,175,0,75,0,0,50,0,0,0,0,0,0,35000,22000
+Legendary,Sword_5,Sword,지옥의 파멸검,250,0,50,50,0,0,100,0,0,0,0,0,45000,30000
+Legendary,Weapon_Knight_2,Sword,베테랑의 검,200,0,50,50,0,0,200,0,0,0,0,0,45000,30000
+Legendary,Undead_Weapon_10,Sword,성스러운 검,250,0,50,50,0,100,100,0,0,0,0,0,45000,30000
+Common,Undead_Weapon_07,Staff,해골뼈,75,0,30,0,20,5,70,0,0,100,0,0,10000,5000
+Common,Orc_Weapon_08,Staff,새총,75,0,75,0,0,0,50,0,0,100,0,0,10000,5000
+Common,Undead_Weapon_02,Staff,곡괭이,50,0,20,0,30,0,100,0,0,100,0,0,10000,5000
+Common,Undead_Weapon_01,Staff,삽,200,0,0,0,0,0,0,0,0,100,0,0,10000,5000
+UnCommon,Orc_Weapon_09,Staff,지팡이,100,0,50,0,50,0,100,1,0,150,0,0,20000,15000
+UnCommon,Orc_Weapon_04,Staff,해골지팡이,150,0,25,0,45,20,60,1,0,150,0,0,20000,15000
+Rare,Weapon_Healer_1,Staff,마나지팡이,200,0,50,0,75,25,100,1.5,0,200,0,0,25000,15000
+Rare,Ward_1,Staff,저주받은 지팡이,200,0,25,0,75,50,100,1.5,0,200,0,0,25000,15000
+Hero,Weapon_Sorceress,Staff,자수정 지팡이,250,0,100,0,150,0,150,2,0.1,250,0.2,0.1,30000,22000
+Hero,Undead_Weapon_09,Staff,악마 지팡이,300,0,50,0,100,0,200,2,0.1,250,0.2,0.1,30000,22000
+Legendary,Weapon_Sorcerer,Staff,레드오션 지팡이,400,0,50,0,100,100,100,3,0.1,300,0.3,0.2,37500,30000
+Legendary,Weapon_Healer_2,Staff,금강불괴 지팡이,300,50,50,0,100,150,100,3,0.1,300,0.3,0.2,37500,30000
+Common,Bow_1,Bow,싸구려 나무 활,50,0,30,0,30,10,30,1,0,150,0,0,7500,5000
+Common,Orc_Weapon_03,Bow,나무 활,75,0,50,0,45,30,50,1,0,150,0,0,7500,5000
+UnCommon,Undead_Weapon_05,Bow,조선 활,150,0,75,0,25,30,70,1,0,200,0,0,12500,15000
+Rare,Undead_Weapon_04,Bow,야만인의 활,200,0,100,0,50,50,50,1,0,250,0,0,17500,17500
+Hero,Weapon_Archer_2,Bow,사냥꾼의 활,250,0,100,0,100,0,100,1,0.2,300,0.3,0.2,25000,17500
+Legendary,Weapon_Archer_1,Bow,백발백중,300,0,200,0,0,50,200,1,0.2,350,0.5,0.3,30000,50000

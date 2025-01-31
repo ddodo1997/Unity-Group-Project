@@ -18,10 +18,13 @@ public class ItemDrop : MonoBehaviour
         switch (status.Rate)
         {
             case MonsterStatus.Rating.Normal:
+                
                 break;
             case MonsterStatus.Rating.Elite:
+
                 break;
             case MonsterStatus.Rating.Boss:
+
                 break;
             default:
                 break;

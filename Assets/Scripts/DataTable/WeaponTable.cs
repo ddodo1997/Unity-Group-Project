@@ -4,9 +4,9 @@ using UnityEngine;
 using CsvHelper;
 using System.Linq;
 
-public class ArmorTable : DataTable
+public class WeaponTable : DataTable
 {
-    private readonly Dictionary<string, EquipmentData> dictionary = new Dictionary<string, EquipmentData>();
+    private readonly Dictionary<string, WeaponData> dictionary = new Dictionary<string, WeaponData>();
 
     public override void Load(string fileName)
     {
@@ -14,23 +14,23 @@ public class ArmorTable : DataTable
 
         var textAsset = Resources.Load<TextAsset>(path);
 
-        var list = LoadCSV<EquipmentData>(textAsset.text);  //씨1발 도대체 무슨일이 벌어진거야
+        var list = LoadCSV<WeaponData>(textAsset.text);  //씨1발 도대체 무슨일이 벌어진거야
 
         dictionary.Clear();
-        foreach (var armor in list)
+        foreach (var weapon in list)
         {
-            if (!dictionary.ContainsKey(armor.Id))
+            if (!dictionary.ContainsKey(weapon.Id))
             {
-                dictionary.Add(armor.Id, armor);
+                dictionary.Add(weapon.Id, weapon);
             }
             else
             {
-                Debug.Log($"{armor.Id} is 중복!");
+                Debug.Log($"{weapon.Id} is 중복!");
             }
         }
     }
 
-    public EquipmentData Get(string key)
+    public WeaponData Get(string key)
     {
         if (!dictionary.ContainsKey(key))
         {
@@ -41,9 +41,9 @@ public class ArmorTable : DataTable
     }
 
 
-    public List<EquipmentData> GetList()
+    public List<WeaponData> GetList()
     {
-        List<EquipmentData> list = new List<EquipmentData>();
+        List<WeaponData> list = new List<WeaponData>();
 
         foreach (var armor in dictionary.Values)
         {
@@ -53,16 +53,16 @@ public class ArmorTable : DataTable
         return list;
     }
 
-    public List<EquipmentData> GetList(ArmorType type)
+    public List<WeaponData> GetList(WeaponType type)
     {
         var result = from l in GetList()
-                        where l.Type == type
-                        select l;
+                     where l.Type == type
+                     select l;
 
         return result.ToList();
     }
 
-    public List<EquipmentData> GetList(EquipRate rate)
+    public List<WeaponData> GetList(EquipRate rate)
     {
         var result = from l in GetList()
                      where l.Rate == rate

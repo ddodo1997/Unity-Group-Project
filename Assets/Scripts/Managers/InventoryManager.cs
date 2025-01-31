@@ -10,7 +10,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject inventoryPanel;
     public GameObject inventoryBackGround;
     private bool isOpen = false;
-    public static int maxItemSlot = 60;
+    public static readonly int maxItemSlot = 60;
     public List<ItemData> items = new List<ItemData>(maxItemSlot);
     public List<Button> slots = new List<Button>(maxItemSlot);
     public void OnInventoryOpenButtonTouch()
@@ -41,6 +41,7 @@ public class InventoryManager : MonoBehaviour
                     where item.GetType() == typeof(WeaponData)
                     select item;
 
+        UpdateSlots(query.ToList());
     }
 
     public void OnSortingArmor()
@@ -49,6 +50,7 @@ public class InventoryManager : MonoBehaviour
                     where item.GetType() == typeof(EquipmentData)
                     select item;
 
+        UpdateSlots(query.ToList());
     }
 
     public void UpdateSlots()
@@ -59,6 +61,13 @@ public class InventoryManager : MonoBehaviour
             image.sprite = items[i].sprite;
         }
     }
-
+    public void UpdateSlots(List<ItemData> list)
+    {
+        for (int i = 0; i < list.Count; i++)
+        {
+            var image = slots[i].transform.GetChild(0).GetComponent<Image>();
+            image.sprite = list[i].sprite;
+        }
+    }
 
 }
