@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerEquipment : MonoBehaviour
 {
     public InventoryManager inventoryManager;
-    public EquipmentData[] armorDatas;
-    public WeaponData weaponData;
+    [SerializeField] public EquipmentData[] armorDatas;
+    [SerializeField] public WeaponData weaponData;
     private Player player;
     private void Start()
     {
@@ -58,7 +58,9 @@ public class PlayerEquipment : MonoBehaviour
             }
 
         }
-
+        inventoryManager.UpdateSlots();
+        inventoryManager.SetCurrentItem();
+        player.status.SetStatus(ref armorDatas, weaponData);
     }
 
 

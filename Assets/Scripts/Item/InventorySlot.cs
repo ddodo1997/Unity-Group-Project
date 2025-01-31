@@ -18,10 +18,10 @@ public class InventorySlot : MonoBehaviour
     public void OnSlotTouch()
     {
         //아이템 슬롯 터치 시
-        inventoryManager.SetCurrentItem(itemData is EquipmentData ? itemData : itemData as WeaponData);
+        inventoryManager.SetCurrentItem(ref itemData);
     }
 
-    public void SetData(ItemData itemData)
+    public void SetData(ref ItemData itemData)
     {
         this.itemData = itemData;
     }

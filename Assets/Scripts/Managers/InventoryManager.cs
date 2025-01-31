@@ -28,11 +28,16 @@ public class InventoryManager : MonoBehaviour
         inventoryBackGround.SetActive(isOpen);
         Time.timeScale = isOpen ? 0.0f : 1.0f;
         UpdateSlots();
+        SortingInventory();
     }
 
-    public void SetCurrentItem(ItemData item)
+    public void SetCurrentItem(ref ItemData item)
     {
         currentItem = item;
+    }
+    public void SetCurrentItem()
+    {
+        currentItem = null;
     }
 
     public void OnTouchEquipButton()
@@ -58,11 +63,10 @@ public class InventoryManager : MonoBehaviour
         EquipmentWindow.SetActive(!isEnforce);
     }
 
-    public void OnPickUpItem(ItemData item)
+    public void OnPickUpItem(ref ItemData item)
     {
         items.Add(item);
-        items[items.Count - 1] = item;
-        slots[items.Count - 1].SetData(item is EquipmentData ? item : item as WeaponData);
+        slots[items.Count - 1].SetData(ref item);
     }
 
 
@@ -86,23 +90,61 @@ public class InventoryManager : MonoBehaviour
 
     public void UpdateSlots()
     {
+        if(items.Count == 0)
+        {
+            ClearSlots();
+            return;
+        }
+        int maxIdx = 0;
         for (int i = 0; i < items.Count; i++)
         {
             var image = slots[i].transform.GetChild(0).GetComponent<Image>();
+            slots[i].itemData = items[i];
             image.sprite = items[i].sprite;
+            maxIdx = i;
+        }
+        for(int i = maxIdx + 1; i < maxItemSlot; i++)
+        {
+            var image = slots[i].transform.GetChild(0).GetComponent<Image>();
+            image.sprite = null;
+            slots[i].itemData = null;
         }
     }
     public void UpdateSlots(List<ItemData> list)
     {
-        for (int i = 0; i < list.Count; i++)
+        if (items.Count == 0)
+        {
+            ClearSlots();
+            return;
+        }
+        int maxIdx = 0;
+        for (int i = 0; i < slots.Count; i++)
         {
             var image = slots[i].transform.GetChild(0).GetComponent<Image>();
+            slots[i].itemData = list[i];
             image.sprite = list[i].sprite;
+            maxIdx = i;
+        }
+        for (int i = maxIdx + 1; i < maxItemSlot; i++)
+        {
+            var image = slots[i].transform.GetChild(0).GetComponent<Image>();
+            image.sprite = null;
+            slots[i].itemData = null;
         }
     }
     public void SortingInventory()
     {
         items.Sort(new InvenComparer());
+        UpdateSlots();
+    }
+
+    public void ClearSlots()
+    {
+        foreach(var item in slots)
+        {
+            item.itemData = null;
+            item.transform.GetChild(0).GetComponent<Image>().sprite = null;
+        }
     }
 }
 

@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using UnityEngine;
 public enum ClassName
 {
@@ -55,6 +57,20 @@ public class PlayerStatus : IStatus
     //공격간 딜레이
     public float CoolTime { get; set; }
 
+    public void SetStatus(PlayerStatus status)
+    {
+        Strength = status.Strength;
+        Defense = status.Defense;
+        Agility = status.Agility;
+        Health = status.Health;
+        Intelligence = status.Intelligence;
+        Luck = status.Luck;
+        Critical= status.Critical;
+        MotionSpeed = status.MotionSpeed;
+        BulletSpeed = status.BulletSpeed;
+        BulletLivingTime = status.BulletLivingTime;
+        CoolTime = status.CoolTime;
+    }
     public void SetStatus(string key)
     {
         var data = DataTableManager.CharacterTable.Get(key);
@@ -81,5 +97,14 @@ public class PlayerStatus : IStatus
         BulletLivingTime = data.BulletLivingTime;
         CoolTime = data.CoolTime;
     }
-
+     
+    public void SetStatus(ref EquipmentData[] equipmentDatas, WeaponData weaponData)
+    {
+        //SetStatus(Name);
+        //float[] stats = new float[12];
+        //for (int i = 0; i < stats.Length; i++)
+        //{
+        //    stats[i] 
+        //}
+    }
 }

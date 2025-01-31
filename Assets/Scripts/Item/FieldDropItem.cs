@@ -57,7 +57,7 @@ public class FieldDropItem : MonoBehaviour
         if (collision.CompareTag(Tags.Player) && inventory.items.Count < InventoryManager.maxItemSlot)
         {
             Destroy(gameObject);
-            inventory.OnPickUpItem(item is EquipmentData ? item : item as WeaponData);
+            inventory.OnPickUpItem(ref item);
         }
     }
 }

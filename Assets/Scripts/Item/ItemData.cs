@@ -26,9 +26,9 @@ public class ItemData : IStatus
     public float Critical { get; set; }
     public float Range { get; set; }
     public float MotionSpeed { get; set; }
-    public float CoolTime { get; set; }
     public float BulletSpeed { get; set; }
     public float BulletLivingTime { get; set; }
+    public float CoolTime { get; set; }
     public float LevelUpExperienceRequired {  get; set; }
     public float ExperienceValue {  get; set; }
 
