@@ -7,6 +7,7 @@ public class ItemDrop : MonoBehaviour
     private Monster monster;
     public FieldDropItem tempItem;
     private Vector3 startPos;
+
     private void Start()
     {
         monster = GetComponent<Monster>(); 
@@ -34,7 +35,8 @@ public class ItemDrop : MonoBehaviour
         for (int i = 0; i < Random.Range(0, Variables.MaxDropCnt); i++)
         {
             var temp = Instantiate(tempItem, startPos, Quaternion.identity);
-            temp.Setting(startPos);
+            var list = DataTableManager.ArmorTable.GetList();
+            temp.Setting(startPos, list[Random.Range(0, list.Count)]);
         }
     }
 }

@@ -17,9 +17,10 @@ public class FieldDropItem : MonoBehaviour
 
     private bool isGrounded = false;
 
-    public void Setting(Vector3 position)
+    public void Setting(Vector3 position, ItemData item)
     {
         yPos = position.y;
+        this.item = item is EquipmentData ? item : item as WeaponData;
     }
 
     private void Start()
@@ -56,7 +57,7 @@ public class FieldDropItem : MonoBehaviour
         if (collision.CompareTag(Tags.Player) && inventory.items.Count < InventoryManager.maxItemSlot)
         {
             Destroy(gameObject);
-            inventory.OnPickUpItem(item);
+            inventory.OnPickUpItem(item is EquipmentData ? item : item as WeaponData);
         }
     }
 }

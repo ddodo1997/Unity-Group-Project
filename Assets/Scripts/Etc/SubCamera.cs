@@ -7,9 +7,9 @@ public class SubCamera : MonoBehaviour
 
     public Player player;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        transform.position = player.transform.position;
+        var newVec = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - 5f);
+        transform.position = newVec;
     }
 }

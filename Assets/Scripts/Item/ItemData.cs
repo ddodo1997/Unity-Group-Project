@@ -34,11 +34,13 @@ public class ItemData : IStatus
 
     public Sprite sprite;
 
+    public string name;
     public virtual void SetStatus(ItemData data)
     {
         Rate = data.Rate;
         Id = data.Id;
         Name = data.Name;
+        name = Name;
         Strength = data.Strength;
         Defense = data.Defense;
         Agility = data.Agility;
@@ -52,7 +54,7 @@ public class ItemData : IStatus
         BulletSpeed = data.BulletSpeed;
         BulletLivingTime = data.BulletLivingTime;
         LevelUpExperienceRequired = data.LevelUpExperienceRequired;
-        ExperienceValue = data.ExperienceValue;
+        ExperienceValue = Random.Range(0, data.ExperienceValue);
 
         sprite = data.sprite;
     }

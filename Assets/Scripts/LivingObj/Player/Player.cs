@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player : Creature
 {
@@ -18,6 +19,7 @@ public class Player : Creature
     private GameObject prefab;
     public Animator animator;
     public SpriteRenderer weaponRenderer;
+    public PlayerEquipment playerEquip;
 
     private Vector2 moveDirection;
     private Vector2 lookDirection;
@@ -52,6 +54,7 @@ public class Player : Creature
             }
         }
     }
+
     public override void Attack()
     {
         if (attackJoystick.Input.magnitude == 0)
@@ -112,12 +115,14 @@ public class Player : Creature
         prefab.transform.SetParent(transform, false);
         prefab.transform.position = Vector3.zero;
         prefab.layer = LayerMask.NameToLayer(Tags.Player);
+        ChangeLayerRecursively(gameObject, prefab.layer);
     }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         attackArea = GetComponent<BoxCollider2D>();
+        playerEquip = GetComponent<PlayerEquipment>();
 
         StartGame("Warrior");
 
@@ -144,9 +149,16 @@ public class Player : Creature
                 break;
             }
         }
+    }
 
+    private void ChangeLayerRecursively(GameObject obj, int layer)
+    {
+        obj.layer = layer;
 
-        
+        foreach (Transform child in obj.transform)
+        {
+            ChangeLayerRecursively(child.gameObject, layer);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
