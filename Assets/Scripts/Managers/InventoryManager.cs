@@ -4,7 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System;
-
+public enum SortBy
+{
+    Armor,
+    Weapon,
+}
 public class InventoryManager : MonoBehaviour
 {
     public GameObject inventoryPanel;
@@ -19,6 +23,7 @@ public class InventoryManager : MonoBehaviour
     private ItemData currentItem;
     public Player player;
 
+    public SortBy currentSortBy = SortBy.Armor;
     public void OnInventoryOpenButtonTouch()
     {
         if(EnforceWindow.activeSelf)
@@ -27,8 +32,8 @@ public class InventoryManager : MonoBehaviour
         inventoryPanel.SetActive(isOpen);
         inventoryBackGround.SetActive(isOpen);
         Time.timeScale = isOpen ? 0.0f : 1.0f;
-        UpdateSlots();
         SortingInventory();
+        SetCurrentItem();
     }
 
     public void SetCurrentItem(ref ItemData item)
@@ -42,11 +47,8 @@ public class InventoryManager : MonoBehaviour
 
     public void OnTouchEquipButton()
     {
-        if (currentItem is null)
-        {
-            Debug.Log("currentItem is null");
+        if (currentItem == null)
             return;
-        }
         player.playerEquip.OnEquipItem(currentItem);
         SortingInventory();
     }
@@ -69,13 +71,26 @@ public class InventoryManager : MonoBehaviour
         slots[items.Count - 1].SetData(ref item);
     }
 
+    public void Sorting(SortBy sort)
+    {
+        switch (sort)
+        {
+            case SortBy.Armor:
+                OnSortingArmor();
+                break;
+            case SortBy.Weapon:
+                OnSortingWeapon();
+                break;
+        }
+    }
 
     public void OnSortingWeapon()
     {
         var query = from item in items
-                    where item.GetType() == typeof(WeaponData)
+                    where item is WeaponData
                     select item;
 
+        currentSortBy = SortBy.Weapon;
         UpdateSlots(query.ToList());
     }
 
@@ -85,6 +100,7 @@ public class InventoryManager : MonoBehaviour
                     where item.GetType() == typeof(EquipmentData)
                     select item;
 
+        currentSortBy = SortBy.Armor;   
         UpdateSlots(query.ToList());
     }
 
@@ -112,13 +128,13 @@ public class InventoryManager : MonoBehaviour
     }
     public void UpdateSlots(List<ItemData> list)
     {
-        if (items.Count == 0)
+        if (list.Count == 0)
         {
             ClearSlots();
             return;
         }
         int maxIdx = 0;
-        for (int i = 0; i < slots.Count; i++)
+        for (int i = 0; i < list.Count; i++)
         {
             var image = slots[i].transform.GetChild(0).GetComponent<Image>();
             slots[i].itemData = list[i];
@@ -135,7 +151,16 @@ public class InventoryManager : MonoBehaviour
     public void SortingInventory()
     {
         items.Sort(new InvenComparer());
-        UpdateSlots();
+        Sorting(currentSortBy);
+        ClaerItems();
+    }
+    public void ClaerItems()
+    {
+        foreach (ItemData item in items)
+        {
+            if(item.IsEmpty)
+                items.Remove(item);
+        }
     }
 
     public void ClearSlots()

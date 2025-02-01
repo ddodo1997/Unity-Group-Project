@@ -14,13 +14,27 @@ public class FieldDropItem : MonoBehaviour
     public Vector2 targetDirection;
     public Player player;
     public float pullMinDistance = 3f;
+    private SpriteRenderer spriteRenderer;
 
     private bool isGrounded = false;
 
     public void Setting(Vector3 position, ItemData item)
     {
         yPos = position.y;
+        var path = string.Format(PathFormats.sprites, item.Id);
         this.item = item is EquipmentData ? item : item as WeaponData;
+        item.sprite = Resources.Load<Sprite>(path);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = item.sprite;
+        item.IsEmpty = false;
+        if (item is EquipmentData)
+        {
+            if ((item as EquipmentData).Type == ArmorType.Ring)
+            {
+                var vec = new Vector3(2, 2, 2);
+                transform.localScale = vec;
+            }
+        }
     }
 
     private void Start()

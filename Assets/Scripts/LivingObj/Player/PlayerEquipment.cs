@@ -1,19 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
+using System.Net;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
+enum EquipSlots
+{
+    Helmet,
+    Armor,
+    Shoes,
+    Cloak,
+    Ring,
+    Weapon
+}
 public class PlayerEquipment : MonoBehaviour
 {
     public InventoryManager inventoryManager;
-    [SerializeField] public EquipmentData[] armorDatas;
-    [SerializeField] public WeaponData weaponData;
+    public EquipmentSlot[] equipSlots;
     private Player player;
+    public TextMeshProUGUI[] statTexts;
+
     private void Start()
     {
         player = GetComponent<Player>();
-        armorDatas = new EquipmentData[5];
-        weaponData = new WeaponData();
         inventoryManager = GameObject.FindGameObjectWithTag(Tags.InventoryManager).GetComponent<InventoryManager>();
     }
 
@@ -22,46 +33,62 @@ public class PlayerEquipment : MonoBehaviour
         if (item is EquipmentData)
         {
             var equip = (item as EquipmentData);
-            if (armorDatas[(int)equip.Type] != null)
+            if (!equipSlots[(int)equip.Type].itemData.IsEmpty)
             {
-                var tempEquip = armorDatas[(int)equip.Type];
-                inventoryManager.items.Add(tempEquip);
+                var tempEquip = equipSlots[(int)equip.Type];
+                inventoryManager.items.Add(tempEquip.itemData);
             }
-            armorDatas[(int)equip.Type] = equip;
+            equipSlots[(int)equip.Type].SetData(equip);
             inventoryManager.items.Remove(equip);
         }
         else if (item is WeaponData)
         {
-            var currentWeapon = item as WeaponData; 
-            if (weaponData != null)
-            {
-                var tempWeapon = weaponData;
-                inventoryManager.items.Add(tempWeapon);
-            }
+            var currentWeapon = item as WeaponData;
             switch (player.status.className)
             {
                 case ClassName.Warrior:
-                    if (currentWeapon.Type == WeaponType.Sword)
-                        weaponData = currentWeapon;
-                    inventoryManager.items.Remove(currentWeapon);
+                    if (currentWeapon.Type != WeaponType.Sword)
+                    {
+                        return;
+                    }
                     break;
                 case ClassName.Archer:
-                    if (currentWeapon.Type == WeaponType.Staff)
-                        weaponData = currentWeapon;
-                    inventoryManager.items.Remove(currentWeapon);
+                    if (currentWeapon.Type != WeaponType.Staff)
+                    {
+                        return;
+                    }
                     break;
                 case ClassName.Sorcerer:
-                    if (currentWeapon.Type == WeaponType.Bow)
-                        weaponData = currentWeapon;
-                    inventoryManager.items.Remove(currentWeapon);
+                    if (currentWeapon.Type != WeaponType.Bow)
+                    {
+                        return;
+                    }
                     break;
             }
-
+            if (!equipSlots[(int)EquipSlots.Weapon].itemData.IsEmpty)
+            {
+                var tempWeapon = equipSlots[(int)EquipSlots.Weapon].itemData; ;
+                inventoryManager.items.Add(tempWeapon);
+            }
+            equipSlots[(int)EquipSlots.Weapon].SetData(currentWeapon);
+            inventoryManager.items.Remove(currentWeapon);
+            player.weaponRenderer.sprite = equipSlots[(int)EquipSlots.Weapon].image.GetComponent<Sprite>();
         }
-        inventoryManager.UpdateSlots();
         inventoryManager.SetCurrentItem();
-        player.status.SetStatus(ref armorDatas, weaponData);
+
+        player.status.SetStatus(ref equipSlots);
+        player.StatusBasedSetting();
+        UpdateStatusText();
     }
 
+    public void UpdateStatusText()
+    {
+        statTexts[0].text = $"Strength : {player.status.Strength}";
+        statTexts[1].text = $"Intelligence : {player.status.Intelligence}";
+        statTexts[2].text = $"Agillity : {player.status.Agility}";
+        statTexts[3].text = $"Luck : {player.status.Luck}";
+        statTexts[4].text = $"Health : {player.status.Health}";
+        statTexts[5].text = $"Critical : {player.status.Critical}";
+    }
 
 }

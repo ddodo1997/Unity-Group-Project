@@ -14,6 +14,7 @@ public enum EquipRate
 [System.Serializable]
 public class ItemData : IStatus
 {
+    public bool IsEmpty = true;
     public EquipRate Rate {  get; set; }
     public string Id { get; set; }
     public string Name { get; set; }

@@ -3,12 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using TMPro.EditorUtilities;
 using UnityEngine;
 public enum ClassName
 {
     Warrior,
     Archer,
     Sorcerer
+}
+public enum StatusOrder
+{
+    Strength,
+    Intelligence,
+    Agility,
+    Luck,
+    Health,
+    Critical,
 }
 public class PlayerStatus : IStatus
 {
@@ -65,7 +75,7 @@ public class PlayerStatus : IStatus
         Health = status.Health;
         Intelligence = status.Intelligence;
         Luck = status.Luck;
-        Critical= status.Critical;
+        Critical = status.Critical;
         MotionSpeed = status.MotionSpeed;
         BulletSpeed = status.BulletSpeed;
         BulletLivingTime = status.BulletLivingTime;
@@ -76,14 +86,14 @@ public class PlayerStatus : IStatus
         var data = DataTableManager.CharacterTable.Get(key);
         Id = data.Id;
         Name = data.Name;
-        className = Enum.Parse<ClassName>(Name);
+        className = Enum.Parse<ClassName>(Id);
 
         Strength = data.Strength;
         Defense = data.Defense;
         Agility = data.Agility;
         MovementSpeed = Agility * 0.02f;
-        
-        
+
+
 
         Health = data.Health;
         Intelligence = data.Intelligence;
@@ -97,14 +107,35 @@ public class PlayerStatus : IStatus
         BulletLivingTime = data.BulletLivingTime;
         CoolTime = data.CoolTime;
     }
-     
-    public void SetStatus(ref EquipmentData[] equipmentDatas, WeaponData weaponData)
+
+    public void SetStatus(ItemData itemdata)
     {
-        //SetStatus(Name);
-        //float[] stats = new float[12];
-        //for (int i = 0; i < stats.Length; i++)
-        //{
-        //    stats[i] 
-        //}
+        Strength += itemdata.Strength;
+        Defense += itemdata.Defense;
+        Agility += itemdata.Agility;
+        Health += itemdata.Health;
+        Intelligence += itemdata.Intelligence;
+        Luck += itemdata.Luck;
+        Critical += itemdata.Critical;
+        MotionSpeed += itemdata.MotionSpeed;
+        BulletSpeed += itemdata.BulletSpeed;
+        BulletLivingTime += itemdata.BulletLivingTime;
+        CoolTime += itemdata.CoolTime;
+    }
+
+    public void SetStatus(ref EquipmentSlot[] equipmentDatas)
+    {
+        SetStatus(Id);
+        for(int i = 0; i < equipmentDatas.Length; i++)
+        {
+            if (equipmentDatas[i] == null)
+                continue;
+            SetStatus(equipmentDatas[i].itemData);
+        }
+        if (equipmentDatas[5] == null)
+            return;
+        SetStatus(equipmentDatas[5].itemData);
+
+        
     }
 }

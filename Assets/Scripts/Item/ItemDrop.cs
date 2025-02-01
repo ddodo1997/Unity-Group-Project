@@ -38,5 +38,12 @@ public class ItemDrop : MonoBehaviour
             var list = DataTableManager.ArmorTable.GetList();
             temp.Setting(startPos, list[Random.Range(0, list.Count)]);
         }
+
+        for (int i = 0; i < Random.Range(0, Variables.MaxDropCnt); i++)
+        {
+            var temp = Instantiate(tempItem, startPos, Quaternion.identity);
+            var list = DataTableManager.WeaponTable.GetList();
+            temp.Setting(startPos, list[Random.Range(0, list.Count)]);
+        }
     }
 }

@@ -30,6 +30,10 @@ public class Player : Creature
 
     public void Rotation()
     {
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("ATTACK"))
+        {
+            return;
+        }
         if (attackJoystick.Input.magnitude != 0)
         {
             if (attackJoystick.Input.x < 0)
@@ -116,8 +120,13 @@ public class Player : Creature
         prefab.transform.position = Vector3.zero;
         prefab.layer = LayerMask.NameToLayer(Tags.Player);
         ChangeLayerRecursively(gameObject, prefab.layer);
+        GetComponent<PlayerEquipment>().UpdateStatusText();
     }
-
+    public void StatusBasedSetting()
+    {
+        attackArea.size = new Vector2(status.Range, attackArea.size.y);
+        attackArea.offset = new Vector2(status.Range * -0.5f, attackArea.offset.y);
+    }
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -125,10 +134,7 @@ public class Player : Creature
         playerEquip = GetComponent<PlayerEquipment>();
 
         StartGame("Warrior");
-
-
-        attackArea.size = new Vector2(status.Range, attackArea.size.y);
-        attackArea.offset = new Vector2(attackArea.offset.x - status.Range * 0.5f, attackArea.offset.y);
+        StatusBasedSetting();
 
         Animator[] AllAnimators = gameObject.GetComponentsInChildren<Animator>();
         foreach (Animator trans in AllAnimators)

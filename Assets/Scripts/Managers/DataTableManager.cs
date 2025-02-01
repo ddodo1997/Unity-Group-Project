@@ -20,6 +20,10 @@ public static class DataTableManager
     {
         get => Get<ArmorTable>(DataTableIds.ItemStatus[(int)EquipType.Armor]);
     }
+    public static WeaponTable WeaponTable
+    {
+        get => Get<WeaponTable>(DataTableIds.ItemStatus[(int)EquipType.Weapon]);
+    }
     static DataTableManager()
     {
         var characterTable = new CharacterTable();
