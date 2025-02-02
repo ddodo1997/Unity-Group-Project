@@ -19,7 +19,7 @@ public class PlayerEquipment : MonoBehaviour
 {
     public InventoryManager inventoryManager;
     public EquipmentSlot[] equipSlots;
-    private Player player;
+    public Player player;
     public TextMeshProUGUI[] statTexts;
 
     private void Start()
@@ -38,8 +38,8 @@ public class PlayerEquipment : MonoBehaviour
                 var tempEquip = equipSlots[(int)equip.Type];
                 inventoryManager.items.Add(tempEquip.itemData);
             }
-            equipSlots[(int)equip.Type].SetData(equip);
-            inventoryManager.items.Remove(equip);
+            equipSlots[(int)equip.Type].SetData(ref item);
+            inventoryManager.items.Remove(item);
         }
         else if (item is WeaponData)
         {
@@ -70,9 +70,9 @@ public class PlayerEquipment : MonoBehaviour
                 var tempWeapon = equipSlots[(int)EquipSlots.Weapon].itemData; ;
                 inventoryManager.items.Add(tempWeapon);
             }
-            equipSlots[(int)EquipSlots.Weapon].SetData(currentWeapon);
-            inventoryManager.items.Remove(currentWeapon);
-            player.weaponRenderer.sprite = equipSlots[(int)EquipSlots.Weapon].image.GetComponent<Sprite>();
+            equipSlots[(int)EquipSlots.Weapon].SetData(ref item);
+            inventoryManager.items.Remove(item);
+            player.weaponRenderer.sprite = equipSlots[(int)EquipSlots.Weapon].image.sprite;
         }
         inventoryManager.SetCurrentItem();
 

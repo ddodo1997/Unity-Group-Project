@@ -18,7 +18,10 @@ public class InventorySlot : MonoBehaviour
     public void OnSlotTouch()
     {
         //아이템 슬롯 터치 시
-        inventoryManager.SetCurrentItem(ref itemData);
+        if (itemData is null)
+            inventoryManager.SetCurrentItem();
+        else
+            inventoryManager.SetCurrentItem(ref itemData);
     }
 
     public void SetData(ref ItemData itemData)

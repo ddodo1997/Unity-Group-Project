@@ -7,8 +7,9 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class Player : Creature
+public class Player : LivingEntity
 {
+    public GameManager gameManager;
     public VirtualJoyStick moveJoystick;
     public VirtualJoyStick attackJoystick;
     public PlayerStatus status = new PlayerStatus();
@@ -106,6 +107,7 @@ public class Player : Creature
     public override void OnDie()
     {
         isDie = true;
+        gameManager.OnGameOver();
         rb.velocity = Vector2.zero;
         animator.SetTrigger(deathTrigger);
         animator.SetBool(dieBool, isDie);
@@ -127,7 +129,7 @@ public class Player : Creature
         attackArea.size = new Vector2(status.Range, attackArea.size.y);
         attackArea.offset = new Vector2(status.Range * -0.5f, attackArea.offset.y);
     }
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         attackArea = GetComponent<BoxCollider2D>();
@@ -135,17 +137,6 @@ public class Player : Creature
 
         StartGame("Warrior");
         StatusBasedSetting();
-
-        Animator[] AllAnimators = gameObject.GetComponentsInChildren<Animator>();
-        foreach (Animator trans in AllAnimators)
-        {
-            if (trans.name == "UnitRoot")
-            {
-                animator = trans;
-                break;
-            }
-        }
-
         SpriteRenderer[] AllSpriteRenderers = gameObject.GetComponentsInChildren<SpriteRenderer>();
         foreach (SpriteRenderer trans in AllSpriteRenderers)
         {
@@ -157,6 +148,19 @@ public class Player : Creature
         }
     }
 
+    private void Start()
+    {
+        isDie = false;
+        Animator[] AllAnimators = gameObject.GetComponentsInChildren<Animator>();
+        foreach (Animator trans in AllAnimators)
+        {
+            if (trans.name == "UnitRoot")
+            {
+                animator = trans;
+                break;
+            }
+        }
+    }
     private void ChangeLayerRecursively(GameObject obj, int layer)
     {
         obj.layer = layer;
@@ -186,6 +190,10 @@ public class Player : Creature
     {
         if (isDie)
             return;
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.S))
+            OnDie();
+#endif
         Attack();
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("ATTACK"))
             OnColliderEnable();

@@ -11,23 +11,23 @@ public enum SortBy
 }
 public class InventoryManager : MonoBehaviour
 {
+    public UpgradeManager upgradeManager;
     public GameObject inventoryPanel;
     public GameObject inventoryBackGround;
-    public GameObject EnforceWindow;
+    public GameObject UpgradeWindow;
     public GameObject EquipmentWindow;
+    public Button equipButton;
     private bool isOpen = false;
-    private bool isEnforce = false;
+    public bool isUpgrade = false;
     public static readonly int maxItemSlot = 60;
     public List<ItemData> items = new List<ItemData>(maxItemSlot);
     public List<InventorySlot> slots = new List<InventorySlot>(maxItemSlot);
-    private ItemData currentItem;
+    public ItemData currentItem;
     public Player player;
 
     public SortBy currentSortBy = SortBy.Armor;
     public void OnInventoryOpenButtonTouch()
     {
-        if(EnforceWindow.activeSelf)
-            OnEnforceButtonTouch();
         isOpen = !isOpen;
         inventoryPanel.SetActive(isOpen);
         inventoryBackGround.SetActive(isOpen);
@@ -42,27 +42,29 @@ public class InventoryManager : MonoBehaviour
     }
     public void SetCurrentItem()
     {
-        currentItem = null;
+        currentItem = new ItemData();
     }
 
     public void OnTouchEquipButton()
     {
-        if (currentItem == null)
+        if (currentItem.IsEmpty)
             return;
         player.playerEquip.OnEquipItem(currentItem);
         SortingInventory();
     }
 
-    public void ReturnInventory(ItemData item)
+    public void OnUpgradeButtonTouch()
     {
-
-    }
-
-    public void OnEnforceButtonTouch()
-    {
-        isEnforce = !isEnforce;
-        EnforceWindow.SetActive(isEnforce);
-        EquipmentWindow.SetActive(!isEnforce);
+        if (currentItem.IsEmpty && !isUpgrade)
+            return;
+        isUpgrade = !isUpgrade;
+        UpgradeWindow.SetActive(isUpgrade);
+        EquipmentWindow.SetActive(!isUpgrade);
+        equipButton.enabled = !isUpgrade;
+        upgradeManager.OnUpgreadeStart(currentItem);
+        items.Remove(currentItem);
+        SetCurrentItem();
+        Sorting(currentSortBy);
     }
 
     public void OnPickUpItem(ref ItemData item)

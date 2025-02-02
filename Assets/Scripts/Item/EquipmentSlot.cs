@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class EquipmentSlot : MonoBehaviour
 {
+    private Player player;
+    private PlayerEquipment playerEquipment;
     public InventoryManager inventoryManager;
     public ItemData itemData;
     public Image image;
@@ -12,6 +14,8 @@ public class EquipmentSlot : MonoBehaviour
     private void Start()
     {
         image = transform.GetChild(0).GetComponent<Image>();
+        player = GameObject.FindWithTag(Tags.Player).GetComponent<Player>();
+        playerEquipment = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerEquipment>();
     }
     public void OnSlotTouch()
     {
@@ -20,14 +24,28 @@ public class EquipmentSlot : MonoBehaviour
         {
             return;
         }
-        inventoryManager.items.Add(itemData);
-        SetData(null);
+        inventoryManager.items.Add(itemData); 
+        if (itemData is WeaponData)
+        {
+            player.weaponRenderer.sprite = null;
+        }
+        SetData();
         inventoryManager.Sorting(inventoryManager.currentSortBy);
+        player.status.SetStatus(ref playerEquipment.equipSlots);
+        playerEquipment.UpdateStatusText();
+
+
     }
 
-    public void SetData(ItemData itemData)
+    public void SetData(ref ItemData itemData)
     {
         this.itemData = itemData ?? new ItemData();
         image.sprite = itemData?.sprite ?? null;
+    }
+
+    public void SetData()
+    {
+        itemData = new ItemData();
+        image.sprite = null;
     }
 }

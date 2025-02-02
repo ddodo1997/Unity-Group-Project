@@ -41,19 +41,21 @@ public class PlayerStatus : IStatus
 
     public float Intelligence { get; set; }
 
+
     //행운 관련
     public float Luck { get; set; }
     public float Accuracy;
     public float CriticalChance;
     public float EquipmentDropRate;
 
+
     //크리티컬 관련
     public float Critical { get; set; }
     public float CriticalDamage;
 
+
     //공격 범위
     public float Range { get; set; }
-
 
     //공속
     public float MotionSpeed { get; set; }
@@ -67,20 +69,12 @@ public class PlayerStatus : IStatus
     //공격간 딜레이
     public float CoolTime { get; set; }
 
-    public void SetStatus(PlayerStatus status)
+    public void SetBasedStatus()
     {
-        Strength = status.Strength;
-        Defense = status.Defense;
-        Agility = status.Agility;
-        Health = status.Health;
-        Intelligence = status.Intelligence;
-        Luck = status.Luck;
-        Critical = status.Critical;
-        MotionSpeed = status.MotionSpeed;
-        BulletSpeed = status.BulletSpeed;
-        BulletLivingTime = status.BulletLivingTime;
-        CoolTime = status.CoolTime;
+        MovementSpeed = Agility * 0.02f;
+        Accuracy = Luck;
     }
+
     public void SetStatus(string key)
     {
         var data = DataTableManager.CharacterTable.Get(key);
@@ -91,7 +85,6 @@ public class PlayerStatus : IStatus
         Strength = data.Strength;
         Defense = data.Defense;
         Agility = data.Agility;
-        MovementSpeed = Agility * 0.02f;
 
 
 
@@ -106,6 +99,7 @@ public class PlayerStatus : IStatus
         BulletSpeed = data.BulletSpeed;
         BulletLivingTime = data.BulletLivingTime;
         CoolTime = data.CoolTime;
+        SetBasedStatus();
     }
 
     public void SetStatus(ItemData itemdata)
@@ -128,14 +122,14 @@ public class PlayerStatus : IStatus
         SetStatus(Id);
         for(int i = 0; i < equipmentDatas.Length; i++)
         {
-            if (equipmentDatas[i] == null)
+            if (equipmentDatas[i].itemData.IsEmpty)
                 continue;
             SetStatus(equipmentDatas[i].itemData);
         }
-        if (equipmentDatas[5] == null)
+        if (equipmentDatas[5].itemData.IsEmpty)
             return;
         SetStatus(equipmentDatas[5].itemData);
 
-        
+        SetBasedStatus();
     }
 }

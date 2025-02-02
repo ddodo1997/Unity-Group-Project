@@ -35,13 +35,11 @@ public class ItemData : IStatus
 
     public Sprite sprite;
 
-    public string name;
     public virtual void SetStatus(ItemData data)
     {
         Rate = data.Rate;
         Id = data.Id;
         Name = data.Name;
-        name = Name;
         Strength = data.Strength;
         Defense = data.Defense;
         Agility = data.Agility;
