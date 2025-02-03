@@ -112,7 +112,7 @@ public class Monster : LivingEntity
         }
 
         //테스트용 코드
-        transform.position = new Vector3(-9, 0, 0);
+        transform.position = Random.insideUnitCircle * 15f;
     }
     private void SetStatus(Status stat)
     {
