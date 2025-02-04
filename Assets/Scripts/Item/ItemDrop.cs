@@ -15,35 +15,19 @@ public class ItemDrop : MonoBehaviour
     public void Drop(MonsterStatus status)
     {
         startPos = transform.position + Random.onUnitSphere;
-        //몬스터 등급과 레벨에 따른 확률 분배
-        switch (status.Rate)
-        {
-            case MonsterStatus.Rating.Normal:
-                
-                break;
-            case MonsterStatus.Rating.Elite:
 
-                break;
-            case MonsterStatus.Rating.Boss:
-
-                break;
-            default:
-                break;
-        }
-
-        //테스트용
         for (int i = 0; i < Random.Range(0, Variables.MaxDropCnt); i++)
         {
             var temp = Instantiate(tempItem, startPos, Quaternion.identity);
             var list = DataTableManager.ArmorTable.GetList();
-            temp.Setting(startPos, list[Random.Range(0, list.Count)]);
+            temp.Setting(startPos, list[Random.Range(0, list.Count)].GetNewData());
         }
 
         for (int i = 0; i < Random.Range(0, Variables.MaxDropCnt); i++)
         {
             var temp = Instantiate(tempItem, startPos, Quaternion.identity);
             var list = DataTableManager.WeaponTable.GetList();
-            temp.Setting(startPos, list[Random.Range(0, list.Count)]);
+            temp.Setting(startPos, list[Random.Range(0, list.Count)].GetNewData());
         }
     }
 }

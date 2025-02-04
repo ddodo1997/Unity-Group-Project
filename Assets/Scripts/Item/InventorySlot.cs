@@ -19,7 +19,9 @@ public class InventorySlot : MonoBehaviour
         if (itemData is null)
             inventoryManager.SetCurrentItem();
         else
+        {
             inventoryManager.SetCurrentItem(ref itemData);
+        }
     }
 
     public void SetData(ref ItemData itemData)

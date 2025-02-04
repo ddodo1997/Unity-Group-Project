@@ -34,7 +34,6 @@ public class ArmorTable : DataTable
     {
         if (!dictionary.ContainsKey(key))
         {
-            Debug.LogError($"{this} Get Error{key}");
             return null;
         }
         return dictionary[key];

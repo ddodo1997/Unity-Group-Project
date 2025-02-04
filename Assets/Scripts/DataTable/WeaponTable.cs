@@ -34,7 +34,6 @@ public class WeaponTable : DataTable
     {
         if (!dictionary.ContainsKey(key))
         {
-            Debug.LogError($"{this} Get Error{key}");
             return null;
         }
         return dictionary[key];

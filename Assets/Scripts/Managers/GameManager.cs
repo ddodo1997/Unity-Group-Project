@@ -23,7 +23,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         gameOverPanel.gameObject.SetActive(false);
     }
-
+    private void Start()
+    {
+#if UNITY_ANDROID || UNITY_IOS
+        Application.targetFrameRate = 60;
+#endif
+    }
     private void Update()
     {
         if (IsGameOver)

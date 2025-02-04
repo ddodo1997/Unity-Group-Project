@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : LivingEntity
@@ -40,7 +41,8 @@ public class Player : LivingEntity
                 transform.rotation = Direction.Right;
             }
         }
-        else if (moveJoystick.Input.magnitude != 0) {
+        else if (moveJoystick.Input.magnitude != 0)
+        {
             if (moveJoystick.Input.x < 0)
             {
                 lookDirection = moveJoystick.Input;
@@ -76,7 +78,7 @@ public class Player : LivingEntity
         attackArea.enabled = false;
     }
 
-
+    public float tempSpeed;
     public override void Move()
     {
         isMoving = moveJoystick.Input.magnitude != 0;
@@ -88,7 +90,7 @@ public class Player : LivingEntity
 
     public override void OnDamage(float damage)
     {
-        status.Health -= damage;
+        status.Health -= damage - status.Defense;
         if (status.Health <= 0f)
         {
             OnDie();
@@ -110,7 +112,7 @@ public class Player : LivingEntity
     {
         status.SetStatus(name);
         var path = string.Format(PathFormats.prefabs, name);
-        prefab = (GameObject)Instantiate( Resources.Load(path), transform.position, transform.rotation);
+        prefab = (GameObject)Instantiate(Resources.Load(path), transform.position, transform.rotation);
         prefab.transform.SetParent(transform, false);
         prefab.transform.position = Vector3.zero;
         prefab.layer = LayerMask.NameToLayer(Tags.Player);
@@ -121,6 +123,16 @@ public class Player : LivingEntity
     {
         attackArea.size = new Vector2(status.Range, attackArea.size.y);
         attackArea.offset = new Vector2(status.Range * -0.5f, attackArea.offset.y);
+        StopCoroutine(AutoHeal());
+        StartCoroutine(AutoHeal());
+    }
+    public IEnumerator AutoHeal()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            status.Health += status.Intelligence * 0.2f;
+        }
     }
     private void Awake()
     {
@@ -166,15 +178,16 @@ public class Player : LivingEntity
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(isDie)
+        if (isDie)
             return;
 
         if (collision.CompareTag(Tags.Monster) && !collision.isTrigger)
         {
             var monster = collision.GetComponent<Monster>();
+
             if (monster != null && !monster.isDie)
             {
-                monster.OnDamage(status.Strength);
+                monster.OnDamage(status.CriticalChance <= Random.Range(0f, 100f) ? status.Strength * (status.Critical * 0.3f) : status.Strength);
             }
         }
     }

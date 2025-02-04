@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-using System;
+using TMPro;
+using System.Text;
 public enum SortBy
 {
     Armor,
@@ -11,6 +12,10 @@ public enum SortBy
 }
 public class InventoryManager : MonoBehaviour
 {
+    public GameObject itemInfoPanel;
+    public GameObject itemInfoPadding;
+    public Image currentItemImage;
+    public TextMeshProUGUI currentItemText;
     public UpgradeManager upgradeManager;
     public GameObject inventoryPanel;
     public GameObject inventoryBackGround;
@@ -32,17 +37,55 @@ public class InventoryManager : MonoBehaviour
         inventoryPanel.SetActive(isOpen);
         inventoryBackGround.SetActive(isOpen);
         Time.timeScale = isOpen ? 0.0f : 1.0f;
+        if (isUpgrade)
+            OnUpgradeButtonTouch();
         SortingInventory();
         SetCurrentItem();
     }
+    public string SetcurrentItemText()
+    {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine($"{currentItem.Name}");
 
+        if (currentItem is WeaponData)
+            stringBuilder.AppendLine($"{(currentItem as WeaponData).Type}");
+        else if (currentItem is EquipmentData)
+            stringBuilder.AppendLine($"{(currentItem as EquipmentData).Type}");
+
+        stringBuilder.AppendLine($"{currentItem.Rate}");
+        stringBuilder.AppendLine($"Level : {currentItem.Level}");
+        stringBuilder.AppendLine($"EXP : {currentItem.currentExp} / {currentItem.LevelUpExperienceRequired}");
+        
+
+        if (currentItem.Strength != 0)
+            stringBuilder.AppendLine($"Strength + {currentItem.Strength}");
+        if (currentItem.Agility != 0)
+            stringBuilder.AppendLine($"Agility + {currentItem.Agility}");
+        if (currentItem.Health != 0)
+            stringBuilder.AppendLine($"Health + {currentItem.Health}");
+        if (currentItem.Intelligence != 0)
+            stringBuilder.AppendLine($"Intelligence + {currentItem.Intelligence}");
+        if (currentItem.Luck != 0)
+            stringBuilder.AppendLine($"Luck + {currentItem.Luck}");
+        if (currentItem.Critical != 0)
+            stringBuilder.AppendLine($"Critical + {currentItem.Critical}");
+
+        return stringBuilder.ToString();
+    }
     public void SetCurrentItem(ref ItemData item)
     {
         currentItem = item;
+        currentItemImage.sprite = currentItem.sprite;
+        currentItemText.text = SetcurrentItemText();
+
+        itemInfoPanel.SetActive(true);
+        itemInfoPadding.SetActive(false);
     }
     public void SetCurrentItem()
     {
         currentItem = new ItemData();
+        itemInfoPanel.SetActive(false);
+        itemInfoPadding.SetActive(true);
     }
 
     public void OnTouchEquipButton()
@@ -57,6 +100,12 @@ public class InventoryManager : MonoBehaviour
     {
         if (currentItem.IsEmpty && !isUpgrade)
             return;
+
+        if (!upgradeManager.upgradeTargetItem.IsEmpty)
+        {
+            upgradeManager.OnCancle();
+        }
+
         isUpgrade = !isUpgrade;
         UpgradeWindow.SetActive(isUpgrade);
         EquipmentWindow.SetActive(!isUpgrade);
@@ -102,13 +151,13 @@ public class InventoryManager : MonoBehaviour
                     where item.GetType() == typeof(EquipmentData)
                     select item;
 
-        currentSortBy = SortBy.Armor;   
+        currentSortBy = SortBy.Armor;
         UpdateSlots(query.ToList());
     }
 
     public void UpdateSlots()
     {
-        if(items.Count == 0)
+        if (items.Count == 0)
         {
             ClearSlots();
             return;
@@ -121,7 +170,7 @@ public class InventoryManager : MonoBehaviour
             image.sprite = items[i].sprite;
             maxIdx = i;
         }
-        for(int i = maxIdx + 1; i < maxItemSlot; i++)
+        for (int i = maxIdx + 1; i < maxItemSlot; i++)
         {
             var image = slots[i].transform.GetChild(0).GetComponent<Image>();
             image.sprite = null;
@@ -160,14 +209,14 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (ItemData item in items)
         {
-            if(item.IsEmpty)
+            if (item.IsEmpty)
                 items.Remove(item);
         }
     }
 
     public void ClearSlots()
     {
-        foreach(var item in slots)
+        foreach (var item in slots)
         {
             item.itemData = null;
             item.transform.GetChild(0).GetComponent<Image>().sprite = null;

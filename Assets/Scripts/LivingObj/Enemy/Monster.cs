@@ -34,7 +34,7 @@ public class Monster : LivingEntity
     private float maxMoveTime;
     public float targetDistance;
 
-    public int tempLevel;
+    public int firstAttackableLevel = 40;
 
     private bool isMoving = false;
     public bool isDie = false;
@@ -61,7 +61,10 @@ public class Monster : LivingEntity
         if (currentStauts != Status.Aggro)
             SetStatus(Status.Aggro);
 
-        status.Health -= damage;
+        if (status.Agility * 0.01 + status.Level <= Random.Range(0, 1000))
+            return;
+
+        status.Health -= damage - status.Defense * (status.Level * 0.1f);
         if (status.Health <=0f)
         {
             OnDie();
@@ -112,7 +115,7 @@ public class Monster : LivingEntity
         }
 
         //테스트용 코드
-        transform.position = Random.insideUnitCircle * 15f;
+        transform.position = new Vector3(-9, 0, 0);
     }
     private void SetStatus(Status stat)
     {
@@ -196,7 +199,7 @@ public class Monster : LivingEntity
                 }
 
                 //선공몹 처리
-                if (tempLevel >= status.Level && targetDistance < status.Distance)
+                if (firstAttackableLevel <= status.Level && targetDistance < status.Distance)
                     SetStatus(Status.Aggro);
                 break;
             case Status.Aggro:
@@ -245,9 +248,12 @@ public class Monster : LivingEntity
         if (collision.CompareTag(Tags.Player) && !collision.isTrigger)
         {
             var player = collision.GetComponent<Player>();
+            if (Mathf.Clamp(player.status.Agility - (status.Agility * 0.5f), 0f,50f) <= Random.Range(0, 1000))
+                return;
+
             if (player != null)
             {
-                player.OnDamage(status.Strength);
+                player.OnDamage(status.CriticalChance <= Random.Range(0f, 100f) ? status.Strength * (status.Critical * 0.3f) :status.Strength);
             }
         }
     }

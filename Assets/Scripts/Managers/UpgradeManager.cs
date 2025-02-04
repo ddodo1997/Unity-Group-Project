@@ -19,27 +19,50 @@ public class UpgradeManager : MonoBehaviour
     {
         upgradeTargetItem = item;
         image.sprite = upgradeTargetItem.sprite;
+        UpdateMaterialText();
     }
-
+    public void ClearMaterialItems()
+    {
+        foreach (var slot in materialSlots)
+        {
+            slot.SetData();
+        }
+    }
     public void OnUpgrade()
     {
+        if (materialSlots[0].itemData.IsEmpty)
+            return;
 
+        int totalExp = 0;
+        foreach (var slot in materialSlots)
+        {
+            var item = slot.itemData;
+            if (item.IsEmpty)
+                continue;
+            totalExp += item.currentExp + (item.Level * (int)item.LevelUpExperienceRequired);
+        }
+
+        upgradeTargetItem.LevelUp(totalExp);
+        ClearMaterialItems();
+        UpdateMaterialText();
     }
+
     public void OnCancle()
     {
         if (!inventoryManager.isUpgrade)
             return;
-        foreach (var item in materialSlots)
-        {
-            if(!item.itemData.IsEmpty)
-                inventoryManager.items.Add(item.itemData);
-            item.SetData();
-        }
+        if (!materialSlots[0].itemData.IsEmpty)
+            foreach (var item in materialSlots)
+            {
+                if (!item.itemData.IsEmpty)
+                    inventoryManager.items.Add(item.itemData);
+                item.SetData();
+            }
 
         inventoryManager.items.Add(upgradeTargetItem);
         OnUpgreadeStart(new ItemData());
-        inventoryManager.OnUpgradeButtonTouch();
         inventoryManager.Sorting(inventoryManager.currentSortBy);
+        UpdateMaterialText();
     }
 
     public void AddMaterialItem()
@@ -72,7 +95,7 @@ public class UpgradeManager : MonoBehaviour
 
     public void Sort()
     {
-        for(int i = 0; i < materialSlots.Count; i++)
+        for (int i = 0; i < materialSlots.Count; i++)
         {
             materialSlots[i].SetData(ref materialSlots[i].itemData);
         }
@@ -82,6 +105,11 @@ public class UpgradeManager : MonoBehaviour
     {
         upgradeTargetItem = item;
         image.sprite = upgradeTargetItem.sprite;
+    }
+    public void SettingTargetItem()
+    {
+        upgradeTargetItem = new ItemData();
+        image.sprite = null;
     }
 
     public void UpdateMaterialText()

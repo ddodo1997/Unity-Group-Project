@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class FieldDropItem : MonoBehaviour
 {
@@ -35,6 +36,9 @@ public class FieldDropItem : MonoBehaviour
                 transform.localScale = vec;
             }
         }
+        this.item.currentExp = (int)Random.Range(0, this.item.ExperienceValue);
+        this.item.Level = Random.Range(1, 50);
+        this.item.SetStatusForLevel();
     }
 
     private void Start()
@@ -61,7 +65,7 @@ public class FieldDropItem : MonoBehaviour
         }
         targetDirection = (player.transform.position - transform.position);
         targetDistance = targetDirection.magnitude;
-        if (targetDistance <= pullMinDistance && inventory.items.Count < InventoryManager.maxItemSlot)
+        if (isGrounded && targetDistance <= pullMinDistance && inventory.items.Count < InventoryManager.maxItemSlot)
         {
             rb.AddForce(targetDirection * speed);
         }
