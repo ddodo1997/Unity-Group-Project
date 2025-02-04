@@ -90,8 +90,9 @@ public class Player : LivingEntity
 
     public override void OnDamage(float damage)
     {
-        status.Health -= damage - status.Defense;
-        if (status.Health <= 0f)
+        status.hp -= Mathf.Clamp(damage - status.Defense,0f, float.MaxValue);
+        playerEquip.hpBar.UpdateHpBar(status);
+        if (status.hp <= 0f)
         {
             OnDie();
             return;
@@ -106,6 +107,7 @@ public class Player : LivingEntity
         rb.velocity = Vector2.zero;
         animator.SetTrigger(deathTrigger);
         animator.SetBool(dieBool, isDie);
+        StopAllCoroutines();
     }
 
     public void StartGame(string name)
@@ -123,15 +125,18 @@ public class Player : LivingEntity
     {
         attackArea.size = new Vector2(status.Range, attackArea.size.y);
         attackArea.offset = new Vector2(status.Range * -0.5f, attackArea.offset.y);
-        StopCoroutine(AutoHeal());
-        StartCoroutine(AutoHeal());
     }
     public IEnumerator AutoHeal()
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f);
-            status.Health += status.Intelligence * 0.2f;
+            yield return new WaitForSeconds(5f);
+            status.hp += (int)(status.Intelligence * 0.2f);
+            if(status.hp >= status.Health)
+            {
+                status.hp = status.Health;
+            }
+            playerEquip.hpBar.UpdateHpBar(status);
         }
     }
     private void Awake()
@@ -156,6 +161,7 @@ public class Player : LivingEntity
     private void Start()
     {
         isDie = false;
+        StartCoroutine(AutoHeal());
         Animator[] AllAnimators = gameObject.GetComponentsInChildren<Animator>();
         foreach (Animator trans in AllAnimators)
         {
@@ -187,7 +193,7 @@ public class Player : LivingEntity
 
             if (monster != null && !monster.isDie)
             {
-                monster.OnDamage(status.CriticalChance <= Random.Range(0f, 100f) ? status.Strength * (status.Critical * 0.3f) : status.Strength);
+                monster.OnDamage(status.CriticalChance >= Random.Range(0f, 100f) ? status.Strength * (status.Critical * 0.3f) : status.Strength);
             }
         }
     }
@@ -198,7 +204,7 @@ public class Player : LivingEntity
             return;
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.S))
-            OnDie();
+            OnDamage(300);
 #endif
         Attack();
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("ATTACK"))

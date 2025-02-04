@@ -83,21 +83,16 @@ public class UpgradeManager : MonoBehaviour
         UpdateMaterialText();
     }
 
-    public void RemoveMaterialItem()
-    {
-
-    }
-
-    public void UpdateMaterialList()
-    {
-
-    }
 
     public void Sort()
     {
-        for (int i = 0; i < materialSlots.Count; i++)
+        for(int i = 0; i < materialSlots.Count - 1; i++)
         {
-            materialSlots[i].SetData(ref materialSlots[i].itemData);
+            if (materialSlots[i].itemData.IsEmpty)
+            {
+                materialSlots[i].SetData(ref materialSlots[i + 1].itemData);
+                materialSlots[i + 1].SetData();
+            }
         }
     }
 

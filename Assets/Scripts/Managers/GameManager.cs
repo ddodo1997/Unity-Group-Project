@@ -33,10 +33,17 @@ public class GameManager : MonoBehaviour
     {
         if (IsGameOver)
             GameOverPanelFadeIn();
+
         if(gameOverPanel.alpha >= 1f && Input.touchCount == 1)
         {
             SceneManager.LoadScene(0);
         }
+#if UNITY_EDITOR
+        if(gameOverPanel.alpha >= 1f && Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
+#endif
     }
 
     public void OnGameOver()

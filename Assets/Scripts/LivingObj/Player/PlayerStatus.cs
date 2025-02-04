@@ -31,7 +31,7 @@ public class PlayerStatus : IStatus
 
 
     public float Health { get; set; }
-
+    public float hp;
 
     public float Intelligence { get; set; }
 
@@ -63,6 +63,7 @@ public class PlayerStatus : IStatus
     public void SetBasedStatus()
     {
         MovementSpeed = Mathf.Clamp(Agility * 0.02f, 0f, 15f);
+        hp = Health;
         Accuracy = Luck * 0.3f;
         CriticalChance = (Critical + (Luck * 0.2f)) * 0.2f * 0.001f;
     }
@@ -111,6 +112,7 @@ public class PlayerStatus : IStatus
 
     public void SetStatus(ref EquipmentSlot[] equipmentDatas)
     {
+        var prevHp = hp;
         SetStatus(Id);
         for (int i = 0; i < equipmentDatas.Length - 1; i++)
         {
@@ -122,5 +124,7 @@ public class PlayerStatus : IStatus
             SetStatus(equipmentDatas[5].itemData);
 
         SetBasedStatus();
+        if(prevHp <= Health)
+            hp = prevHp;
     }
 }
