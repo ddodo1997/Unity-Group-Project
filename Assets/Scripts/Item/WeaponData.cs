@@ -27,7 +27,7 @@ public class WeaponData : ItemData
         weaponSkill.UseSkill();
     }
 
-    public WeaponData GetNewData()
+    public override ItemData GetNewData()
     {
         WeaponData data = new WeaponData();
         data.Rate = Rate;

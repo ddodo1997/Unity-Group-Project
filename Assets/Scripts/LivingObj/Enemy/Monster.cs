@@ -18,10 +18,12 @@ public class Monster : LivingEntity
         Attack,
         Die
     };
+    public GameManager gameManager;
     public Animator animator;
     public MonsterHpBar hpBar;
     private Rigidbody2D rb;
     public Player player;
+    private CapsuleCollider2D body;
     private BoxCollider2D attackArea;
     private GameObject prefab;
     private ItemDrop itemDrop;
@@ -50,6 +52,11 @@ public class Monster : LivingEntity
             statusStartTime = Time.time;
         }
     }
+
+    public void GoBack()
+    {
+        direction = -direction;
+    }
     public override void Move()
     {
         rb.velocity = direction * status.MovementSpeed;
@@ -77,14 +84,14 @@ public class Monster : LivingEntity
     public override void OnDie()
     {
         StartCoroutine(AfterDie());
-
-
+        gameManager.UpdateMonsterList();
+        body.enabled = false;
         rb.isKinematic = true;
         isDie = true;
         animator.SetTrigger(deathTrigger);
         animator.SetBool(dieBool, isDie);
 
-        itemDrop.Drop(status);
+        itemDrop.Drop();
     }
     public void StartGame(string name)
     {
@@ -111,7 +118,7 @@ public class Monster : LivingEntity
     {
         rb = GetComponent<Rigidbody2D>();
         itemDrop = GetComponent<ItemDrop>();
-
+        body = GetComponent<CapsuleCollider2D>();
 
         //테스트용 코드
     }
@@ -119,7 +126,7 @@ public class Monster : LivingEntity
     {
         StartGame("SPUM_20241203203032691");
     }
-    private void SetStatus(Status stat)
+    public void SetStatus(Status stat)
     {
         currentStauts = stat;
         statusStartTime = Time.time;
@@ -136,6 +143,8 @@ public class Monster : LivingEntity
                 maxMoveTime = Random.Range(1f, 3f);
                 break;
             case Status.Aggro:
+                if (!player.isAggroAble)
+                    SetStatus(Status.Idle);
                 direction = (player.transform.position - transform.position).normalized;
                 break;
             case Status.Attack:
@@ -158,10 +167,12 @@ public class Monster : LivingEntity
 
 
 
+
+
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.A))
         {
-            itemDrop.Drop(status);
+            itemDrop.Drop();
         }
 #endif
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static Cinemachine.CinemachineOrbitalTransposer;
 
 public class Player : LivingEntity
 {
@@ -22,7 +23,7 @@ public class Player : LivingEntity
     private float startAttackTime;
     private bool isMoving = false;
     public bool isDie = false;
-
+    public bool isAggroAble = false;
     public void Rotation()
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("ATTACK"))
@@ -131,14 +132,24 @@ public class Player : LivingEntity
         while (true)
         {
             yield return new WaitForSeconds(5f);
-            status.hp += (int)(status.Intelligence * 0.2f);
-            if(status.hp >= status.Health)
-            {
-                status.hp = status.Health;
-            }
-            playerEquip.hpBar.UpdateHpBar(status);
+            OnHeal((int)(status.Intelligence * 0.2f));
         }
     }
+
+    public void OnHeal(float healling, bool particleOn = false)
+    {
+        status.hp += healling;
+        if (status.hp >= status.Health)
+        {
+            status.hp = status.Health;
+        }
+        if (particleOn)
+        {
+            //파티클 효과 재생
+        }
+        playerEquip.hpBar.UpdateHpBar(status);
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -194,6 +205,25 @@ public class Player : LivingEntity
             if (monster != null && !monster.isDie)
             {
                 monster.OnDamage(status.CriticalChance >= Random.Range(0f, 100f) ? status.Strength * (status.Critical * 0.3f) : status.Strength);
+            }
+        }
+
+        if(collision.CompareTag(Tags.HeallingWell))
+        {
+            var well = collision.GetComponent<HeallingWell>();
+            if(well != null)
+            {
+                well.OnDamage();
+            }
+        }
+
+
+        if(collision.CompareTag(Tags.ItemBox))
+        {
+            var box = collision.GetComponent<ItemBox>();
+            if(box != null)
+            {
+                box.OnDamage();
             }
         }
     }

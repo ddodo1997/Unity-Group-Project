@@ -53,11 +53,20 @@ public class MonsterTable : DataTable
         return list;
     }
 
-    public List<MonsterStatus> GetList(int stage)
+    public List<MonsterStatus> GetListWithStage(int stage)
     {
         var result = from l in GetList()
                         where l.Stage == stage
                         select l;
+
+        return result.ToList();
+    }
+
+    public List<MonsterStatus> GetListWithLevel(int stage, int level)
+    {
+        var result = from l in GetListWithStage(stage)
+                     where l.Level == level
+                     select l;
 
         return result.ToList();
     }

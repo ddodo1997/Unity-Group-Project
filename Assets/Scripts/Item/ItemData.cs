@@ -108,5 +108,26 @@ public class ItemData : IStatus
         }
     }
 
-
+    public virtual ItemData GetNewData()
+    {
+        ItemData data = new ItemData();
+        data.Rate = Rate;
+        data.Id = Id;
+        data.Name = Name;
+        data.Strength = Strength;
+        data.Defense = Defense;
+        data.Agility = Agility;
+        data.Health = Health;
+        data.Intelligence = Intelligence;
+        data.Luck = Luck;
+        data.Critical = Critical;
+        data.Range = Range;
+        data.MotionSpeed = MotionSpeed;
+        data.CoolTime = CoolTime;
+        data.BulletSpeed = BulletSpeed;
+        data.BulletLivingTime = BulletLivingTime;
+        data.LevelUpExperienceRequired = LevelUpExperienceRequired;
+        data.ExperienceValue = Random.Range(0, ExperienceValue);
+        return data;
+    }
 }

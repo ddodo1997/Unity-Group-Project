@@ -12,7 +12,7 @@ public class ItemDrop : MonoBehaviour
     {
         monster = GetComponent<Monster>(); 
     }
-    public void Drop(MonsterStatus status)
+    public void Drop()
     {
         startPos = transform.position + Random.onUnitSphere;
 
@@ -29,5 +29,24 @@ public class ItemDrop : MonoBehaviour
             var list = DataTableManager.WeaponTable.GetList();
             temp.Setting(startPos, list[Random.Range(0, list.Count)].GetNewData());
         }
+    }
+
+    public void DropOne()
+    {
+        startPos = transform.position + Random.onUnitSphere;
+        List<ItemData> list = new List<ItemData>();
+        var armorList = DataTableManager.ArmorTable.GetList();
+        var weaponList = DataTableManager.WeaponTable.GetList();
+        foreach (var armor in armorList)
+        {
+            list.Add(armor);
+        }
+        foreach(var weapon in weaponList)
+        {
+            list.Add(weapon);
+        }
+
+        var temp = Instantiate(tempItem, startPos, Quaternion.identity);
+        temp.Setting(startPos, list[Random.Range(0, list.Count)].GetNewData());
     }
 }

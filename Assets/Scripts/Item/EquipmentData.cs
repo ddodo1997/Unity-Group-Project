@@ -24,7 +24,7 @@ public class EquipmentData : ItemData
     {
         base.SetStatus(key);
     }
-    public EquipmentData GetNewData()
+    public override ItemData GetNewData()
     {
         EquipmentData data = new EquipmentData();
         data.Rate = Rate;

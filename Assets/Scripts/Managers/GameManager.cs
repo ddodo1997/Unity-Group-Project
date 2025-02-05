@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public CanvasGroup gameOverPanel;
     public TextMeshProUGUI gameOverText;
     private bool isGameOver = false;
+    public List<Monster> monsters = new List<Monster>();
     public bool IsGameOver
     {
         get => isGameOver;
@@ -26,7 +27,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
 #if UNITY_ANDROID || UNITY_IOS
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = int.MaxValue;
 #endif
     }
     private void Update()
@@ -57,6 +58,14 @@ public class GameManager : MonoBehaviour
         {
             gameOverPanel.alpha += Time.deltaTime * 0.5f;
             gameOverText.alpha += Time.deltaTime;
+        }
+    }
+    public void UpdateMonsterList()
+    {
+        foreach (var monster in monsters)
+        {
+            if (monster.isDie)
+                monsters.Remove(monster);
         }
     }
 }
