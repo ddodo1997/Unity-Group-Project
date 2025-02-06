@@ -9,14 +9,14 @@ public class MonsterSpawnManager : MonoBehaviour
 
     private void Start()
     {
-        //Spawn();
+        Spawn();
     }
 
     private void Spawn()
     {
         foreach(Spawner spawner in spawners)
         {
-            
+            spawner.Spawn(currentStage);
         }
     }
 

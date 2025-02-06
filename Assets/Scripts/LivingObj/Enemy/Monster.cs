@@ -103,16 +103,20 @@ public class Monster : LivingEntity
         attackArea.size = new Vector2(status.Range, attackArea.size.y);
         attackArea.offset = new Vector2(attackArea.offset.x - status.Range * 0.5f, attackArea.offset.y);
         player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
-        Animator[] AllAnimators = gameObject.GetComponentsInChildren<Animator>();
-        foreach (Animator trans in AllAnimators)
-        {
-            if (trans.name == "UnitRoot")
-            {
-                animator = trans;
-                break;
-            }
-        }
+        animator = gameObject.GetComponentsInChildren<Animator>()[0];
         transform.position = new Vector3(-9, 0, 0);
+    }
+
+    public void SettingMonster()
+    {
+        var path = string.Format(PathFormats.prefabs, status.Id);
+        prefab = (GameObject)Instantiate(Resources.Load(path), transform.position, transform.rotation);
+        prefab.transform.SetParent(transform, false);
+        attackArea = GetComponent<BoxCollider2D>();
+        attackArea.size = new Vector2(status.Range, attackArea.size.y);
+        attackArea.offset = new Vector2(attackArea.offset.x - status.Range * 0.5f, attackArea.offset.y);
+        player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
+        animator = gameObject.GetComponentsInChildren<Animator>()[0];
     }
     private void Awake()
     {

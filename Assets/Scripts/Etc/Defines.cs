@@ -66,4 +66,8 @@ public static class Layers
 {
     public static readonly string Default = "Default";
     public static readonly string UI = "UI";
+    public static readonly string Player = "Player";
+    public static readonly string Map = "Map";
+    public static readonly string SafeArea = "SafeArea";
+    public static readonly string BossArea = "BossArea";
 }

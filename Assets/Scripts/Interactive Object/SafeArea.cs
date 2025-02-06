@@ -34,7 +34,6 @@ public class SafeArea : MonoBehaviour
     {
         yield return new WaitForSeconds(5f);
 
-        player.status.hp = player.status.Health;
-        player.playerEquip.hpBar.UpdateHpBar(player.status);
+        player.OnHeal(player.status.Health);
     }
 }

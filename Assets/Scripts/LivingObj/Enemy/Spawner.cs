@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Player player;
     public GameObject prefab;
     private BoxCollider2D spawnArea;
     public BoxCollider2D SpawnArea
@@ -24,7 +23,7 @@ public class Spawner : MonoBehaviour
     public void Spawn(int stage)
     {
         var spawnPos = (Vector2)transform.position + Random.insideUnitCircle * radius;
-        if (Physics2D.OverlapPoint(spawnPos, LayerMask.GetMask("SafeArea")))
+        if (Physics2D.OverlapPoint(spawnPos, LayerMask.GetMask(Layers.SafeArea)) || Physics2D.OverlapPoint(spawnPos, LayerMask.GetMask(Layers.BossArea)))
             return;
 
     }

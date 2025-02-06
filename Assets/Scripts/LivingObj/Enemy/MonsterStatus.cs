@@ -64,4 +64,34 @@ public class MonsterStatus : IStatus
         BulletLivingTime = data.BulletLivingTime;
 
     }
+
+    public MonsterStatus GetNewData()
+    {
+        MonsterStatus result = new MonsterStatus();
+        result.Id = Id;
+        result.Stage = Stage;
+        result.StringId = StringId;
+        result.Rate = Rate;
+        result.Name = Name;
+        result.Level = Level;
+            
+        result.Strength = Strength;
+        result.Defense = Defense;
+        result.Agility = Agility;
+        result.MovementSpeed = result.Agility * 0.02f;
+        result.Health = Health;
+        result.hp = result.Health;
+        result.Intelligence = Intelligence;
+        result.Luck = Luck;
+        result.Accuracy = Accuracy;
+        result.Critical = Critical;
+        result.CriticalChance = CriticalChance;
+        result.Range = Range;
+        result.Distance = Distance;
+        result.CoolTime = CoolTime;
+        result.BulletSpeed = BulletSpeed;
+        result.BulletLivingTime = BulletLivingTime;
+
+        return result;
+    }
 }
