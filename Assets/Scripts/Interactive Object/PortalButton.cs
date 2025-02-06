@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PortalButton : MonoBehaviour
 {
+
     public Portal portal;
     public Player player;
-    public void OnButtonTouch()
+    public virtual void OnButtonTouch()
     {
         player.transform.position = portal.transform.position;
     }

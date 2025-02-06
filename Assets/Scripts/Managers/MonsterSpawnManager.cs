@@ -7,7 +7,7 @@ public class MonsterSpawnManager : MonoBehaviour
     private GameManager gameManager;
     private int currentStage = 1;
     public List<Spawner> spawners;
-    public BossSpawn bossSpawn;
+    public EliteSpawn eliteSpawn;
     private void Start()
     {
         Spawn();
@@ -20,7 +20,7 @@ public class MonsterSpawnManager : MonoBehaviour
         {
             spawner.Spawn(currentStage);
         }
-        bossSpawn.Spawn(currentStage);
+        eliteSpawn.Spawn(currentStage);
     }
 
 }

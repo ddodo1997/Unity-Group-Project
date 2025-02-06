@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossSpawn : MonoBehaviour
@@ -8,11 +7,10 @@ public class BossSpawn : MonoBehaviour
     public GameObject prefab;
     public void Spawn(int stage)
     {
-        var monsterStatue = stage % 2 == 0 ? DataTableManager.MonsterTable.GetBossList(stage) : DataTableManager.MonsterTable.GetEliteList(stage);
+        var monsterStatue = DataTableManager.MonsterTable.GetBossList(stage);
         var newMonsterStatus = monsterStatue.GetNewData();
-        var monster = Instantiate(prefab, transform.position, Quaternion.identity).GetComponent<Monster>();
+        var monster = Instantiate(prefab, transform.position, Quaternion.identity).GetComponent<BossMonster>();
         monster.SettingMonster(newMonsterStatus);
         monster.tag = Tags.Boss;
-        monster.hpBar.SetPosition(new Vector3(0, 3.5f, 0));
     }
 }

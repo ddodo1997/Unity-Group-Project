@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossArea : MonoBehaviour
+public class EliteArea : MonoBehaviour
 {
+    private GameManager gameManager;
     private Player player;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
+        gameManager = GameObject.FindGameObjectWithTag(Tags.GameManager).GetComponent<GameManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,11 +25,11 @@ public class BossArea : MonoBehaviour
 
         if (collision.CompareTag(Tags.Player))
         {
-            var boss = GameObject.FindGameObjectWithTag(Tags.Boss).GetComponent<BossMonster>();
+            var elite = GameObject.FindGameObjectWithTag(Tags.Elite)?.GetComponent<EliteMonster>() ?? null;
             var player = collision.GetComponent<Player>();
-            if (player != null && boss != null)
+            if (player != null && elite != null)
             {
-                boss.SetStatus(BossMonster.Status.Aggro);
+                elite.SetStatus(EliteMonster.Status.Aggro);
             }
         }
     }
@@ -36,9 +38,9 @@ public class BossArea : MonoBehaviour
     {
         if (collision.CompareTag(Tags.Player) && !collision.isTrigger)
         {
-            var bossMonster = GameObject.FindGameObjectWithTag(Tags.Boss).GetComponent<BossMonster>();
-            if (bossMonster != null)
-                bossMonster.SetStatus(BossMonster.Status.Wait);
+            var eliteMonster = GameObject.FindGameObjectWithTag(Tags.Elite)?.GetComponent<EliteMonster>() ?? null;
+            if(eliteMonster != null)
+                eliteMonster.SetStatus(EliteMonster.Status.Wait);
         }
     }
 }

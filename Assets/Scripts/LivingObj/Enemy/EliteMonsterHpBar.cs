@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MonsterHpBar : MonoBehaviour
+public class EliteMonsterHpBar : MonoBehaviour
 {
-    public Monster monster;
+    public EliteMonster monster;
     private Slider hpBar;
     private void Start()
     {

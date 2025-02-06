@@ -67,6 +67,10 @@ public class FieldDropItem : MonoBehaviour
             {
                 rb.AddForce(targetDirection * speed);
             }
+            else
+            {
+                rb.velocity = Vector2.zero;
+            }
         }
         else
         {

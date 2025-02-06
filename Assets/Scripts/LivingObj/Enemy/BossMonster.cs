@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : LivingEntity
+public class BossMonster : LivingEntity
 {
     public enum Status
     {
         Idle,
-        Move,
         Aggro,
         Attack,
+        Fire,
+        Wait,
+        Return,
         Die
     };
     public GameManager gameManager;
     public Animator animator;
-    public MonsterHpBar hpBar;
+    public BossMonsterHpBar hpBar;
     private Rigidbody2D rb;
     public Player player;
     private CapsuleCollider2D body;
@@ -26,11 +28,7 @@ public class Monster : LivingEntity
     private Vector2 direction;
 
     private float statusStartTime = 0f;
-    private float maxIdleTime;
-    private float maxMoveTime;
     public float targetDistance;
-
-    public int firstAttackableLevel = 40;
 
     private bool isMoving = false;
     public bool isDie = false;
@@ -58,10 +56,6 @@ public class Monster : LivingEntity
 
     public override void OnDamage(float damage)
     {
-        //비선공몹용 코드
-        if (currentStauts != Status.Aggro)
-            SetStatus(Status.Aggro);
-
         if (status.Agility * 0.01 + status.Level >= Random.Range(0, 1000))
             return;
 
@@ -90,7 +84,7 @@ public class Monster : LivingEntity
 
     public void SettingMonster(MonsterStatus status)
     {
-        this.status.SetStatus(status);
+        this.status = status;
         var path = string.Format(PathFormats.prefabs, status.Id);
         prefab = (GameObject)Instantiate(Resources.Load(path), Vector3.zero, transform.rotation);
         prefab.transform.SetParent(transform, false);
@@ -108,7 +102,6 @@ public class Monster : LivingEntity
     }
     private void Start()
     {
-        //StartGame("SPUM_20241203203032691");
         player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
         gameManager = GameObject.FindGameObjectWithTag(Tags.GameManager).GetComponent<GameManager>();
     }
@@ -119,14 +112,8 @@ public class Monster : LivingEntity
         switch (currentStauts)
         {
             case Status.Idle:
-                maxIdleTime = Random.Range(2f, 4f);
                 rb.velocity = Vector2.zero;
                 isMoving = false;
-                break;
-            case Status.Move:
-                direction = Random.insideUnitCircle.normalized;
-                transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
-                maxMoveTime = Random.Range(1f, 3f);
                 break;
             case Status.Aggro:
                 if (!player.isAggroAble)
@@ -135,6 +122,11 @@ public class Monster : LivingEntity
                 break;
             case Status.Attack:
                 rb.velocity = Vector2.zero;
+                break;
+            case Status.Return:
+
+                break;
+            case Status.Die:
                 break;
         }
     }
@@ -149,18 +141,6 @@ public class Monster : LivingEntity
             OnColliderEnable();
         else
             OnColliderDisable();
-
-
-
-
-
-
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            itemDrop.Drop();
-        }
-#endif
     }
 
     public void OnColliderEnable()
@@ -183,24 +163,6 @@ public class Monster : LivingEntity
         switch (currentStauts)
         {
             case Status.Idle:
-                if (Time.time - statusStartTime > maxIdleTime)
-                {
-                    SetStatus(Status.Move);
-                }
-                break;
-            case Status.Move:
-                if (Time.time - statusStartTime > maxMoveTime)
-                {
-                    SetStatus(Status.Idle);
-                }
-                else
-                {
-                    Move();
-                }
-
-                //선공몹 처리
-                if (firstAttackableLevel <= status.Level && targetDistance < status.Distance)
-                    SetStatus(Status.Aggro);
                 break;
             case Status.Aggro:
                 direction = (player.transform.position - transform.position).normalized;
@@ -223,6 +185,10 @@ public class Monster : LivingEntity
                     SetStatus(Status.Aggro);
                 else
                     Attack();
+                break;
+            case Status.Return:
+                break;
+            case Status.Die:
                 break;
         }
 
@@ -258,4 +224,5 @@ public class Monster : LivingEntity
             }
         }
     }
+
 }

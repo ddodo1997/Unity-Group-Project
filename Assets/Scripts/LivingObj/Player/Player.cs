@@ -208,7 +208,26 @@ public class Player : LivingEntity
             }
         }
 
-        if(collision.CompareTag(Tags.HeallingWell))
+        if (collision.CompareTag(Tags.Elite) && !collision.isTrigger)
+        {
+            var monster = collision.GetComponent<EliteMonster>();
+
+            if (monster != null && !monster.isDie)
+            {
+                monster.OnDamage(status.CriticalChance >= Random.Range(0f, 100f) ? status.Strength * (status.Critical * 0.3f) : status.Strength);
+            }
+        }
+        if (collision.CompareTag(Tags.Boss) && !collision.isTrigger)
+        {
+            var monster = collision.GetComponent<BossMonster>();
+
+            if (monster != null && !monster.isDie)
+            {
+                monster.OnDamage(status.CriticalChance >= Random.Range(0f, 100f) ? status.Strength * (status.Critical * 0.3f) : status.Strength);
+            }
+        }
+
+        if (collision.CompareTag(Tags.HeallingWell))
         {
             var well = collision.GetComponent<HeallingWell>();
             if(well != null)

@@ -2,32 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Monster : LivingEntity
+public class EliteMonster : LivingEntity
 {
     public enum Status
     {
         Idle,
-        Move,
         Aggro,
         Attack,
-        Die
+        Wait,
+        Return,
     };
     public GameManager gameManager;
     public Animator animator;
-    public MonsterHpBar hpBar;
+    public EliteMonsterHpBar hpBar;
     private Rigidbody2D rb;
     public Player player;
     private CapsuleCollider2D body;
     private BoxCollider2D attackArea;
     private GameObject prefab;
     private ItemDrop itemDrop;
+    private Vector3 startPos;
 
     public Status currentStauts = Status.Idle;
     private Vector2 direction;
 
     private float statusStartTime = 0f;
-    private float maxIdleTime;
-    private float maxMoveTime;
     public float targetDistance;
 
     public int firstAttackableLevel = 40;
@@ -58,10 +57,6 @@ public class Monster : LivingEntity
 
     public override void OnDamage(float damage)
     {
-        //비선공몹용 코드
-        if (currentStauts != Status.Aggro)
-            SetStatus(Status.Aggro);
-
         if (status.Agility * 0.01 + status.Level >= Random.Range(0, 1000))
             return;
 
@@ -99,6 +94,7 @@ public class Monster : LivingEntity
         attackArea.offset = new Vector2(attackArea.offset.x - status.Range * 0.5f, attackArea.offset.y);
         player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
         animator = gameObject.GetComponentsInChildren<Animator>()[0];
+        startPos = transform.position;
     }
     private void Awake()
     {
@@ -108,25 +104,19 @@ public class Monster : LivingEntity
     }
     private void Start()
     {
-        //StartGame("SPUM_20241203203032691");
         player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
         gameManager = GameObject.FindGameObjectWithTag(Tags.GameManager).GetComponent<GameManager>();
     }
     public void SetStatus(Status stat)
     {
+        StopCoroutine(WaitForPlayer());
         currentStauts = stat;
         statusStartTime = Time.time;
         switch (currentStauts)
         {
             case Status.Idle:
-                maxIdleTime = Random.Range(2f, 4f);
                 rb.velocity = Vector2.zero;
                 isMoving = false;
-                break;
-            case Status.Move:
-                direction = Random.insideUnitCircle.normalized;
-                transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
-                maxMoveTime = Random.Range(1f, 3f);
                 break;
             case Status.Aggro:
                 if (!player.isAggroAble)
@@ -136,31 +126,38 @@ public class Monster : LivingEntity
             case Status.Attack:
                 rb.velocity = Vector2.zero;
                 break;
+            case Status.Wait:
+                animator.SetBool(moveBool, false);
+                rb.velocity = Vector2.zero;
+                if(gameObject.activeSelf)
+                    StartCoroutine(WaitForPlayer());
+                break;
+            case Status.Return:
+
+                break;
         }
+    }
+
+    private IEnumerator WaitForPlayer()
+    {
+
+        yield return new WaitForSeconds(10f);
+
+        status.hp = status.Health;
+        hpBar.UpdateHpBar(status);
+        SetStatus(Status.Return);
     }
     private void Update()
     {
         if (player.isDie)
             return;
-        isMoving = rb.velocity.magnitude > 0;
+        isMoving = !Mathf.Approximately(rb.velocity.magnitude, 0);
 
         hpBar.UpdateHpBar(status);
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("ATTACK"))
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
             OnColliderEnable();
         else
             OnColliderDisable();
-
-
-
-
-
-
-#if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            itemDrop.Drop();
-        }
-#endif
     }
 
     public void OnColliderEnable()
@@ -183,32 +180,17 @@ public class Monster : LivingEntity
         switch (currentStauts)
         {
             case Status.Idle:
-                if (Time.time - statusStartTime > maxIdleTime)
                 {
-                    SetStatus(Status.Move);
+                    float startPosDistance = (startPos - transform.position).magnitude;
+                    if (startPosDistance > 1f)
+                    {
+                        SetStatus(Status.Return);
+                    }
+                    break;
                 }
-                break;
-            case Status.Move:
-                if (Time.time - statusStartTime > maxMoveTime)
-                {
-                    SetStatus(Status.Idle);
-                }
-                else
-                {
-                    Move();
-                }
-
-                //선공몹 처리
-                if (firstAttackableLevel <= status.Level && targetDistance < status.Distance)
-                    SetStatus(Status.Aggro);
-                break;
             case Status.Aggro:
                 direction = (player.transform.position - transform.position).normalized;
-                if (targetDistance > status.Distance)
-                {
-                    SetStatus(Status.Idle);
-                }
-                else if (targetDistance > status.Range)
+                if (targetDistance > status.Range)
                 {
                     Move();
                 }
@@ -224,6 +206,22 @@ public class Monster : LivingEntity
                 else
                     Attack();
                 break;
+            case Status.Wait:
+                break;
+            case Status.Return:
+                {
+                    float startPosDistance = (startPos - transform.position).magnitude;
+                    if (startPosDistance > 1f)
+                    {
+                        direction = (startPos - transform.position).normalized;
+                        Move();
+                    }
+                    else
+                    {
+                        SetStatus(Status.Idle);
+                    }
+                    break;
+                }
         }
 
         if (direction.x < 0)
@@ -234,7 +232,8 @@ public class Monster : LivingEntity
         {
             transform.rotation = Direction.Right;
         }
-        animator.SetBool(moveBool, isMoving);
+        if(currentStauts != Status.Wait)
+            animator.SetBool(moveBool, isMoving);
     }
 
     public IEnumerator AfterDie()
@@ -249,7 +248,7 @@ public class Monster : LivingEntity
         {
             var player = collision.GetComponent<Player>();
 
-            if (Mathf.Clamp(player.status.Agility - (status.Agility * 0.5f), 0f, 50f) <= Random.Range(0, 100))
+            if (Mathf.Clamp(player.status.Agility - (status.Agility * 0.5f), 0f, 50f) >= Random.Range(0, 100))
                 return;
 
             if (player != null)

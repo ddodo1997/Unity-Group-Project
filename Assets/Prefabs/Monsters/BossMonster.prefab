@@ -10,13 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4973164119341714416}
   - component: {fileID: 861223980858542789}
-  - component: {fileID: 3399283848593714168}
+  - component: {fileID: -3529090455155299937}
   - component: {fileID: 3276020501883382529}
   - component: {fileID: 8662293588778734334}
   - component: {fileID: 9040031940140404957}
   m_Layer: 0
-  m_Name: Monster
-  m_TagString: Monster
+  m_Name: BossMonster
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 494651339484180887}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.77, y: -1.52, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -72,7 +72,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.09668523, y: 0.35219127}
   m_Size: {x: 0.706547, y: 1.1576952}
   m_Direction: 0
---- !u!114 &3399283848593714168
+--- !u!114 &-3529090455155299937
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,17 +81,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 494651339484180887}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f208da03cb62fd246b51ecdf7f74a9aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 44b1ca265c65e1644ad05d413d7e2611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  animator: {fileID: 0}
-  hpBar: {fileID: 4185113471316137159}
-  player: {fileID: 6425006038304315220, guid: 43db4cd9bbfb5b64793cecd27b5c24b2, type: 3}
-  currentStauts: 0
-  targetDistance: 0
-  firstAttackableLevel: 40
-  isDie: 0
 --- !u!114 &3276020501883382529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 2}
+  m_AnchoredPosition: {x: 0, y: 4}
   m_SizeDelta: {x: 25, y: 5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7182455257637278642
@@ -279,7 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8967a343498a1c1478d5222110c58b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monster: {fileID: 3399283848593714168}
+  monster: {fileID: 0}
 --- !u!1 &4651987114927710402
 GameObject:
   m_ObjectHideFlags: 0

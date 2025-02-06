@@ -36,9 +36,8 @@ public class MonsterStatus : IStatus
     public float BulletSpeed { get; set; }
     public float BulletLivingTime { get; set; }
 
-    public void SetStatus(string key)
+    public void SetStatus(MonsterStatus data)
     {
-        var data = DataTableManager.MonsterTable.Get(key);
         Id = data.Id;
         Stage = data.Stage;
         StringId = data.StringId;

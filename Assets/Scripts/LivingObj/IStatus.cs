@@ -19,7 +19,4 @@ public interface IStatus
     public abstract float CoolTime { get; set; }
     public abstract float BulletSpeed { get; set; }
     public abstract float BulletLivingTime { get; set; }
-
-    //ÇÔ¼öµé
-    public abstract void SetStatus(string key);
 }

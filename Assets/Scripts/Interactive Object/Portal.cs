@@ -34,6 +34,7 @@ public class Portal : MonoBehaviour
                 if(controller.currentActivePortal == this)
                     portalUiButton.SetActive(false);
                 portalButton.GetComponent<Image>().color = Color.white;
+                
             }
     }
 }

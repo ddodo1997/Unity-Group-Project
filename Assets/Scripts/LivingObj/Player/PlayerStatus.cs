@@ -94,6 +94,31 @@ public class PlayerStatus : IStatus
         CoolTime = data.CoolTime;
         SetBasedStatus();
     }
+    public void SetStatus(PlayerStatus data)
+    {
+        Id = data.Id;
+        Name = data.Name;
+        className = Enum.Parse<ClassName>(Id);
+
+        Strength = data.Strength;
+        Defense = data.Defense;
+        Agility = data.Agility;
+
+
+
+        Health = data.Health;
+        Intelligence = data.Intelligence;
+        Luck = data.Luck;
+
+
+        Critical = data.Critical;
+        Range = data.Range;
+        MotionSpeed = data.MotionSpeed;
+        BulletSpeed = data.BulletSpeed;
+        BulletLivingTime = data.BulletLivingTime;
+        CoolTime = data.CoolTime;
+        SetBasedStatus();
+    }
 
     public void SetStatus(ItemData itemdata)
     {

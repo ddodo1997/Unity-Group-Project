@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
     public CanvasGroup gameOverPanel;
     public TextMeshProUGUI gameOverText;
     private bool isGameOver = false;
+    public bool isClearAble = false;
     public List<Monster> monsters = new List<Monster>();
+    private EliteMonster eliteMonster;
+    private BossMonster bossMonster;
     public bool IsGameOver
     {
         get => isGameOver;
@@ -29,6 +32,10 @@ public class GameManager : MonoBehaviour
 #if UNITY_ANDROID || UNITY_IOS
         Application.targetFrameRate = int.MaxValue;
 #endif
+        eliteMonster = GameObject.FindGameObjectWithTag(Tags.Elite)?.GetComponent<EliteMonster>() ?? null;
+        bossMonster = GameObject.FindGameObjectWithTag(Tags.Boss)?.GetComponent<BossMonster>() ?? null;
+
+        isClearAble = false;
     }
     private void Update()
     {
@@ -67,5 +74,10 @@ public class GameManager : MonoBehaviour
             if (monster.isDie)
                 monsters.Remove(monster);
         }
+    }
+
+    public void OnClear()
+    {
+        isClearAble = true;
     }
 }
