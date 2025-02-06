@@ -3,17 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Monster
+  - InventoryManager
+  - Healling Well
+  - ItemBox
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Confinder
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Player
+  - SafeArea
+  - Map
   - 
   - 
   - 
