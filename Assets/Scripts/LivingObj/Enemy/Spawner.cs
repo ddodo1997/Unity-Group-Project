@@ -27,11 +27,6 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < monsterCntPerArea; i++)
         {
             var spawnPos = (Vector2)transform.position + Random.insideUnitCircle * radius;
-            if (Physics2D.OverlapPoint(spawnPos, LayerMask.GetMask(Layers.SafeArea)) || Physics2D.OverlapPoint(spawnPos, LayerMask.GetMask(Layers.BossArea)))
-            {
-                i--;
-                continue;
-            }
             var monsterList = DataTableManager.MonsterTable.GetListWithStage(stage);
             var monsterStatus = monsterList[Random.Range(0, monsterList.Count)].GetNewData();
             var monster = Instantiate(prefab, spawnPos, Quaternion.identity).GetComponent<Monster>();
