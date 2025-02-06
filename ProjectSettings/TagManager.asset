@@ -3,18 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Monster
-  - InventoryManager
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Confinder
+  - 
   - Water
   - UI
-  - Player
-  - Map
+  - 
+  - 
   - 
   - 
   - 

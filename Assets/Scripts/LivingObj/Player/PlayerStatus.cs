@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 public enum ClassName
 {
     Warrior,
@@ -27,11 +28,10 @@ public class PlayerStatus : IStatus
     //민첩 관련
     public float Agility { get; set; }
     public float MovementSpeed;
-    public float EvasionRate;
 
 
     public float Health { get; set; }
-
+    public float hp;
 
     public float Intelligence { get; set; }
 
@@ -40,13 +40,10 @@ public class PlayerStatus : IStatus
     public float Luck { get; set; }
     public float Accuracy;
     public float CriticalChance;
-    public float EquipmentDropRate;
 
 
     //크리티컬 관련
     public float Critical { get; set; }
-    public float CriticalDamage;
-
 
     //공격 범위
     public float Range { get; set; }
@@ -65,8 +62,10 @@ public class PlayerStatus : IStatus
 
     public void SetBasedStatus()
     {
-        MovementSpeed = Agility * 0.02f;
-        Accuracy = Luck;
+        MovementSpeed = Mathf.Clamp(Agility * 0.02f, 0f, 15f);
+        hp = Health;
+        Accuracy = Luck * 0.3f;
+        CriticalChance = (Critical + (Luck * 0.2f)) * 0.2f * 0.001f;
     }
 
     public void SetStatus(string key)
@@ -113,17 +112,19 @@ public class PlayerStatus : IStatus
 
     public void SetStatus(ref EquipmentSlot[] equipmentDatas)
     {
+        var prevHp = hp;
         SetStatus(Id);
-        for(int i = 0; i < equipmentDatas.Length; i++)
+        for (int i = 0; i < equipmentDatas.Length - 1; i++)
         {
             if (equipmentDatas[i].itemData.IsEmpty)
                 continue;
             SetStatus(equipmentDatas[i].itemData);
         }
-        if (equipmentDatas[5].itemData.IsEmpty)
-            return;
-        SetStatus(equipmentDatas[5].itemData);
+        if (!equipmentDatas[5].itemData.IsEmpty)
+            SetStatus(equipmentDatas[5].itemData);
 
         SetBasedStatus();
+        if(prevHp <= Health)
+            hp = prevHp;
     }
 }

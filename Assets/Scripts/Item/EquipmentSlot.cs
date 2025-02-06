@@ -34,7 +34,7 @@ public class EquipmentSlot : MonoBehaviour
         player.status.SetStatus(ref playerEquipment.equipSlots);
         playerEquipment.UpdateStatusText();
 
-
+        playerEquipment.hpBar.UpdateHpBar(player.status);
     }
 
     public void SetData(ref ItemData itemData)

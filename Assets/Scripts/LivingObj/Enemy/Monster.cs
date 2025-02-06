@@ -18,10 +18,12 @@ public class Monster : LivingEntity
         Attack,
         Die
     };
+    public GameManager gameManager;
     public Animator animator;
-
+    public MonsterHpBar hpBar;
     private Rigidbody2D rb;
     public Player player;
+    private CapsuleCollider2D body;
     private BoxCollider2D attackArea;
     private GameObject prefab;
     private ItemDrop itemDrop;
@@ -34,7 +36,7 @@ public class Monster : LivingEntity
     private float maxMoveTime;
     public float targetDistance;
 
-    public int tempLevel;
+    public int firstAttackableLevel = 40;
 
     private bool isMoving = false;
     public bool isDie = false;
@@ -50,6 +52,11 @@ public class Monster : LivingEntity
             statusStartTime = Time.time;
         }
     }
+
+    public void GoBack()
+    {
+        direction = -direction;
+    }
     public override void Move()
     {
         rb.velocity = direction * status.MovementSpeed;
@@ -61,8 +68,12 @@ public class Monster : LivingEntity
         if (currentStauts != Status.Aggro)
             SetStatus(Status.Aggro);
 
-        status.Health -= damage;
-        if (status.Health <=0f)
+        if (status.Agility * 0.01 + status.Level >= Random.Range(0, 1000))
+            return;
+
+        status.hp -= Mathf.Clamp(damage - status.Defense * (status.Level * 0.1f),0f,float.MaxValue);
+        hpBar.UpdateHpBar(status);
+        if (status.hp <=0f)
         {
             OnDie();
             return;
@@ -73,14 +84,14 @@ public class Monster : LivingEntity
     public override void OnDie()
     {
         StartCoroutine(AfterDie());
-
-
+        gameManager.UpdateMonsterList();
+        body.enabled = false;
         rb.isKinematic = true;
         isDie = true;
         animator.SetTrigger(deathTrigger);
         animator.SetBool(dieBool, isDie);
 
-        itemDrop.Drop(status);
+        itemDrop.Drop();
     }
     public void StartGame(string name)
     {
@@ -88,19 +99,10 @@ public class Monster : LivingEntity
         var path = string.Format(PathFormats.prefabs, name);
         prefab = (GameObject)Instantiate(Resources.Load(path), transform.position, transform.rotation);
         prefab.transform.SetParent(transform, false);
-    }
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        itemDrop = GetComponent<ItemDrop>();
-        StartGame("SPUM_20241203203032691");
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         attackArea = GetComponent<BoxCollider2D>();
-
         attackArea.size = new Vector2(status.Range, attackArea.size.y);
         attackArea.offset = new Vector2(attackArea.offset.x - status.Range * 0.5f, attackArea.offset.y);
-
-
+        player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
         Animator[] AllAnimators = gameObject.GetComponentsInChildren<Animator>();
         foreach (Animator trans in AllAnimators)
         {
@@ -110,11 +112,21 @@ public class Monster : LivingEntity
                 break;
             }
         }
+        transform.position = new Vector3(-9, 0, 0);
+    }
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        itemDrop = GetComponent<ItemDrop>();
+        body = GetComponent<CapsuleCollider2D>();
 
         //테스트용 코드
-        transform.position = Random.insideUnitCircle * 15f;
     }
-    private void SetStatus(Status stat)
+    private void Start()
+    {
+        StartGame("SPUM_20241203203032691");
+    }
+    public void SetStatus(Status stat)
     {
         currentStauts = stat;
         statusStartTime = Time.time;
@@ -131,6 +143,8 @@ public class Monster : LivingEntity
                 maxMoveTime = Random.Range(1f, 3f);
                 break;
             case Status.Aggro:
+                if (!player.isAggroAble)
+                    SetStatus(Status.Idle);
                 direction = (player.transform.position - transform.position).normalized;
                 break;
             case Status.Attack:
@@ -144,6 +158,7 @@ public class Monster : LivingEntity
             return;
         isMoving = rb.velocity.magnitude > 0;
 
+        hpBar.UpdateHpBar(status);
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("ATTACK"))
             OnColliderEnable();
         else
@@ -152,10 +167,12 @@ public class Monster : LivingEntity
 
 
 
+
+
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.A))
         {
-            itemDrop.Drop(status);
+            itemDrop.Drop();
         }
 #endif
     }
@@ -196,7 +213,7 @@ public class Monster : LivingEntity
                 }
 
                 //선공몹 처리
-                if (tempLevel >= status.Level && targetDistance < status.Distance)
+                if (firstAttackableLevel <= status.Level && targetDistance < status.Distance)
                     SetStatus(Status.Aggro);
                 break;
             case Status.Aggro:
@@ -245,9 +262,13 @@ public class Monster : LivingEntity
         if (collision.CompareTag(Tags.Player) && !collision.isTrigger)
         {
             var player = collision.GetComponent<Player>();
+            
+            if (Mathf.Clamp(player.status.Agility - (status.Agility * 0.5f), 0f,50f) <= Random.Range(0, 100))
+                return;
+
             if (player != null)
             {
-                player.OnDamage(status.Strength);
+                player.OnDamage(status.CriticalChance >= Random.Range(0f, 100f) ? status.Strength * (status.Critical * 0.3f) :status.Strength);
             }
         }
     }

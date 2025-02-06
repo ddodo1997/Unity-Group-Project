@@ -26,4 +26,28 @@ public class WeaponData : ItemData
     {
         weaponSkill.UseSkill();
     }
+
+    public override ItemData GetNewData()
+    {
+        WeaponData data = new WeaponData();
+        data.Rate = Rate;
+        data.Id = Id;
+        data.Name = Name;
+        data.Strength = Strength;
+        data.Defense = Defense;
+        data.Agility = Agility;
+        data.Health = Health;
+        data.Intelligence = Intelligence;
+        data.Luck = Luck;
+        data.Critical = Critical;
+        data.Range = Range;
+        data.MotionSpeed = MotionSpeed;
+        data.CoolTime = CoolTime;
+        data.BulletSpeed = BulletSpeed;
+        data.BulletLivingTime = BulletLivingTime;
+        data.LevelUpExperienceRequired = LevelUpExperienceRequired;
+        data.ExperienceValue = Random.Range(0, ExperienceValue);
+        data.Type = Type;
+        return data;
+    }
 }

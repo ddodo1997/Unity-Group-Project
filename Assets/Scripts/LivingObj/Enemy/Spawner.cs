@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject perfab;
-
-    // Start is called before the first frame update
-    void Start()
+    public Player player;
+    public GameObject prefab;
+    private BoxCollider2D spawnArea;
+    public BoxCollider2D SpawnArea
     {
-        
+        get => spawnArea;
+        set => spawnArea = value;
     }
 
-    // Update is called once per frame
-    void Update()
+    public float radius;
+
+    private void Start()
     {
-        
+        spawnArea = GetComponent<BoxCollider2D>();
+        radius = spawnArea.size.x * 2;
+    }
+
+    public void Spawn(int stage)
+    {
+        var spawnPos = (Vector2)transform.position + Random.insideUnitCircle * radius;
+        if (Physics2D.OverlapPoint(spawnPos, LayerMask.GetMask("SafeArea")))
+            return;
+
     }
 }

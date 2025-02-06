@@ -18,6 +18,7 @@ enum EquipSlots
 public class PlayerEquipment : MonoBehaviour
 {
     public InventoryManager inventoryManager;
+    public PlayerHpBar hpBar;
     public EquipmentSlot[] equipSlots;
     public Player player;
     public TextMeshProUGUI[] statTexts;
@@ -79,6 +80,7 @@ public class PlayerEquipment : MonoBehaviour
         player.status.SetStatus(ref equipSlots);
         player.StatusBasedSetting();
         UpdateStatusText();
+        hpBar.UpdateHpBar(player.status);
     }
 
     public void UpdateStatusText()

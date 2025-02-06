@@ -22,8 +22,11 @@ public class MonsterStatus : IStatus
     public float Agility { get; set; }
     public float MovementSpeed;
     public float Health { get; set; }
+    public float hp;
     public float Intelligence { get; set; }
     public float Luck { get; set; }
+    public float Accuracy;
+    public float CriticalChance;
     public float Critical { get; set; }
     public float Range { get; set; } //공격 범위
     public float Distance { get; set; } //시야 반지름
@@ -48,9 +51,12 @@ public class MonsterStatus : IStatus
         MovementSpeed = Agility * 0.02f;
 
         Health = data.Health;
+        hp = Health;
         Intelligence = data.Intelligence;
         Luck = data.Luck;
+        Accuracy = data.Luck;
         Critical = data.Critical;
+        CriticalChance = (data.Critical + (data.Luck * 0.2f)) * 0.2f * 0.001f;
         Range = data.Range;
         Distance = data.Distance;
         CoolTime = data.CoolTime;

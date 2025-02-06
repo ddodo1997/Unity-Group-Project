@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.U2D;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class FieldDropItem : MonoBehaviour
 {
@@ -16,7 +17,8 @@ public class FieldDropItem : MonoBehaviour
     public float pullMinDistance = 3f;
     private SpriteRenderer spriteRenderer;
 
-    private bool isGrounded = false;
+    [SerializeField] private bool isGrounded = false;
+    [SerializeField] private bool pickupAble = false;
 
     public void Setting(Vector3 position, ItemData item)
     {
@@ -35,6 +37,9 @@ public class FieldDropItem : MonoBehaviour
                 transform.localScale = vec;
             }
         }
+        this.item.currentExp = (int)Random.Range(0, this.item.ExperienceValue);
+        this.item.Level = Random.Range(1, 50);
+        this.item.SetStatusForLevel();
     }
 
     private void Start()
@@ -53,25 +58,35 @@ public class FieldDropItem : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
         }
-        isGrounded = transform.position.y <= yPos - Random.Range(1f, 2.5f);
-        if (isGrounded)
+
+        if (pickupAble)
         {
-            rb.gravityScale = 0f;
-            rb.velocity = Vector2.zero;
+            targetDirection = (player.transform.position - transform.position);
+            targetDistance = targetDirection.magnitude;
+            if (isGrounded && targetDistance <= pullMinDistance && inventory.items.Count < InventoryManager.maxItemSlot)
+            {
+                rb.AddForce(targetDirection * speed);
+            }
         }
-        targetDirection = (player.transform.position - transform.position);
-        targetDistance = targetDirection.magnitude;
-        if (targetDistance <= pullMinDistance && inventory.items.Count < InventoryManager.maxItemSlot)
+        else
         {
-            rb.AddForce(targetDirection * speed);
+            isGrounded = transform.position.y <= yPos - Random.Range(1f, 2.5f);
+            if (isGrounded)
+            {
+                rb.gravityScale = 0f;
+                rb.velocity = Vector2.zero;
+                pickupAble = true;
+            }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag(Tags.Player) && inventory.items.Count < InventoryManager.maxItemSlot)
+        if (collision.CompareTag(Tags.Player) && inventory.items.Count < InventoryManager.maxItemSlot && pickupAble)
         {
             Destroy(gameObject);
             inventory.OnPickUpItem(ref item);
+            return;
         }
+        Debug.Log(collision.tag);
     }
 }
