@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class MonsterSpawnManager : MonoBehaviour
 {
-    public int currentStage = 1;
+    private GameManager gameManager;
+    private int currentStage = 1;
     public List<Spawner> spawners;
-
+    public BossSpawn bossSpawn;
     private void Start()
     {
         Spawn();
+        gameManager = GameObject.FindGameObjectWithTag(Tags.GameManager).GetComponent<GameManager>();
     }
 
     private void Spawn()
     {
-        foreach(Spawner spawner in spawners)
+        foreach (Spawner spawner in spawners)
         {
             spawner.Spawn(currentStage);
         }
+        bossSpawn.Spawn(currentStage);
     }
 
 }

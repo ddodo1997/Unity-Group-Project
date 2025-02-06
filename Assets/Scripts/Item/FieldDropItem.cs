@@ -87,6 +87,5 @@ public class FieldDropItem : MonoBehaviour
             inventory.OnPickUpItem(ref item);
             return;
         }
-        Debug.Log(collision.tag);
     }
 }

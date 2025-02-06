@@ -26,4 +26,9 @@ public class MonsterHpBar : MonoBehaviour
     {
         hpBar.value = status.hp;
     }
+
+    public void SetPosition(Vector3 position)
+    {
+        transform.position = position;
+    }
 }

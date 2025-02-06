@@ -56,6 +56,9 @@ public static class Tags
     public static readonly string InventoryManager = "InventoryManager";
     public static readonly string HeallingWell = "Healling Well";
     public static readonly string ItemBox = "ItemBox";
+    public static readonly string GameManager = "GameManager";
+    public static readonly string MonsterSpawnManager = "MonsterSpawnManager";
+    public static readonly string Boss = "Boss";
 }
 
 public static class SortingLayers

@@ -71,9 +71,9 @@ public class Monster : LivingEntity
         if (status.Agility * 0.01 + status.Level >= Random.Range(0, 1000))
             return;
 
-        status.hp -= Mathf.Clamp(damage - status.Defense * (status.Level * 0.1f),0f,float.MaxValue);
+        status.hp -= Mathf.Clamp(damage - status.Defense * (status.Level * 0.1f), 0f, float.MaxValue);
         hpBar.UpdateHpBar(status);
-        if (status.hp <=0f)
+        if (status.hp <= 0f)
         {
             OnDie();
             return;
@@ -107,10 +107,11 @@ public class Monster : LivingEntity
         transform.position = new Vector3(-9, 0, 0);
     }
 
-    public void SettingMonster()
+    public void SettingMonster(MonsterStatus status)
     {
+        this.status = status;
         var path = string.Format(PathFormats.prefabs, status.Id);
-        prefab = (GameObject)Instantiate(Resources.Load(path), transform.position, transform.rotation);
+        prefab = (GameObject)Instantiate(Resources.Load(path), Vector3.zero, transform.rotation);
         prefab.transform.SetParent(transform, false);
         attackArea = GetComponent<BoxCollider2D>();
         attackArea.size = new Vector2(status.Range, attackArea.size.y);
@@ -123,12 +124,12 @@ public class Monster : LivingEntity
         rb = GetComponent<Rigidbody2D>();
         itemDrop = GetComponent<ItemDrop>();
         body = GetComponent<CapsuleCollider2D>();
-
-        //테스트용 코드
     }
     private void Start()
     {
-        StartGame("SPUM_20241203203032691");
+        //StartGame("SPUM_20241203203032691");
+        player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
+        gameManager = GameObject.FindGameObjectWithTag(Tags.GameManager).GetComponent<GameManager>();
     }
     public void SetStatus(Status stat)
     {
@@ -266,13 +267,13 @@ public class Monster : LivingEntity
         if (collision.CompareTag(Tags.Player) && !collision.isTrigger)
         {
             var player = collision.GetComponent<Player>();
-            
-            if (Mathf.Clamp(player.status.Agility - (status.Agility * 0.5f), 0f,50f) <= Random.Range(0, 100))
+
+            if (Mathf.Clamp(player.status.Agility - (status.Agility * 0.5f), 0f, 50f) <= Random.Range(0, 100))
                 return;
 
             if (player != null)
             {
-                player.OnDamage(status.CriticalChance >= Random.Range(0f, 100f) ? status.Strength * (status.Critical * 0.3f) :status.Strength);
+                player.OnDamage(status.CriticalChance >= Random.Range(0f, 100f) ? status.Strength * (status.Critical * 0.3f) : status.Strength);
             }
         }
     }

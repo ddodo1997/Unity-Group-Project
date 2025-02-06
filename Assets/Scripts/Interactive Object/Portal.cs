@@ -9,7 +9,11 @@ public class Portal : MonoBehaviour
     public Player player;
     public GameObject portalUiButton;
     public PortalButton portalButton;
-    public bool warpFlag = false;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -31,12 +35,5 @@ public class Portal : MonoBehaviour
                     portalUiButton.SetActive(false);
                 portalButton.GetComponent<Image>().color = Color.white;
             }
-    }
-
-    public IEnumerator LateTrigger()
-    {
-        warpFlag = true;
-        yield return new WaitForSeconds(0.1f);
-        warpFlag = false;   
     }
 }
