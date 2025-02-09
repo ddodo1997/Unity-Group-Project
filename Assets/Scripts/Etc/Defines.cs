@@ -35,6 +35,7 @@ public static class PathFormats
     public static readonly string prefabs = "prefabs/{0}";
     public static readonly string sprites = "sprites/{0}";
     public static readonly string tables = "tables/{0}";
+    public static readonly string particles = "particles/{0}";
 }
 
 public static class Variables

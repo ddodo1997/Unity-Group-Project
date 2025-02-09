@@ -79,7 +79,6 @@ public class Player : LivingEntity
         attackArea.enabled = false;
     }
 
-    public float tempSpeed;
     public override void Move()
     {
         isMoving = moveJoystick.Input.magnitude != 0;
@@ -255,11 +254,7 @@ public class Player : LivingEntity
         if (Input.GetKeyDown(KeyCode.S))
             OnDamage(300);
 #endif
-        Attack();
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("ATTACK"))
-            OnColliderEnable();
-        else
-            OnColliderDisable();
+
     }
 
     private void FixedUpdate()
@@ -267,6 +262,12 @@ public class Player : LivingEntity
         if (isDie)
             return;
         Rotation();
-        Move();
+        Attack();
+        Move(); 
+        
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("ATTACK"))
+            OnColliderEnable();
+        else
+            OnColliderDisable();
     }
 }

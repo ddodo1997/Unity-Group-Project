@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
 
     public float radius;
 
-    private void Start()
+    private void Awake()
     {
         spawnArea = GetComponent<BoxCollider2D>();
         radius = spawnArea.size.x * 2;

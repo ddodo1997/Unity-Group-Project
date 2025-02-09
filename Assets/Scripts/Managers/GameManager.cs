@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Player player;
+    public int currentStage = 2;
     public CanvasGroup gameOverPanel;
     public TextMeshProUGUI gameOverText;
     private bool isGameOver = false;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
 #if UNITY_ANDROID || UNITY_IOS
+        QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = int.MaxValue;
 #endif
         eliteMonster = GameObject.FindGameObjectWithTag(Tags.Elite)?.GetComponent<EliteMonster>() ?? null;

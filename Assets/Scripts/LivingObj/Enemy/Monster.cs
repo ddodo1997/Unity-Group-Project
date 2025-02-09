@@ -65,7 +65,7 @@ public class Monster : LivingEntity
         if (status.Agility * 0.01 + status.Level >= Random.Range(0, 1000))
             return;
 
-        status.hp -= Mathf.Clamp(damage - status.Defense * (status.Level * 0.1f), 0f, float.MaxValue);
+        status.hp -= Mathf.Clamp(damage - status.Defense * (status.Level * 0.01f), 0f, float.MaxValue);
         hpBar.UpdateHpBar(status);
         if (status.hp <= 0f)
         {
@@ -249,7 +249,7 @@ public class Monster : LivingEntity
         {
             var player = collision.GetComponent<Player>();
 
-            if (Mathf.Clamp(player.status.Agility - (status.Agility * 0.5f), 0f, 50f) <= Random.Range(0, 100))
+            if (Mathf.Clamp(player.status.Agility - (status.Agility * 0.5f), 0f, 50f) >= Random.Range(0, 100))
                 return;
 
             if (player != null)

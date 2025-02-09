@@ -18,18 +18,17 @@ public class Portal : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (portalUiButton != null)
-            if (collision.CompareTag(Tags.Player))
+            if (collision.CompareTag(Tags.Player) && !collision.isTrigger)
             {
                 portalUiButton.SetActive(true);
                 portalButton.GetComponent<Image>().color = Color.blue;
                 controller.currentActivePortal = this;
-                //StartCoroutine(LateTrigger());
             }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (portalUiButton != null)
-            if (collision.CompareTag(Tags.Player)/* && !warpFlag*/)
+            if (collision.CompareTag(Tags.Player) && !collision.isTrigger)
             {
                 if(controller.currentActivePortal == this)
                     portalUiButton.SetActive(false);

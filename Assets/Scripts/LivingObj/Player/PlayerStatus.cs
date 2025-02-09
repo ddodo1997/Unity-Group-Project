@@ -62,7 +62,7 @@ public class PlayerStatus : IStatus
 
     public void SetBasedStatus()
     {
-        MovementSpeed = Mathf.Clamp(Agility * 0.02f, 0f, 15f);
+        MovementSpeed = Mathf.Clamp(Agility * 0.02f, 5f, 15f);
         hp = Health;
         Accuracy = Luck * 0.3f;
         CriticalChance = (Critical + (Luck * 0.2f)) * 0.2f * 0.001f;

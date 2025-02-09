@@ -14,9 +14,9 @@ public class MonsterStatus : IStatus
     public string Id { get; set; }
     public int Stage { get; set; }
     public string StringId { get; set; }
-    public Rating Rate {  get; set; }
+    public Rating Rate { get; set; }
     public string Name { get; set; }
-    public int Level { get; private set; }
+    public int Level { get;  set; }
     public float Strength { get; set; }
     public float Defense { get; set; }
     public float Agility { get; set; }
@@ -47,7 +47,7 @@ public class MonsterStatus : IStatus
         Strength = data.Strength;
         Defense = data.Defense;
         Agility = data.Agility;
-        MovementSpeed = Agility * 0.02f;
+        MovementSpeed = data.MovementSpeed;
 
         Health = data.Health;
         hp = Health;
@@ -55,7 +55,7 @@ public class MonsterStatus : IStatus
         Luck = data.Luck;
         Accuracy = data.Luck;
         Critical = data.Critical;
-        CriticalChance = (data.Critical + (data.Luck * 0.2f)) * 0.2f * 0.001f;
+        CriticalChance = data.CriticalChance;
         Range = data.Range;
         Distance = data.Distance;
         CoolTime = data.CoolTime;
@@ -73,18 +73,18 @@ public class MonsterStatus : IStatus
         result.Rate = Rate;
         result.Name = Name;
         result.Level = Level;
-            
+
         result.Strength = Strength;
         result.Defense = Defense;
         result.Agility = Agility;
-        result.MovementSpeed = result.Agility * 0.02f;
+        result.MovementSpeed = Mathf.Clamp(result.Agility * 0.02f, 0f, 5f);
         result.Health = Health;
         result.hp = result.Health;
         result.Intelligence = Intelligence;
         result.Luck = Luck;
         result.Accuracy = Accuracy;
         result.Critical = Critical;
-        result.CriticalChance = CriticalChance;
+        result.CriticalChance = (Critical + (Luck * 0.2f)) * 0.2f * 0.001f;
         result.Range = Range;
         result.Distance = Distance;
         result.CoolTime = CoolTime;

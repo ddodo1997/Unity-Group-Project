@@ -23,6 +23,7 @@ public class BossMonster : LivingEntity
     private BoxCollider2D attackArea;
     private GameObject prefab;
     private ItemDrop itemDrop;
+    private Vector3 startPos;
 
     public Status currentStauts = Status.Idle;
     private Vector2 direction;
@@ -41,6 +42,14 @@ public class BossMonster : LivingEntity
         if (Time.time - statusStartTime > status.CoolTime)
         {
             animator.SetTrigger(attackTrigger);
+            statusStartTime = Time.time;
+        }
+    }
+    public void Fire()
+    {
+        if (Time.time - statusStartTime > status.CoolTime)
+        {
+            animator.SetTrigger(skillTrigger);
             statusStartTime = Time.time;
         }
     }
@@ -84,7 +93,7 @@ public class BossMonster : LivingEntity
 
     public void SettingMonster(MonsterStatus status)
     {
-        this.status = status;
+        this.status.SetStatus(status);
         var path = string.Format(PathFormats.prefabs, status.Id);
         prefab = (GameObject)Instantiate(Resources.Load(path), Vector3.zero, transform.rotation);
         prefab.transform.SetParent(transform, false);
@@ -93,6 +102,7 @@ public class BossMonster : LivingEntity
         attackArea.offset = new Vector2(attackArea.offset.x - status.Range * 0.5f, attackArea.offset.y);
         player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
         animator = gameObject.GetComponentsInChildren<Animator>()[0];
+        startPos = transform.position;
     }
     private void Awake()
     {
@@ -107,6 +117,7 @@ public class BossMonster : LivingEntity
     }
     public void SetStatus(Status stat)
     {
+        StopCoroutine(WaitForPlayer());
         currentStauts = stat;
         statusStartTime = Time.time;
         switch (currentStauts)
@@ -121,23 +132,38 @@ public class BossMonster : LivingEntity
                 direction = (player.transform.position - transform.position).normalized;
                 break;
             case Status.Attack:
+            case Status.Fire:
                 rb.velocity = Vector2.zero;
+                break;
+            case Status.Wait:
+                animator.SetBool(moveBool, false);
+                rb.velocity = Vector2.zero;
+                if (gameObject.activeSelf)
+                    StartCoroutine(WaitForPlayer());
                 break;
             case Status.Return:
 
                 break;
-            case Status.Die:
-                break;
         }
+    }
+
+    private IEnumerator WaitForPlayer()
+    {
+
+        yield return new WaitForSeconds(10f);
+
+        status.hp = status.Health;
+        hpBar.UpdateHpBar(status);
+        SetStatus(Status.Return);
     }
     private void Update()
     {
         if (player.isDie)
             return;
-        isMoving = rb.velocity.magnitude > 0;
+        isMoving = !Mathf.Approximately(rb.velocity.magnitude, 0);
 
-        hpBar.UpdateHpBar(status);
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName("ATTACK"))
+        hpBar?.UpdateHpBar(status);
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack") || animator.GetCurrentAnimatorStateInfo(0).IsName("Fire"))
             OnColliderEnable();
         else
             OnColliderDisable();
@@ -163,20 +189,23 @@ public class BossMonster : LivingEntity
         switch (currentStauts)
         {
             case Status.Idle:
-                break;
+                {
+                    float startPosDistance = (startPos - transform.position).magnitude;
+                    if (startPosDistance > 1f)
+                    {
+                        SetStatus(Status.Return);
+                    }
+                    break;
+                }
             case Status.Aggro:
                 direction = (player.transform.position - transform.position).normalized;
-                if (targetDistance > status.Distance)
-                {
-                    SetStatus(Status.Idle);
-                }
-                else if (targetDistance > status.Range)
+                if (targetDistance > status.Range)
                 {
                     Move();
                 }
                 else
                 {
-                    SetStatus(Status.Attack);
+                    SetStatus(Random.Range(0,100) <= 20 ? Status.Attack : Status.Fire);
                 }
                 break;
             case Status.Attack:
@@ -186,10 +215,29 @@ public class BossMonster : LivingEntity
                 else
                     Attack();
                 break;
+            case Status.Fire:
+                direction = (player.transform.position - transform.position).normalized;
+                if (targetDistance > status.Range)
+                    SetStatus(Status.Aggro);
+                else
+                    Fire();
+                break;
+            case Status.Wait:
+                break;
             case Status.Return:
-                break;
-            case Status.Die:
-                break;
+                {
+                    float startPosDistance = (startPos - transform.position).magnitude;
+                    if (startPosDistance > 1f)
+                    {
+                        direction = (startPos - transform.position).normalized;
+                        Move();
+                    }
+                    else
+                    {
+                        SetStatus(Status.Idle);
+                    }
+                    break;
+                }
         }
 
         if (direction.x < 0)
@@ -200,7 +248,8 @@ public class BossMonster : LivingEntity
         {
             transform.rotation = Direction.Right;
         }
-        animator.SetBool(moveBool, isMoving);
+        if (currentStauts != Status.Wait)
+            animator.SetBool(moveBool, isMoving);
     }
 
     public IEnumerator AfterDie()
@@ -215,7 +264,7 @@ public class BossMonster : LivingEntity
         {
             var player = collision.GetComponent<Player>();
 
-            if (Mathf.Clamp(player.status.Agility - (status.Agility * 0.5f), 0f, 50f) <= Random.Range(0, 100))
+            if (Mathf.Clamp(player.status.Agility - (status.Agility * 0.5f), 0f, 50f) >= Random.Range(0, 100))
                 return;
 
             if (player != null)

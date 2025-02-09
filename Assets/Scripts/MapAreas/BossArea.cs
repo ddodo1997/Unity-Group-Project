@@ -23,7 +23,7 @@ public class BossArea : MonoBehaviour
 
         if (collision.CompareTag(Tags.Player))
         {
-            var boss = GameObject.FindGameObjectWithTag(Tags.Boss).GetComponent<BossMonster>();
+            var boss = GameObject.FindGameObjectWithTag(Tags.Boss)?.GetComponent<BossMonster>() ?? null;
             var player = collision.GetComponent<Player>();
             if (player != null && boss != null)
             {
@@ -36,7 +36,7 @@ public class BossArea : MonoBehaviour
     {
         if (collision.CompareTag(Tags.Player) && !collision.isTrigger)
         {
-            var bossMonster = GameObject.FindGameObjectWithTag(Tags.Boss).GetComponent<BossMonster>();
+            var bossMonster = GameObject.FindGameObjectWithTag(Tags.Boss)?.GetComponent<BossMonster>() ?? null;
             if (bossMonster != null)
                 bossMonster.SetStatus(BossMonster.Status.Wait);
         }

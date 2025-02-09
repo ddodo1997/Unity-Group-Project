@@ -84,6 +84,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44b1ca265c65e1644ad05d413d7e2611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  animator: {fileID: 0}
+  hpBar: {fileID: 8940232554468444824}
+  player: {fileID: 0}
+  currentStauts: 0
+  targetDistance: 0
+  isDie: 0
 --- !u!114 &3276020501883382529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,7 +163,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.79908514}
+  m_Offset: {x: 0, y: 1.3506298}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -167,7 +174,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.5981703}
+  m_Size: {x: 1, y: 6.102726}
   m_EdgeRadius: 0
 --- !u!1 &2115027301945665886
 GameObject:
@@ -179,7 +186,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3037351053038968295}
   - component: {fileID: 7182455257637278642}
-  - component: {fileID: 4185113471316137159}
+  - component: {fileID: 8940232554468444824}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -259,7 +266,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4185113471316137159
+--- !u!114 &8940232554468444824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,10 +275,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2115027301945665886}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8967a343498a1c1478d5222110c58b02, type: 3}
+  m_Script: {fileID: 11500000, guid: 64d957808b685c24f969e2f64d1ed505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monster: {fileID: 0}
+  monster: {fileID: -3529090455155299937}
 --- !u!1 &4651987114927710402
 GameObject:
   m_ObjectHideFlags: 0

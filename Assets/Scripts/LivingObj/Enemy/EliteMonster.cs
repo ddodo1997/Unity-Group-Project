@@ -60,7 +60,7 @@ public class EliteMonster : LivingEntity
         if (status.Agility * 0.01 + status.Level >= Random.Range(0, 1000))
             return;
 
-        status.hp -= Mathf.Clamp(damage - status.Defense * (status.Level * 0.1f), 0f, float.MaxValue);
+        status.hp -= Mathf.Clamp(damage - status.Defense * (status.Level * 0.01f), 0f, float.MaxValue);
         hpBar.UpdateHpBar(status);
         if (status.hp <= 0f)
         {
@@ -158,6 +158,12 @@ public class EliteMonster : LivingEntity
             OnColliderEnable();
         else
             OnColliderDisable();
+#if UNITY_EDITOR
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            itemDrop.Drop();
+        }
+#endif
     }
 
     public void OnColliderEnable()

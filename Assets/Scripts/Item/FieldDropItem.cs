@@ -37,6 +37,10 @@ public class FieldDropItem : MonoBehaviour
                 transform.localScale = vec;
             }
         }
+        //else if (item is WeaponData) {
+        //    var vec = new Vector3(0.5f, 0.5f, 0.5f);
+        //    transform.localScale = vec;
+        //}
         this.item.currentExp = (int)Random.Range(0, this.item.ExperienceValue);
         this.item.Level = Random.Range(1, 50);
         this.item.SetStatusForLevel();
