@@ -10,7 +10,7 @@ public class FieldDropItem : MonoBehaviour
     public InventoryManager inventory;
     private Rigidbody2D rb;
     private float yPos;
-    private float speed = 300f;
+    private float speed = 150f;
     public float targetDistance;
     public Vector2 targetDirection;
     public Player player;
@@ -29,21 +29,13 @@ public class FieldDropItem : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = item.sprite;
         item.IsEmpty = false;
-        if (item is EquipmentData)
-        {
-            if ((item as EquipmentData).Type == ArmorType.Ring)
-            {
-                var vec = new Vector3(2, 2, 2);
-                transform.localScale = vec;
-            }
-        }
-        //else if (item is WeaponData) {
-        //    var vec = new Vector3(0.5f, 0.5f, 0.5f);
-        //    transform.localScale = vec;
-        //}
         this.item.currentExp = (int)Random.Range(0, this.item.ExperienceValue);
         this.item.Level = Random.Range(1, 50);
         this.item.SetStatusForLevel();
+        if(item is WeaponData)
+        {
+            var weaponData = (WeaponData)item;
+        }
     }
 
     private void Start()

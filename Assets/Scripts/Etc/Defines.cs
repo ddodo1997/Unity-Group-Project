@@ -29,6 +29,8 @@ public static class DataTableIds
         "ArmorTable",
         "WeaponTable"
     };
+
+    public static readonly string Skill = "SkillTable";
 }
 public static class PathFormats
 {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SkillData
@@ -27,11 +28,11 @@ public class SkillData
         skillData.SkillEffectId = SkillEffectId;
         //skillEffect
         var path = string.Format(PathFormats.particles, SkillEffectId);
-        skillEffect = (ParticleSystem)Resources.Load(path);
+        skillData.skillEffect = Resources.Load<ParticleSystem>(path);
         skillData.SkillIconId = SkillIconId;
         //skillIcon
-        path = string.Format(PathFormats.particles, SkillIconId);
-        skillIcon = (Sprite)Resources.Load(path);
+        path = string.Format(PathFormats.sprites, SkillIconId);
+        skillData.skillIcon = Resources.Load<Sprite>(path);
         skillData.Damage = Damage;
         skillData.NumberOfTriggers = NumberOfTriggers;
         skillData.HoldingTime = HoldingTime;

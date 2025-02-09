@@ -1,39 +1,21 @@
-Rate,Id,Type,Name,Strength,Defense,Agility,Health,Intelligence,Luck,Critical,Range,MotionSpeed,BulletSpeed,BulletLivingTime,CoolTime,LevelUpExperienceRequired,ExperienceValue
-Common,Axe_1,Sword,¼Õµµ³¢,50,0,0,0,0,0,50,0,0,0,0,0,10000,5000
-Common,Orc_Weapon_01,Sword,³ª¹«¸ùµÕÀÌ,100,0,0,0,0,0,0,0,0,0,0,0,10000,5000
-Common,F_SR_Hammer,Sword,³ª¹«¸ÁÄ¡,70,0,10,0,0,0,20,0,0,0,0,0,10000,5000
-Common,Orc_Weapon_07,Sword,µµ³¢,60,0,0,20,0,0,20,0,0,0,0,0,10000,5000
-Common,Weapon_Rogue_1,Sword,³¯½ë ´Ü°Ë,40,0,20,0,0,10,30,0,0,0,0,0,10000,5000
-Common,Sword_4,Sword,±âº» °Ë,20,0,20,20,0,20,20,0,0,0,0,0,10000,5000
-UnCommon,Spear_1,Sword,°¨ÁöÃ¢,70,0,30,60,0,20,20,0,0,0,0,0,20000,15000
-UnCommon,Undead_Weapon_03,Sword,ÇØÀûÄ®,80,0,20,50,0,0,50,0,0,0,0,0,20000,15000
-UnCommon,Orc_Weapon_06,Sword,¹èÆ²¿¢½º,120,0,0,40,0,0,40,0,0,0,0,0,20000,15000
-UnCommon,Orc_Weapon_05,Sword,´ëµµ,90,0,10,10,0,10,80,0,0,0,0,0,20000,15000
-UnCommon,Soon_Spear,Sword,±×·¹ÀÌÆ® ·£½º,200,0,0,0,0,0,0,0,0,0,0,0,20000,15000
-Rare,Weapon_Rogue_2,Sword,ÇÇÀÇ ´Ü°Ë,120,0,40,40,0,20,80,0,0,0,0,0,25000,17500
-Rare,Sword_3,Sword,Àß º­·ÁÁø Ä®,100,0,50,50,0,40,60,0,0,0,0,0,25000,17500
-Rare,Orc_Weapon_02,Sword,±×·¹ÀÌÆ® ·£½º,150,0,25,75,0,0,50,0,0,0,0,0,25000,17500
-Hero,Weapon_Knight_1,Sword,Àü´ë ¿ë»çÀÇ °Ë,185,0,50,15,10,100,40,0,0,0,0,0,35000,22000
-Hero,Undead_Weapon_06,Sword,»ì¹úÇÑ ¹èÆ²¿¢½º,200,0,0,0,0,0,200,0,0,0,0,0,35000,22000
-Hero,Undead_Weapon_08,Sword,°í´ëÀÇ ³°Àº °Ë,175,0,75,0,0,50,0,0,0,0,0,0,35000,22000
-Legendary,Sword_5,Sword,Áö¿ÁÀÇ ÆÄ¸ê°Ë,250,0,50,50,0,0,100,0,0,0,0,0,45000,30000
-Legendary,Weapon_Knight_2,Sword,º£Å×¶ûÀÇ °Ë,200,0,50,50,0,0,200,0,0,0,0,0,45000,30000
-Legendary,Undead_Weapon_10,Sword,¼º½º·¯¿î °Ë,250,0,50,50,0,100,100,0,0,0,0,0,45000,30000
-Common,Undead_Weapon_07,Staff,ÇØ°ñ»À,75,0,30,0,20,5,70,0,0,100,0,0,10000,5000
-Common,Orc_Weapon_08,Staff,»õÃÑ,75,0,75,0,0,0,50,0,0,100,0,0,10000,5000
-Common,Undead_Weapon_02,Staff,°î±ªÀÌ,50,0,20,0,30,0,100,0,0,100,0,0,10000,5000
-Common,Undead_Weapon_01,Staff,»ğ,200,0,0,0,0,0,0,0,0,100,0,0,10000,5000
-UnCommon,Orc_Weapon_09,Staff,ÁöÆÎÀÌ,100,0,50,0,50,0,100,1,0,150,0,0,20000,15000
-UnCommon,Orc_Weapon_04,Staff,ÇØ°ñÁöÆÎÀÌ,150,0,25,0,45,20,60,1,0,150,0,0,20000,15000
-Rare,Weapon_Healer_1,Staff,¸¶³ªÁöÆÎÀÌ,200,0,50,0,75,25,100,1.5,0,200,0,0,25000,15000
-Rare,Ward_1,Staff,ÀúÁÖ¹ŞÀº ÁöÆÎÀÌ,200,0,25,0,75,50,100,1.5,0,200,0,0,25000,15000
-Hero,Weapon_Sorceress,Staff,ÀÚ¼öÁ¤ ÁöÆÎÀÌ,250,0,100,0,150,0,150,2,0.1,250,0.2,0.1,30000,22000
-Hero,Undead_Weapon_09,Staff,¾Ç¸¶ ÁöÆÎÀÌ,300,0,50,0,100,0,200,2,0.1,250,0.2,0.1,30000,22000
-Legendary,Weapon_Sorcerer,Staff,·¹µå¿À¼Ç ÁöÆÎÀÌ,400,0,50,0,100,100,100,3,0.1,300,0.3,0.2,37500,30000
-Legendary,Weapon_Healer_2,Staff,±İ°­ºÒ±« ÁöÆÎÀÌ,300,50,50,0,100,150,100,3,0.1,300,0.3,0.2,37500,30000
-Common,Bow_1,Bow,½Î±¸·Á ³ª¹« È°,50,0,30,0,30,10,30,1,0,150,0,0,7500,5000
-Common,Orc_Weapon_03,Bow,³ª¹« È°,75,0,50,0,45,30,50,1,0,150,0,0,7500,5000
-UnCommon,Undead_Weapon_05,Bow,Á¶¼± È°,150,0,75,0,25,30,70,1,0,200,0,0,12500,15000
-Rare,Undead_Weapon_04,Bow,¾ß¸¸ÀÎÀÇ È°,200,0,100,0,50,50,50,1,0,250,0,0,17500,17500
-Hero,Weapon_Archer_2,Bow,»ç³É²ÛÀÇ È°,250,0,100,0,100,0,100,1,0.2,300,0.3,0.2,25000,17500
-Legendary,Weapon_Archer_1,Bow,¹é¹ß¹éÁß,300,0,200,0,0,50,200,1,0.2,350,0.5,0.3,30000,50000
+Rate,Id,Type,Name,Strength,Defense,Agility,Health,Intelligence,Luck,Critical,Range,MotionSpeed,BulletSpeed,BulletLivingTime,CoolTime,LevelUpExperienceRequired,ExperienceValue,SkillId
+Common,Axe_1,Sword,ì†ë„ë¼,25,0,0,0,0,0,50,0,0,0,0,0,10000,5000,none
+Common,Orc_Weapon_01,Sword,ë‚˜ë¬´ëª½ë‘¥ì´,50,0,0,0,0,0,0,0,0,0,0,0,10000,5000,none
+Common,F_SR_Hammer,Sword,ë‚˜ë¬´ë§ì¹˜,35,0,10,0,0,0,20,0,0,0,0,0,10000,5000,none
+Common,Orc_Weapon_07,Sword,ë„ë¼,30,0,0,20,0,0,20,0,0,0,0,0,10000,5000,none
+Common,Weapon_Rogue_1,Sword,ë‚ ìˆ ë‹¨ê²€,20,0,20,0,0,10,30,0,0,0,0,0,10000,5000,none
+Common,Sword_4,Sword,ê¸°ë³¸ ê²€,10,0,20,20,0,20,20,0,0,0,0,0,10000,5000,none
+UnCommon,Spear_1,Sword,ê°ì§€ì°½,35,0,30,60,0,20,20,0,0,0,0,0,20000,15000,none
+UnCommon,Undead_Weapon_03,Sword,í•´ì ì¹¼,40,0,20,50,0,0,50,0,0,0,0,0,20000,15000,none
+UnCommon,Orc_Weapon_06,Sword,ë°°í‹€ì—‘ìŠ¤,60,0,0,40,0,0,40,0,0,0,0,0,20000,15000,none
+UnCommon,Orc_Weapon_05,Sword,ëŒ€ë„,45,0,10,10,0,10,80,0,0,0,0,0,20000,15000,none
+UnCommon,Soon_Spear,Sword,ê·¸ë ˆì´íŠ¸ ëœìŠ¤,100,0,0,0,0,0,0,0,0,0,0,0,20000,15000,none
+Rare,Weapon_Rogue_2,Sword,í”¼ì˜ ë‹¨ê²€,60,0,40,40,0,20,80,0,0,0,0,0,25000,17500,none
+Rare,Sword_3,Sword,ì˜ ë²¼ë ¤ì§„ ì¹¼,50,0,50,50,0,40,60,0,0,0,0,0,25000,17500,none
+Rare,Orc_Weapon_02,Sword,ê·¸ë ˆì´íŠ¸ ëœìŠ¤,75,0,25,75,0,0,50,0,0,0,0,0,25000,17500,none
+Hero,Weapon_Knight_1,Sword,ì „ëŒ€ ìš©ì‚¬ì˜ ê²€,95,0,50,15,10,100,40,0,0,0,0,0,35000,22000,blue_03_07443
+Hero,Undead_Weapon_06,Sword,ì‚´ë²Œí•œ ë°°í‹€ì—‘ìŠ¤,200,0,0,0,0,0,200,0,0,0,0,0,35000,22000,blue_29_070735353
+Hero,Undead_Weapon_08,Sword,ê³ ëŒ€ì˜ ë‚¡ì€ ê²€,90,0,75,0,0,50,0,0,0,0,0,0,35000,22000,green_16_2101025
+Legendary,Sword_5,Sword,ì§€ì˜¥ì˜ íŒŒë©¸ê²€,125,0,50,50,0,0,100,0,0,0,0,0,45000,30000,violet_03_070716167
+Legendary,Weapon_Knight_2,Sword,ë² í…Œë‘ì˜ ê²€,100,0,50,50,0,0,200,0,0,0,0,0,45000,30000,blue_01_07071025
+Legendary,Undead_Weapon_10,Sword,ì„±ìŠ¤ëŸ¬ìš´ ê²€,125,0,50,50,0,100,100,0,0,0,0,0,45000,30000,red_01_13101010

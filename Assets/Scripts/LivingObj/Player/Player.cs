@@ -270,4 +270,9 @@ public class Player : LivingEntity
         else
             OnColliderDisable();
     }
+
+    public void PlayAttackAnim()
+    {
+        animator.SetTrigger(attackTrigger);
+    }
 }

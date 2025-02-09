@@ -78,7 +78,7 @@ public class EliteMonster : LivingEntity
         rb.isKinematic = true;
         isDie = true;
         animator.SetTrigger(deathTrigger);
-        animator.SetBool(dieBool, isDie);
+        animator.SetBool(dieBool,isDie);
 
         itemDrop.Drop();
     }
@@ -149,7 +149,7 @@ public class EliteMonster : LivingEntity
     }
     private void Update()
     {
-        if (player.isDie)
+        if (player.isDie || isDie)
             return;
         isMoving = !Mathf.Approximately(rb.velocity.magnitude, 0);
 
@@ -159,9 +159,13 @@ public class EliteMonster : LivingEntity
         else
             OnColliderDisable();
 #if UNITY_EDITOR
-        if(Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             itemDrop.Drop();
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            OnDie();
         }
 #endif
     }
@@ -244,7 +248,7 @@ public class EliteMonster : LivingEntity
 
     public IEnumerator AfterDie()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 

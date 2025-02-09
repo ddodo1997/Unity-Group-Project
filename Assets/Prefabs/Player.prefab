@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27495aaa2aa055944a354cab06e10da6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   moveJoystick: {fileID: 0}
   attackJoystick: {fileID: 0}
   attackArea: {fileID: 0}
@@ -55,6 +56,7 @@ MonoBehaviour:
   weaponRenderer: {fileID: 0}
   playerEquip: {fileID: 0}
   isDie: 0
+  isAggroAble: 0
 --- !u!114 &3900177865233752387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +70,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 0}
+  hpBar: {fileID: 0}
   equipSlots:
   - {fileID: 0}
   - {fileID: 0}
@@ -75,6 +78,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  player: {fileID: 0}
   statTexts:
   - {fileID: 0}
   - {fileID: 0}

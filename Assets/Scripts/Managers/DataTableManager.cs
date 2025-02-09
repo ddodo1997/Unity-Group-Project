@@ -24,6 +24,10 @@ public static class DataTableManager
     {
         get => Get<WeaponTable>(DataTableIds.ItemStatus[(int)EquipType.Weapon]);
     }
+    public static SkillTable SkillTable
+    {
+        get => Get<SkillTable>(DataTableIds.Skill);
+    }
     static DataTableManager()
     {
         var characterTable = new CharacterTable();
@@ -45,6 +49,11 @@ public static class DataTableManager
         var weaponTableId = DataTableIds.ItemStatus[((int)EquipType.Weapon)];
         weaponTable.Load(weaponTableId);
         tables.Add(weaponTableId, weaponTable);
+
+        var skillTable = new SkillTable();
+        var skillTableId = DataTableIds.Skill;
+        skillTable.Load(skillTableId);
+        tables.Add(skillTableId, skillTable);
     }
 
     public static T Get<T>(string id) where T : DataTable

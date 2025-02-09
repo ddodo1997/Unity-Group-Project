@@ -17,12 +17,12 @@ enum EquipSlots
 }
 public class PlayerEquipment : MonoBehaviour
 {
+    public GameObject skillButton;
     public InventoryManager inventoryManager;
     public PlayerHpBar hpBar;
     public EquipmentSlot[] equipSlots;
     public Player player;
     public TextMeshProUGUI[] statTexts;
-
     private void Start()
     {
         player = GetComponent<Player>();
@@ -71,6 +71,7 @@ public class PlayerEquipment : MonoBehaviour
                 var tempWeapon = equipSlots[(int)EquipSlots.Weapon].itemData; ;
                 inventoryManager.items.Add(tempWeapon);
             }
+            skillButton.GetComponent<Image>().sprite = currentWeapon.skill?.skillIcon ?? null;
             equipSlots[(int)EquipSlots.Weapon].SetData(ref item);
             inventoryManager.items.Remove(item);
             player.weaponRenderer.sprite = equipSlots[(int)EquipSlots.Weapon].image.sprite;
@@ -92,5 +93,17 @@ public class PlayerEquipment : MonoBehaviour
         statTexts[4].text = $"Health : {player.status.Health}";
         statTexts[5].text = $"Critical : {player.status.Critical}";
     }
+
+    public void TouchSkillButton()
+    {
+        var currentWeapon = equipSlots[(int)EquipSlots.Weapon].itemData as WeaponData;
+        if (currentWeapon?.IsEmpty ?? currentWeapon == null)
+        {
+            return;
+        }
+        var effect = Instantiate(currentWeapon.skill.skillEffect, player.transform.position, Quaternion.identity);
+        effect.GetComponent<Skill>().SetData(currentWeapon.skill);
+    }
+
 
 }

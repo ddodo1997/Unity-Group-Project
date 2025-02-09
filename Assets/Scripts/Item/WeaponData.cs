@@ -13,6 +13,9 @@ public enum WeaponType
 public class WeaponData : ItemData
 {
     public WeaponType Type {  get; set; }
+    public string SkillId { get; set; }
+
+    public SkillData skill;
 
     public override ItemData GetNewData()
     {
@@ -35,12 +38,9 @@ public class WeaponData : ItemData
         data.LevelUpExperienceRequired = LevelUpExperienceRequired;
         data.ExperienceValue = Random.Range(0, ExperienceValue);
         data.Type = Type;
+        data.SkillId = SkillId;
+        data.skill = DataTableManager.SkillTable.Get(SkillId)?.GetNewData() ?? null;
         return data;
     }
 
-    //public SkillData Skill { get; set; }
-    //public void UseSkill(Player player)
-    //{
-    //    Skill.skill.Invoke(player);
-    //}
 }
