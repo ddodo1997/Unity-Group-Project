@@ -23,6 +23,7 @@ public class PlayerEquipment : MonoBehaviour
     public EquipmentSlot[] equipSlots;
     public Player player;
     public TextMeshProUGUI[] statTexts;
+    private bool skillCoolTime = true;
     private void Start()
     {
         player = GetComponent<Player>();
@@ -71,7 +72,10 @@ public class PlayerEquipment : MonoBehaviour
                 var tempWeapon = equipSlots[(int)EquipSlots.Weapon].itemData; ;
                 inventoryManager.items.Add(tempWeapon);
             }
-            skillButton.GetComponent<Image>().sprite = currentWeapon.skill?.skillIcon ?? null;
+            if (currentWeapon.Rate < EquipRate.Hero)
+                skillButton.GetComponent<Image>().sprite = null;
+            else
+                skillButton.GetComponent<Image>().sprite = currentWeapon.skill?.skillIcon;
             equipSlots[(int)EquipSlots.Weapon].SetData(ref item);
             inventoryManager.items.Remove(item);
             player.weaponRenderer.sprite = equipSlots[(int)EquipSlots.Weapon].image.sprite;
@@ -97,13 +101,23 @@ public class PlayerEquipment : MonoBehaviour
     public void TouchSkillButton()
     {
         var currentWeapon = equipSlots[(int)EquipSlots.Weapon].itemData as WeaponData;
-        if (currentWeapon?.IsEmpty ?? currentWeapon == null)
+        if (currentWeapon == null && currentWeapon.IsEmpty)
         {
             return;
         }
+        if (!skillCoolTime)
+            return;
+        StartCoroutine(SkillCoolTime(currentWeapon));
         var effect = Instantiate(currentWeapon.skill.skillEffect, player.transform.position, Quaternion.identity);
         effect.GetComponent<Skill>().SetData(currentWeapon.skill);
     }
 
-
+    public IEnumerator SkillCoolTime(WeaponData weapon)
+    {
+        skillCoolTime = false;
+        skillButton.GetComponent<Image>().color = Color.gray;
+        yield return new WaitForSeconds(weapon.skill.CoolTime);
+        skillButton.GetComponent<Image>().color = Color.white;
+        skillCoolTime = true;
+    }
 }

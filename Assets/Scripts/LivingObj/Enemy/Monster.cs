@@ -130,7 +130,10 @@ public class Monster : LivingEntity
                 break;
             case Status.Aggro:
                 if (!player.isAggroAble)
+                {
                     SetStatus(Status.Idle);
+                    break;
+                }
                 direction = (player.transform.position - transform.position).normalized;
                 break;
             case Status.Attack:
@@ -203,6 +206,11 @@ public class Monster : LivingEntity
                     SetStatus(Status.Aggro);
                 break;
             case Status.Aggro:
+                if (!player.isAggroAble)
+                {
+                    SetStatus(Status.Idle);
+                    break;
+                }
                 direction = (player.transform.position - transform.position).normalized;
                 if (targetDistance > status.Distance)
                 {
@@ -218,6 +226,11 @@ public class Monster : LivingEntity
                 }
                 break;
             case Status.Attack:
+                if (!player.isAggroAble)
+                {
+                    SetStatus(Status.Idle);
+                    break;
+                }
                 direction = (player.transform.position - transform.position).normalized;
                 if (targetDistance > status.Range)
                     SetStatus(Status.Aggro);
