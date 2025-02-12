@@ -76,6 +76,7 @@ public class EliteMonster : LivingEntity
         gameManager.UpdateMonsterList();
         body.enabled = false;
         rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
         isDie = true;
         animator.SetTrigger(deathTrigger);
         animator.SetBool(dieBool,isDie);
@@ -165,7 +166,7 @@ public class EliteMonster : LivingEntity
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            OnDie();
+            OnDamage(1000000);
         }
 #endif
     }

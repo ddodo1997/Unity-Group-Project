@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
     private readonly int[] levels = {10,20,30,40,50};
     public GameObject prefab;
     private BoxCollider2D spawnArea;
-    private readonly int monsterCntPerArea = 6;
+    private readonly int monsterCntPerArea = 10;
     public BoxCollider2D SpawnArea
     {
         get => spawnArea;

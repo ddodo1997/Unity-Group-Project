@@ -31,6 +31,22 @@ public class InventoryManager : MonoBehaviour
     public Player player;
 
     public SortBy currentSortBy = SortBy.Armor;
+
+    public TextMeshProUGUI slotCntText;
+
+    public int ItemCount()
+    {
+        int result = 0;
+        foreach (var item in items)
+        {
+            if (item == null || item.IsEmpty)
+                break;
+            result++;
+        }
+
+        return result;
+    }
+
     public void OnInventoryOpenButtonTouch()
     {
         isOpen = !isOpen;
@@ -41,6 +57,7 @@ public class InventoryManager : MonoBehaviour
             OnUpgradeButtonTouch();
         SortingInventory();
         SetCurrentItem();
+        slotCntText.text = $"{ItemCount()} / {slots.Count()}";
     }
     public string SetcurrentItemText()
     {
@@ -94,6 +111,7 @@ public class InventoryManager : MonoBehaviour
             return;
         player.playerEquip.OnEquipItem(currentItem);
         SortingInventory();
+        slotCntText.text = $"{ItemCount()} / {slots.Count()}";
     }
 
     public void OnUpgradeButtonTouch()

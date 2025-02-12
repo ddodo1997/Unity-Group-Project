@@ -36,11 +36,11 @@ public class Skill : MonoBehaviour
             case "Ef_14_green_p":
                 if (player.transform.rotation.y == 0)
                 {
-                    transform.position = new Vector3(player.transform.position.x - data.xRange * 0.5f, transform.position.y, transform.position.z);
+                    transform.position = new Vector3(player.transform.position.x - data.xRange * 0.5f, transform.position.y + 0.5f, transform.position.z);
                 }
                 else
                 {
-                    transform.position = new Vector3(player.transform.position.x + data.xRange * 0.5f, transform.position.y, transform.position.z);
+                    transform.position = new Vector3(player.transform.position.x + data.xRange * 0.5f, transform.position.y + 0.5f, transform.position.z);
                 }
                 break;
             case "Explosion_1":

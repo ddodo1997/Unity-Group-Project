@@ -5,6 +5,7 @@ using System.Net;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 enum EquipSlots
 {
@@ -17,6 +18,7 @@ enum EquipSlots
 }
 public class PlayerEquipment : MonoBehaviour
 {
+    public Image coolTimeImage;
     public GameObject skillButton;
     public InventoryManager inventoryManager;
     public PlayerHpBar hpBar;
@@ -28,6 +30,7 @@ public class PlayerEquipment : MonoBehaviour
     {
         player = GetComponent<Player>();
         inventoryManager = GameObject.FindGameObjectWithTag(Tags.InventoryManager).GetComponent<InventoryManager>();
+        coolTimeImage.fillAmount = 0f;
     }
 
     public void OnEquipItem(ItemData item)
@@ -72,13 +75,10 @@ public class PlayerEquipment : MonoBehaviour
                 var tempWeapon = equipSlots[(int)EquipSlots.Weapon].itemData; ;
                 inventoryManager.items.Add(tempWeapon);
             }
-            if (currentWeapon.Rate < EquipRate.Hero)
-                skillButton.GetComponent<Image>().sprite = null;
-            else
-                skillButton.GetComponent<Image>().sprite = currentWeapon.skill?.skillIcon;
             equipSlots[(int)EquipSlots.Weapon].SetData(ref item);
             inventoryManager.items.Remove(item);
             player.weaponRenderer.sprite = equipSlots[(int)EquipSlots.Weapon].image.sprite;
+            UpdateSkill();
         }
         inventoryManager.SetCurrentItem();
 
@@ -86,6 +86,14 @@ public class PlayerEquipment : MonoBehaviour
         player.StatusBasedSetting();
         UpdateStatusText();
         hpBar.UpdateHpBar(player.status);
+    }
+    public void UpdateSkill()
+    {
+        var currentWeapon = equipSlots[(int)EquipSlots.Weapon].itemData as WeaponData;
+        if (currentWeapon == null || currentWeapon.Rate < EquipRate.Hero)
+            skillButton.GetComponent<Image>().sprite = Resources.Load<Sprite>(string.Format(PathFormats.sprites, "NoneSkill"));
+        else
+            skillButton.GetComponent<Image>().sprite = currentWeapon.skill?.skillIcon;
     }
 
     public void UpdateStatusText()
@@ -98,10 +106,11 @@ public class PlayerEquipment : MonoBehaviour
         statTexts[5].text = $"Critical : {player.status.Critical}";
     }
 
+
     public void TouchSkillButton()
     {
         var currentWeapon = equipSlots[(int)EquipSlots.Weapon].itemData as WeaponData;
-        if (currentWeapon == null && currentWeapon.IsEmpty)
+        if (currentWeapon == null || currentWeapon.IsEmpty)
         {
             return;
         }
@@ -114,9 +123,15 @@ public class PlayerEquipment : MonoBehaviour
 
     public IEnumerator SkillCoolTime(WeaponData weapon)
     {
-        skillCoolTime = false;
-        skillButton.GetComponent<Image>().color = Color.gray;
-        yield return new WaitForSeconds(weapon.skill.CoolTime);
+        float coolTime = weapon.skill.CoolTime;
+        while (coolTime >= 0f)
+        {
+            coolTime -= Time.deltaTime;
+            skillCoolTime = false;
+            skillButton.GetComponent<Image>().color = Color.gray;
+            coolTimeImage.fillAmount = coolTime / weapon.skill.CoolTime;
+            yield return new WaitForFixedUpdate();
+        }
         skillButton.GetComponent<Image>().color = Color.white;
         skillCoolTime = true;
     }

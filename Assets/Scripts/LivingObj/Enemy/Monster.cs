@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Monster : LivingEntity
@@ -12,6 +13,7 @@ public class Monster : LivingEntity
         Attack,
         Die
     };
+    public TextMeshProUGUI levelText;
     public GameManager gameManager;
     public Animator animator;
     public MonsterHpBar hpBar;
@@ -81,6 +83,7 @@ public class Monster : LivingEntity
         gameManager.UpdateMonsterList();
         body.enabled = false;
         rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
         isDie = true;
         animator.SetTrigger(deathTrigger);
         animator.SetBool(dieBool, isDie);
@@ -99,6 +102,7 @@ public class Monster : LivingEntity
         attackArea.offset = new Vector2(attackArea.offset.x - status.Range * 0.5f, attackArea.offset.y);
         player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
         animator = gameObject.GetComponentsInChildren<Animator>()[0];
+        levelText.text = status.Level.ToString();
     }
     private void Awake()
     {

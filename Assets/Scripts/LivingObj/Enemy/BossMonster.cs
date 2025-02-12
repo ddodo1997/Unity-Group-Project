@@ -167,6 +167,17 @@ public class BossMonster : LivingEntity
             OnColliderEnable();
         else
             OnColliderDisable();
+
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            itemDrop.Drop();
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            OnDamage(1000000);
+        }
+#endif
     }
 
     public void OnColliderEnable()

@@ -33,6 +33,7 @@ public class EquipmentSlot : MonoBehaviour
         inventoryManager.Sorting(inventoryManager.currentSortBy);
         player.status.SetStatus(ref playerEquipment.equipSlots);
         playerEquipment.UpdateStatusText();
+        playerEquipment.UpdateSkill();
 
         playerEquipment.hpBar.UpdateHpBar(player.status);
     }
