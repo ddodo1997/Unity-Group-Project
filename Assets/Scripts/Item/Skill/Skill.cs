@@ -91,6 +91,21 @@ public class Skill : MonoBehaviour
             if (monster != null && !monster.isDie)
             {
                 monster.OnDamage(data.Damage);
+                switch (data.SkillEffectId)
+                {
+                    case "Ef_14_green_p":
+                        if (monster.currentEffect != Monster.StatusEffect.Poison)
+                            monster.StartCoroutine(monster.Poison(data.Damage, data.NumberOfTriggers));
+                        break;
+                    case "Electricity_ef_13":
+                        if (monster.currentEffect != Monster.StatusEffect.UnAttackable)
+                            monster.StartCoroutine(monster.UnAttackable());
+                        break;
+                    case "Ef_19_normal_p":
+                        if (monster.currentEffect != Monster.StatusEffect.Stunning)
+                            monster.StartCoroutine(monster.Stunning());
+                        break;
+                }
             }
         }
 
@@ -101,6 +116,22 @@ public class Skill : MonoBehaviour
             if (monster != null && !monster.isDie)
             {
                 monster.OnDamage(data.Damage);
+
+                switch (data.SkillEffectId)
+                {
+                    case "Ef_14_green_p":
+                        if (monster.currentEffect != EliteMonster.StatusEffect.Poison)
+                            monster.StartCoroutine(monster.Poison(data.Damage, data.NumberOfTriggers));
+                        break;
+                    case "Electricity_ef_13":
+                        if (monster.currentEffect != EliteMonster.StatusEffect.UnAttackable)
+                            monster.StartCoroutine(monster.UnAttackable());
+                        break;
+                    case "Ef_19_normal_p":
+                        if (monster.currentEffect != EliteMonster.StatusEffect.Stunning)
+                            monster.StartCoroutine(monster.Stunning());
+                        break;
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Monster;
 
 public class EliteMonster : LivingEntity
 {
@@ -12,6 +13,16 @@ public class EliteMonster : LivingEntity
         Wait,
         Return,
     };
+
+
+    public enum StatusEffect
+    {
+        None,
+        Poison,
+        UnAttackable,
+        Stunning
+    }
+
     public GameManager gameManager;
     public Animator animator;
     public EliteMonsterHpBar hpBar;
@@ -24,8 +35,11 @@ public class EliteMonster : LivingEntity
     private Vector3 startPos;
 
     public Status currentStauts = Status.Idle;
+    public StatusEffect currentEffect = StatusEffect.None;
     private Vector2 direction;
-
+    private float shakeAmount = 0.1f;
+    private float shakeDuration = 5f;
+    private Vector3 prevPos;
     private float statusStartTime = 0f;
     public float targetDistance;
 
@@ -72,6 +86,7 @@ public class EliteMonster : LivingEntity
 
     public override void OnDie()
     {
+        StopAllCoroutines();
         StartCoroutine(AfterDie());
         gameManager.UpdateMonsterList();
         body.enabled = false;
@@ -152,6 +167,8 @@ public class EliteMonster : LivingEntity
     {
         if (player.isDie || isDie)
             return;
+        if (currentEffect == StatusEffect.Stunning)
+            return;
         isMoving = !Mathf.Approximately(rb.velocity.magnitude, 0);
 
         hpBar.UpdateHpBar(status);
@@ -187,6 +204,8 @@ public class EliteMonster : LivingEntity
         {
             return;
         }
+        if (currentEffect == StatusEffect.Stunning)
+            return;
         targetDistance = (player.transform.position - transform.position).magnitude;
         switch (currentStauts)
         {
@@ -211,6 +230,8 @@ public class EliteMonster : LivingEntity
                 }
                 break;
             case Status.Attack:
+                if (currentEffect == StatusEffect.UnAttackable)
+                    break;
                 direction = (player.transform.position - transform.position).normalized;
                 if (targetDistance > status.Range)
                     SetStatus(Status.Aggro);
@@ -267,5 +288,47 @@ public class EliteMonster : LivingEntity
                 player.OnDamage(status.CriticalChance >= Random.Range(0f, 100f) ? status.Strength * (status.Critical * 0.3f) : status.Strength);
             }
         }
+    }
+
+    public IEnumerator Poison(int Damage, float time)
+    {
+        for (int i = 0; i < 5 && !isDie; i++)
+        {
+            currentEffect = StatusEffect.Poison;
+            PoisonDamage(Damage);
+            yield return new WaitForSeconds(time);
+        }
+        currentEffect = StatusEffect.None;
+    }
+    public void PoisonDamage(int Damage)
+    {
+        status.hp -= Damage;
+        hpBar.UpdateHpBar(status);
+        if (status.hp <= 0)
+        {
+            OnDie();
+        }
+        animator.SetTrigger(damageTrigger);
+    }
+
+    public IEnumerator UnAttackable()
+    {
+        currentEffect = StatusEffect.UnAttackable;
+        yield return new WaitForSeconds(10f);
+        currentEffect = StatusEffect.None;
+    }
+    public IEnumerator Stunning()
+    {
+        currentEffect = StatusEffect.Stunning;
+        float timer = 0f;
+        prevPos = transform.position;
+        while (timer < shakeDuration)
+        {
+            transform.position = prevPos + Random.insideUnitSphere * shakeAmount;
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = prevPos;
+        currentEffect = StatusEffect.None;
     }
 }

@@ -43,4 +43,16 @@ public class WeaponData : ItemData
         return data;
     }
 
+    public override void SetStatusForLevel()
+    {
+        base.SetStatusForLevel();
+        if (skill == null)
+        {
+            return;
+        }
+        SkillData skillData = DataTableManager.SkillTable.Get(skill?.SkillId) ?? null;
+        skill.Damage = skillData.Damage + (int)(skillData.Damage * 0.2 * Level);
+        Debug.Log("WeaponLevelUp");
+        Debug.Log(skill.Damage);
+    }
 }

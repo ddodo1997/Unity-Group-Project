@@ -37,7 +37,7 @@ public class ItemData : IStatus
     public int currentExp;
 
     public Sprite sprite;
-    public void SetStatusForLevel()
+    public virtual void SetStatusForLevel()
     {
         ItemData tempItem = DataTableManager.ArmorTable.Get(Id);
         if (tempItem == null)
@@ -87,7 +87,7 @@ public class ItemData : IStatus
     {
         SetStatus(DataTableManager.ArmorTable.Get(key));
     }
-    public void LevelUp(int exp)
+    public virtual void LevelUp(int exp)
     {
         int totalexp = (exp / 10) + currentExp;
         int prevLevel = Level;
