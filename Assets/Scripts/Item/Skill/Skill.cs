@@ -100,6 +100,7 @@ public class Skill : MonoBehaviour
                     case "Electricity_ef_13":
                         if (monster.currentEffect != Monster.StatusEffect.UnAttackable)
                             monster.StartCoroutine(monster.UnAttackable());
+                        player.OnHeal(player.status.Health * 0.15f, true);
                         break;
                     case "Ef_19_normal_p":
                         if (monster.currentEffect != Monster.StatusEffect.Stunning)
@@ -126,6 +127,7 @@ public class Skill : MonoBehaviour
                     case "Electricity_ef_13":
                         if (monster.currentEffect != EliteMonster.StatusEffect.UnAttackable)
                             monster.StartCoroutine(monster.UnAttackable());
+                        player.OnHeal(player.status.Health * 0.15f, true);
                         break;
                     case "Ef_19_normal_p":
                         if (monster.currentEffect != EliteMonster.StatusEffect.Stunning)
