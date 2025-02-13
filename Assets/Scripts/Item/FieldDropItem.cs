@@ -32,9 +32,9 @@ public class FieldDropItem : MonoBehaviour
         this.item.currentExp = (int)Random.Range(0, this.item.ExperienceValue);
         this.item.Level = Random.Range(1, 50);
         this.item.SetStatusForLevel();
-        if(item is WeaponData)
+        if(!(item is WeaponData))
         {
-            var weaponData = (WeaponData)item;
+            transform.localScale = new Vector3(4,4,4);
         }
     }
 
