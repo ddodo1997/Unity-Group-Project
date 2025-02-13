@@ -9,10 +9,12 @@ public class UpgradeMaterialSlot : MonoBehaviour
     private Image image;
     public InventoryManager inventoryManager;
     public UpgradeManager upgradeManager;
-
+    [SerializeField]
+    private Sprite normalSprite;
     private void Start()
     {
         image = GetComponent<Image>();
+        normalSprite = GetComponent<Image>().sprite;
     }
 
     public void AddMaterialItem(ref ItemData item)
@@ -27,15 +29,16 @@ public class UpgradeMaterialSlot : MonoBehaviour
         inventoryManager.items.Add(itemData);
         inventoryManager.Sorting(inventoryManager.currentSortBy);
         SetData();
+        upgradeManager.UpdateMaterialText();
     }
     public void SetData(ref ItemData item)
     {
         itemData = item;
-        image.sprite = itemData?.sprite;
+        image.sprite = itemData?.sprite ?? normalSprite;
     }
     public void SetData()
     {
         itemData = new ItemData();
-        image.sprite = null;
+        image.sprite = normalSprite;
     }
 }

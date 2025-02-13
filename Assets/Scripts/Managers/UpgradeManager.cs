@@ -90,6 +90,8 @@ public class UpgradeManager : MonoBehaviour
         {
             if (materialSlots[i].itemData.IsEmpty)
             {
+                if (materialSlots[i + 1].itemData.IsEmpty)
+                    return ;
                 materialSlots[i].SetData(ref materialSlots[i + 1].itemData);
                 materialSlots[i + 1].SetData();
             }

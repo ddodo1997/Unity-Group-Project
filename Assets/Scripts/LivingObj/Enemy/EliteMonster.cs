@@ -272,6 +272,7 @@ public class EliteMonster : LivingEntity
     {
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
+        gameManager.OnClear();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

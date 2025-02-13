@@ -1,11 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 enum EquipSlots
 {
@@ -110,7 +106,7 @@ public class PlayerEquipment : MonoBehaviour
     public void TouchSkillButton()
     {
         var currentWeapon = equipSlots[(int)EquipSlots.Weapon].itemData as WeaponData;
-        if (currentWeapon == null || currentWeapon.IsEmpty)
+        if (currentWeapon == null || currentWeapon.IsEmpty || currentWeapon.skill == null)
         {
             return;
         }
@@ -123,7 +119,7 @@ public class PlayerEquipment : MonoBehaviour
 
     public IEnumerator SkillCoolTime(WeaponData weapon)
     {
-        float coolTime = weapon.skill.CoolTime;
+        float coolTime = weapon.skill.CoolTime; 
         while (coolTime >= 0f)
         {
             coolTime -= Time.deltaTime;

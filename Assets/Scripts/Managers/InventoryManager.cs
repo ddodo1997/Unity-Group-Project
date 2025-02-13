@@ -59,6 +59,7 @@ public class InventoryManager : MonoBehaviour
         SetCurrentItem();
         slotCntText.text = $"{ItemCount()} / {slots.Count()}";
     }
+
     public string SetcurrentItemText()
     {
         StringBuilder stringBuilder = new StringBuilder();
@@ -190,9 +191,7 @@ public class InventoryManager : MonoBehaviour
         }
         for (int i = maxIdx + 1; i < maxItemSlot; i++)
         {
-            var image = slots[i].transform.GetChild(0).GetComponent<Image>();
-            image.sprite = null;
-            slots[i].itemData = null;
+            slots[i].itemData = new ItemData();
         }
     }
     public void UpdateSlots(List<ItemData> list)
@@ -212,9 +211,7 @@ public class InventoryManager : MonoBehaviour
         }
         for (int i = maxIdx + 1; i < maxItemSlot; i++)
         {
-            var image = slots[i].transform.GetChild(0).GetComponent<Image>();
-            image.sprite = null;
-            slots[i].itemData = null;
+            slots[i].itemData = new ItemData();
         }
     }
     public void SortingInventory()
@@ -236,7 +233,7 @@ public class InventoryManager : MonoBehaviour
     {
         foreach (var item in slots)
         {
-            item.itemData = null;
+            item.itemData = new ItemData();
             item.transform.GetChild(0).GetComponent<Image>().sprite = null;
         }
     }

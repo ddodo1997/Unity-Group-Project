@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public List<Monster> monsters = new List<Monster>();
     private EliteMonster eliteMonster;
     private BossMonster bossMonster;
+    public GameObject clearPanel;
     public bool IsGameOver
     {
         get => isGameOver;
@@ -44,6 +45,11 @@ public class GameManager : MonoBehaviour
         if (IsGameOver)
             GameOverPanelFadeIn();
 
+        if (isClearAble && Input.touchCount == 1)
+            SceneManager.LoadScene(0);
+
+
+
         if(gameOverPanel.alpha >= 1f && Input.touchCount == 1)
         {
             SceneManager.LoadScene(0);
@@ -54,6 +60,11 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 #endif
+    }
+
+    public void OnTouchHomeButton()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void OnGameOver()
@@ -81,5 +92,7 @@ public class GameManager : MonoBehaviour
     public void OnClear()
     {
         isClearAble = true;
+        clearPanel.gameObject.SetActive(true);
+
     }
 }

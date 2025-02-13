@@ -10,12 +10,16 @@ public class EquipmentSlot : MonoBehaviour
     public InventoryManager inventoryManager;
     public ItemData itemData;
     public Image image;
+
+    private Color tempColor = Color.white;
+    private Color normalColor = Color.white;
     // Start is called before the first frame update
     private void Start()
     {
         image = transform.GetChild(0).GetComponent<Image>();
         player = GameObject.FindWithTag(Tags.Player).GetComponent<Player>();
         playerEquipment = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerEquipment>();
+        tempColor.a = 0f;
     }
     public void OnSlotTouch()
     {
@@ -42,11 +46,12 @@ public class EquipmentSlot : MonoBehaviour
     {
         this.itemData = itemData ?? new ItemData();
         image.sprite = itemData?.sprite ?? null;
+        image.color = normalColor;
     }
 
     public void SetData()
     {
         itemData = new ItemData();
-        image.sprite = null;
+        image.color = tempColor;
     }
 }

@@ -64,6 +64,9 @@ public class Skill : MonoBehaviour
                 player.transform.position = nextPos;
 
                 break;
+            case "Ef_19_normal_p":
+                transform.position = new Vector3(player.transform.position.x, transform.position.y + 0.5f, transform.position.z);
+                break;
         }
     }
     private void Update()
