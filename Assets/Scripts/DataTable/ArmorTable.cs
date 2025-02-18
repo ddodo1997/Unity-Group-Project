@@ -34,7 +34,6 @@ public class ArmorTable : DataTable
     {
         if (!dictionary.ContainsKey(key))
         {
-            Debug.LogError($"{this} Get Error{key}");
             return null;
         }
         return dictionary[key];
@@ -58,6 +57,15 @@ public class ArmorTable : DataTable
         var result = from l in GetList()
                         where l.Type == type
                         select l;
+
+        return result.ToList();
+    }
+
+    public List<EquipmentData> GetList(EquipRate rate)
+    {
+        var result = from l in GetList()
+                     where l.Rate == rate
+                     select l;
 
         return result.ToList();
     }

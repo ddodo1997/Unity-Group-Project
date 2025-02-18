@@ -1,0 +1,1871 @@
+fileFormatVersion: 2
+guid: f6128e431e8fe3546b49eec853153cfc
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_134
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e3d7e4d71f13a54c808517c20c6944b
+      internalID: 1528438564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_135
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c258f4c92e3b7d4baa5cb69b0b21dec
+      internalID: 1208724635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_136
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d293ae9bd0bd40f44ae3eb07cf6c0519
+      internalID: -644390676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_137
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a830efefb82aa674ebc6aea926954b03
+      internalID: 441536685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_138
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b9974b6818d1c04c944ee04c172b5a2
+      internalID: 1884012445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_139
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e4c1a45126ccd842a36b572ed9e40e9
+      internalID: 1815410946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_140
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cb89c81321ed2d4c8eceeb497d4aa55
+      internalID: 731991030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_141
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6be0612a7c35a6446abbcd60d39a9b55
+      internalID: -2136269798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_142
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe300307a5ea24a44acaedd4e9fd1af7
+      internalID: -1294898541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_143
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12f296542717d5342a1effff8de2d79b
+      internalID: -564791707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_144
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbdc73b0dbfd7a240a5bfd7d16a7325d
+      internalID: 51325445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_145
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 129bc8526e463cf45b3496c388d8f14b
+      internalID: -457329734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_146
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a12a32e6786adb54f86e2a8e4f42e9d7
+      internalID: -1962904398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_147
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db9b55bf92e82e74384a5d9f02cad08b
+      internalID: 539404023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_148
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6989361761c589842af08642ffee5e11
+      internalID: -670916291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_149
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10a2496894e26df4ab5b14cab4e579dc
+      internalID: -1915854915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_150
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e84ebdfb040400e4aacc6c394eac0087
+      internalID: 1676783264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_151
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdf8732d54c3bbd46b471e992fcbcf32
+      internalID: -1973307654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_152
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02aa752b4ce500f44a1df993a59a640c
+      internalID: -1138980694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_153
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88db51e31635bc74b82f99c2df023bb1
+      internalID: -631443685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_154
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bcc184ca62044d4c9a63587c8103945
+      internalID: -711400691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_155
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6ab5b9d5845d72459c6ca70e9a3d659
+      internalID: 1157646820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_156
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad8fba0800966b468e7e6d3fc800824
+      internalID: 156824312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_157
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f52d83bb9eef4fd49ba95ff58e3b176c
+      internalID: -2001502169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_158
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 108ecaa9cea9c19418ce20d0ad285757
+      internalID: -1580427226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_159
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d694328e589e63c469fc993b1e8c0866
+      internalID: -1803645469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_160
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6594c1d732ef08845ad2687ecfdf815c
+      internalID: 228459952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_161
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ada5f7e472429048aa349da47e097c5
+      internalID: 513237915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_162
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f58a76667655ff04d960e697cb23adb1
+      internalID: 1214753497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_163
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89000e79e56f4204eb3f022da0d25b8a
+      internalID: 51561434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_164
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 186d450bcf1aefe469bb9898d4ff3219
+      internalID: 389566178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_165
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5b01ae34a10c1f48a1ecc35e52b0427
+      internalID: -1138276967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_166
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96ad7caa8a9aace46babbbe5dd10d319
+      internalID: 1632284158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_167
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50ef848039ff48a448c7b62a675ed742
+      internalID: 1861385120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_168
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e6c5c398b9b2f3459a5c2e21ca60300
+      internalID: -312368203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_169
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0aba44561a6b9134183c99632f1c3505
+      internalID: 1043580654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_170
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4799b0f19690af4993f494a8bd020c0
+      internalID: 1826791150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_171
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 303b083754420084da2024b379602e77
+      internalID: -467713284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_172
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c91b6f0a0ab10db4d8f9fbf9ebd6ba37
+      internalID: -2013376733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_173
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0cee3ceab9e0d6c41a6c780a3312490d
+      internalID: -1424612459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_174
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afac67514ff1ce54995701aa18757c67
+      internalID: -1818729174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_175
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9586f1ae5b470d04c81777cfa337fcee
+      internalID: 1716154486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_176
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b4a4e2966e1a1143905312e0bd097b3
+      internalID: 28000769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_177
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4572720b4eb2bf48b4ac2d768f75de0
+      internalID: 1529646705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_178
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c7e851c9fe9c5643af95b0f4d3d98a3
+      internalID: 300390362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_179
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4291bd0c73af61c4d93f5b8730380b08
+      internalID: 1950721233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_180
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 856b2878841faee46884db5b7b5482d3
+      internalID: -1678871607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_181
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 904d53e545c938e44858a29aa767eee5
+      internalID: 1367870703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_182
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea9a3d3286379814392fa8812805b35e
+      internalID: -712499277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_183
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d33b95d5637e35418c6e5c8a8a399cd
+      internalID: 1729736171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_184
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6faa8c963994e694ab6bee2f2415e5de
+      internalID: 1767137109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_185
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05aac22dc4498f94e86ed3b9308e1ac0
+      internalID: -2052334919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_186
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 391912cd738f09844806e958de6a67e6
+      internalID: 740323481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_187
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d5c0d097e6013b4b939d415970d7c17
+      internalID: -1729191148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_188
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0584f862bf6808447941495e00acb640
+      internalID: -291815272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_189
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddbcf1bd262c6d141933d325f98c615f
+      internalID: -770382295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_190
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94d270e900182fc4e8cb0d8bbefba94e
+      internalID: -562098472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_191
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 680186a566d6385439cef222456fd950
+      internalID: 1328125323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_192
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60ea4cd5a1d73f648b71dedeb68d499b
+      internalID: -1291424345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_193
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b71c952264bf044f832bea0c08056f7
+      internalID: 580515403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_194
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4477860fa1f7b14884264d1335fe5aa
+      internalID: 1882880509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_195
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39868a55e78254d4e889856b9f3ed291
+      internalID: -784568378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_196
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecaf987bce7c5ef4582dea736f74cfb7
+      internalID: -1415206115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_197
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e489aca2ef988c846bc2423741e8a4d3
+      internalID: -2039832750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_198
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dfc814a1bc490e489c85fbcd62a92fa
+      internalID: -161034532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_199
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 036dc14625ca3624b9a0099ad5097a7a
+      internalID: -2043003536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_200
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 516824dc82f81d7428b999a8988729d2
+      internalID: -1513810126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_201
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd93f2b65f494a1499c3125c2336dc50
+      internalID: 625015737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_202
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ede2ca52eeca268479cb3984934d0f1d
+      internalID: 1029226026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_203
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4160ad3e55be0c41a348202c6da0403
+      internalID: -986131808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_204
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d6e23619816d6f458f4065e0e36b5b5
+      internalID: -1897022536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RA_Sanctuary_Animations_205
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69f181e37ff03e348932620ee17d8e65
+      internalID: -1482879113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      RA_Sanctuary_Animations_0: -83973497
+      RA_Sanctuary_Animations_1: 615551465
+      RA_Sanctuary_Animations_10: -1333913146
+      RA_Sanctuary_Animations_100: 1013242426
+      RA_Sanctuary_Animations_101: -1378358453
+      RA_Sanctuary_Animations_102: -21689308
+      RA_Sanctuary_Animations_103: 184435409
+      RA_Sanctuary_Animations_104: 222061028
+      RA_Sanctuary_Animations_105: -953214104
+      RA_Sanctuary_Animations_106: -1528924923
+      RA_Sanctuary_Animations_107: 1049845188
+      RA_Sanctuary_Animations_108: -814637848
+      RA_Sanctuary_Animations_109: 1770765436
+      RA_Sanctuary_Animations_11: -961862714
+      RA_Sanctuary_Animations_110: -680903003
+      RA_Sanctuary_Animations_111: -1625261064
+      RA_Sanctuary_Animations_112: -794123982
+      RA_Sanctuary_Animations_113: 196451535
+      RA_Sanctuary_Animations_114: 951882251
+      RA_Sanctuary_Animations_115: -1578925027
+      RA_Sanctuary_Animations_116: 80795807
+      RA_Sanctuary_Animations_117: -877266856
+      RA_Sanctuary_Animations_118: -817255545
+      RA_Sanctuary_Animations_119: -396258422
+      RA_Sanctuary_Animations_12: -2134562224
+      RA_Sanctuary_Animations_120: 42683537
+      RA_Sanctuary_Animations_121: 2113818822
+      RA_Sanctuary_Animations_122: 31933814
+      RA_Sanctuary_Animations_123: -1225777127
+      RA_Sanctuary_Animations_124: -1413024088
+      RA_Sanctuary_Animations_125: 500911580
+      RA_Sanctuary_Animations_126: 2092067804
+      RA_Sanctuary_Animations_127: 207043113
+      RA_Sanctuary_Animations_128: 1808703855
+      RA_Sanctuary_Animations_129: 1847184336
+      RA_Sanctuary_Animations_13: 23006816
+      RA_Sanctuary_Animations_130: 2076262666
+      RA_Sanctuary_Animations_131: 1485660242
+      RA_Sanctuary_Animations_132: -979847909
+      RA_Sanctuary_Animations_133: -246485002
+      RA_Sanctuary_Animations_134: 1528438564
+      RA_Sanctuary_Animations_135: 1208724635
+      RA_Sanctuary_Animations_136: -644390676
+      RA_Sanctuary_Animations_137: 441536685
+      RA_Sanctuary_Animations_138: 1884012445
+      RA_Sanctuary_Animations_139: 1815410946
+      RA_Sanctuary_Animations_14: -282590675
+      RA_Sanctuary_Animations_140: 731991030
+      RA_Sanctuary_Animations_141: -2136269798
+      RA_Sanctuary_Animations_142: -1294898541
+      RA_Sanctuary_Animations_143: -564791707
+      RA_Sanctuary_Animations_144: 51325445
+      RA_Sanctuary_Animations_145: -457329734
+      RA_Sanctuary_Animations_146: -1962904398
+      RA_Sanctuary_Animations_147: 539404023
+      RA_Sanctuary_Animations_148: -670916291
+      RA_Sanctuary_Animations_149: -1915854915
+      RA_Sanctuary_Animations_15: -140382219
+      RA_Sanctuary_Animations_150: 1676783264
+      RA_Sanctuary_Animations_151: -1973307654
+      RA_Sanctuary_Animations_152: -1138980694
+      RA_Sanctuary_Animations_153: -631443685
+      RA_Sanctuary_Animations_154: -711400691
+      RA_Sanctuary_Animations_155: 1157646820
+      RA_Sanctuary_Animations_156: 156824312
+      RA_Sanctuary_Animations_157: -2001502169
+      RA_Sanctuary_Animations_158: -1580427226
+      RA_Sanctuary_Animations_159: -1803645469
+      RA_Sanctuary_Animations_16: -496634125
+      RA_Sanctuary_Animations_160: 228459952
+      RA_Sanctuary_Animations_161: 513237915
+      RA_Sanctuary_Animations_162: 1214753497
+      RA_Sanctuary_Animations_163: 51561434
+      RA_Sanctuary_Animations_164: 389566178
+      RA_Sanctuary_Animations_165: -1138276967
+      RA_Sanctuary_Animations_166: 1632284158
+      RA_Sanctuary_Animations_167: 1861385120
+      RA_Sanctuary_Animations_168: -312368203
+      RA_Sanctuary_Animations_169: 1043580654
+      RA_Sanctuary_Animations_17: -1629729100
+      RA_Sanctuary_Animations_170: 1826791150
+      RA_Sanctuary_Animations_171: -467713284
+      RA_Sanctuary_Animations_172: -2013376733
+      RA_Sanctuary_Animations_173: -1424612459
+      RA_Sanctuary_Animations_174: -1818729174
+      RA_Sanctuary_Animations_175: 1716154486
+      RA_Sanctuary_Animations_176: 28000769
+      RA_Sanctuary_Animations_177: 1529646705
+      RA_Sanctuary_Animations_178: 300390362
+      RA_Sanctuary_Animations_179: 1950721233
+      RA_Sanctuary_Animations_18: -517346157
+      RA_Sanctuary_Animations_180: -1678871607
+      RA_Sanctuary_Animations_181: 1367870703
+      RA_Sanctuary_Animations_182: -712499277
+      RA_Sanctuary_Animations_183: 1729736171
+      RA_Sanctuary_Animations_184: 1767137109
+      RA_Sanctuary_Animations_185: -2052334919
+      RA_Sanctuary_Animations_186: 740323481
+      RA_Sanctuary_Animations_187: -1729191148
+      RA_Sanctuary_Animations_188: -291815272
+      RA_Sanctuary_Animations_189: -770382295
+      RA_Sanctuary_Animations_19: 287754766
+      RA_Sanctuary_Animations_190: -562098472
+      RA_Sanctuary_Animations_191: 1328125323
+      RA_Sanctuary_Animations_192: -1291424345
+      RA_Sanctuary_Animations_193: 580515403
+      RA_Sanctuary_Animations_194: 1882880509
+      RA_Sanctuary_Animations_195: -784568378
+      RA_Sanctuary_Animations_196: -1415206115
+      RA_Sanctuary_Animations_197: -2039832750
+      RA_Sanctuary_Animations_198: -161034532
+      RA_Sanctuary_Animations_199: -2043003536
+      RA_Sanctuary_Animations_2: -1897795950
+      RA_Sanctuary_Animations_20: 264335794
+      RA_Sanctuary_Animations_200: -1513810126
+      RA_Sanctuary_Animations_201: 625015737
+      RA_Sanctuary_Animations_202: 1029226026
+      RA_Sanctuary_Animations_203: -986131808
+      RA_Sanctuary_Animations_204: -1897022536
+      RA_Sanctuary_Animations_205: -1482879113
+      RA_Sanctuary_Animations_21: -1288597543
+      RA_Sanctuary_Animations_22: 1321149977
+      RA_Sanctuary_Animations_23: 1712819617
+      RA_Sanctuary_Animations_24: -951768058
+      RA_Sanctuary_Animations_25: 587953771
+      RA_Sanctuary_Animations_26: 320228010
+      RA_Sanctuary_Animations_27: -953422598
+      RA_Sanctuary_Animations_28: 638828350
+      RA_Sanctuary_Animations_29: 1953293688
+      RA_Sanctuary_Animations_3: -1971516588
+      RA_Sanctuary_Animations_30: 223921164
+      RA_Sanctuary_Animations_31: 531366696
+      RA_Sanctuary_Animations_32: -1831365595
+      RA_Sanctuary_Animations_33: -1653011069
+      RA_Sanctuary_Animations_34: 1867350055
+      RA_Sanctuary_Animations_35: -518825801
+      RA_Sanctuary_Animations_36: 463737745
+      RA_Sanctuary_Animations_37: -536195434
+      RA_Sanctuary_Animations_38: -110065623
+      RA_Sanctuary_Animations_39: -1200787918
+      RA_Sanctuary_Animations_4: -746041194
+      RA_Sanctuary_Animations_40: -1418271181
+      RA_Sanctuary_Animations_41: -1802163035
+      RA_Sanctuary_Animations_42: -90877747
+      RA_Sanctuary_Animations_43: -425064696
+      RA_Sanctuary_Animations_44: 1793457046
+      RA_Sanctuary_Animations_45: -710685572
+      RA_Sanctuary_Animations_46: -878620161
+      RA_Sanctuary_Animations_47: -1117927249
+      RA_Sanctuary_Animations_48: -1906510403
+      RA_Sanctuary_Animations_49: -366139757
+      RA_Sanctuary_Animations_5: 986828672
+      RA_Sanctuary_Animations_50: -1620808235
+      RA_Sanctuary_Animations_51: 1717439610
+      RA_Sanctuary_Animations_52: -529746946
+      RA_Sanctuary_Animations_53: 919991745
+      RA_Sanctuary_Animations_54: 1016385141
+      RA_Sanctuary_Animations_55: -1119119660
+      RA_Sanctuary_Animations_56: -2041484460
+      RA_Sanctuary_Animations_57: -550951534
+      RA_Sanctuary_Animations_58: 828598584
+      RA_Sanctuary_Animations_59: 904332429
+      RA_Sanctuary_Animations_6: -1151082678
+      RA_Sanctuary_Animations_60: 336135384
+      RA_Sanctuary_Animations_61: -1543547449
+      RA_Sanctuary_Animations_62: -414099927
+      RA_Sanctuary_Animations_63: 1111986176
+      RA_Sanctuary_Animations_64: -1313539015
+      RA_Sanctuary_Animations_65: -1618828207
+      RA_Sanctuary_Animations_66: 505533316
+      RA_Sanctuary_Animations_67: 1940413489
+      RA_Sanctuary_Animations_68: -1992146713
+      RA_Sanctuary_Animations_69: 571152180
+      RA_Sanctuary_Animations_7: 1865781503
+      RA_Sanctuary_Animations_70: 1031820330
+      RA_Sanctuary_Animations_71: 217595415
+      RA_Sanctuary_Animations_72: 815066632
+      RA_Sanctuary_Animations_73: 2005706305
+      RA_Sanctuary_Animations_74: 239676699
+      RA_Sanctuary_Animations_75: 1143948780
+      RA_Sanctuary_Animations_76: 1806547531
+      RA_Sanctuary_Animations_77: -2136033445
+      RA_Sanctuary_Animations_78: -1032283443
+      RA_Sanctuary_Animations_79: -924846402
+      RA_Sanctuary_Animations_8: -2265752
+      RA_Sanctuary_Animations_80: -424899802
+      RA_Sanctuary_Animations_81: 390133137
+      RA_Sanctuary_Animations_82: -297073657
+      RA_Sanctuary_Animations_83: 1728063075
+      RA_Sanctuary_Animations_84: -340536543
+      RA_Sanctuary_Animations_85: -670802231
+      RA_Sanctuary_Animations_86: -1495870054
+      RA_Sanctuary_Animations_87: -408254555
+      RA_Sanctuary_Animations_88: 2103159791
+      RA_Sanctuary_Animations_89: 58809978
+      RA_Sanctuary_Animations_9: 1802637103
+      RA_Sanctuary_Animations_90: -348660768
+      RA_Sanctuary_Animations_91: -1455510968
+      RA_Sanctuary_Animations_92: 830102111
+      RA_Sanctuary_Animations_93: -110289832
+      RA_Sanctuary_Animations_94: 728284332
+      RA_Sanctuary_Animations_95: 629761520
+      RA_Sanctuary_Animations_96: -1294625583
+      RA_Sanctuary_Animations_97: -141680594
+      RA_Sanctuary_Animations_98: 1160550079
+      RA_Sanctuary_Animations_99: 1652545011
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -53,12 +53,39 @@ public class MonsterTable : DataTable
         return list;
     }
 
-    public List<MonsterStatus> GetList(int stage)
+    public List<MonsterStatus> GetListWithStage(int stage)
     {
         var result = from l in GetList()
-                        where l.Stage == stage
+                        where l.Stage == stage && l.Rate == MonsterStatus.Rating.Normal
                         select l;
 
         return result.ToList();
+    }
+
+    public List<MonsterStatus> GetListWithLevel(int stage, int level)
+    {
+        var result = from l in GetListWithStage(stage)
+                     where l.Level == level
+                     select l;
+
+        return result.ToList();
+    }
+
+    public MonsterStatus GetBossList(int stage)
+    {
+        var result = from l in GetList()
+                     where  l.Stage == stage && l.Rate == MonsterStatus.Rating.Boss
+                     select l;
+
+        return result.First();
+    }
+
+    public MonsterStatus GetEliteList(int stage)
+    {
+        var result = from l in GetList()
+                     where l.Stage == stage && l.Rate == MonsterStatus.Rating.Elite
+                     select l;
+
+        return result.First();
     }
 }

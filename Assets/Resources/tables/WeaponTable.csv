@@ -1,0 +1,21 @@
+Rate,Id,Type,Name,Strength,Defense,Agility,Health,Intelligence,Luck,Critical,Range,MotionSpeed,BulletSpeed,BulletLivingTime,CoolTime,LevelUpExperienceRequired,ExperienceValue,SkillId
+Common,Axe_1,Sword,손도끼,25,0,0,0,0,0,50,0,0,0,0,0,10000,5000,none
+Common,Orc_Weapon_01,Sword,나무몽둥이,50,0,0,0,0,0,0,0,0,0,0,0,10000,5000,none
+Common,F_SR_Hammer,Sword,나무망치,35,0,10,0,0,0,20,0,0,0,0,0,10000,5000,none
+Common,Orc_Weapon_07,Sword,도끼,30,0,0,20,0,0,20,0,0,0,0,0,10000,5000,none
+Common,Weapon_Rogue_1,Sword,날쎈 단검,20,0,20,0,0,10,30,0,0,0,0,0,10000,5000,none
+Common,Sword_4,Sword,기본 검,10,0,20,20,0,20,20,0,0,0,0,0,10000,5000,none
+UnCommon,Spear_1,Sword,감지창,35,0,30,60,0,20,20,0,0,0,0,0,20000,15000,none
+UnCommon,Undead_Weapon_03,Sword,해적칼,40,0,20,50,0,0,50,0,0,0,0,0,20000,15000,none
+UnCommon,Orc_Weapon_06,Sword,배틀엑스,60,0,0,40,0,0,40,0,0,0,0,0,20000,15000,none
+UnCommon,Orc_Weapon_05,Sword,대도,45,0,10,10,0,10,80,0,0,0,0,0,20000,15000,none
+UnCommon,Soon_Spear,Sword,그레이트 랜스,100,0,0,0,0,0,0,0,0,0,0,0,20000,15000,none
+Rare,Weapon_Rogue_2,Sword,피의 단검,60,0,40,40,0,20,80,0,0,0,0,0,25000,17500,none
+Rare,Sword_3,Sword,잘 벼려진 칼,50,0,50,50,0,40,60,0,0,0,0,0,25000,17500,none
+Rare,Orc_Weapon_02,Sword,그레이트 랜스,75,0,25,75,0,0,50,0,0,0,0,0,25000,17500,none
+Hero,Weapon_Knight_1,Sword,전대 용사의 검,95,0,50,15,10,100,40,0,0,0,0,0,35000,22000,blue_03_07443
+Hero,Undead_Weapon_06,Sword,살벌한 배틀엑스,200,0,0,0,0,0,200,0,0,0,0,0,35000,22000,blue_29_070735353
+Hero,Undead_Weapon_08,Sword,고대의 낡은 검,90,0,75,0,0,50,0,0,0,0,0,0,35000,22000,green_16_2101025
+Legendary,Sword_5,Sword,지옥의 파멸검,125,0,50,50,0,0,100,0,0,0,0,0,45000,30000,violet_03_070716167
+Legendary,Weapon_Knight_2,Sword,베테랑의 검,100,0,50,50,0,0,200,0,0,0,0,0,45000,30000,blue_01_07071025
+Legendary,Undead_Weapon_10,Sword,성스러운 검,125,0,50,50,0,100,100,0,0,0,0,0,45000,30000,red_01_13101010

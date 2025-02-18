@@ -29,11 +29,15 @@ public static class DataTableIds
         "ArmorTable",
         "WeaponTable"
     };
+
+    public static readonly string Skill = "SkillTable";
 }
 public static class PathFormats
 {
     public static readonly string prefabs = "prefabs/{0}";
+    public static readonly string sprites = "sprites/{0}";
     public static readonly string tables = "tables/{0}";
+    public static readonly string particles = "particles/{0}";
 }
 
 public static class Variables
@@ -53,6 +57,12 @@ public static class Tags
     public static readonly string Player = "Player";
     public static readonly string Monster = "Monster";
     public static readonly string InventoryManager = "InventoryManager";
+    public static readonly string HeallingWell = "Healling Well";
+    public static readonly string ItemBox = "ItemBox";
+    public static readonly string GameManager = "GameManager";
+    public static readonly string MonsterSpawnManager = "MonsterSpawnManager";
+    public static readonly string Elite = "Elite";
+    public static readonly string Boss = "Boss";
 }
 
 public static class SortingLayers
@@ -63,4 +73,8 @@ public static class Layers
 {
     public static readonly string Default = "Default";
     public static readonly string UI = "UI";
+    public static readonly string Player = "Player";
+    public static readonly string Map = "Map";
+    public static readonly string SafeArea = "SafeArea";
+    public static readonly string BossArea = "BossArea";
 }
