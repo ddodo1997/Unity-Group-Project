@@ -109,6 +109,14 @@ public class Skill : MonoBehaviour
                         if (monster.currentEffect != Monster.StatusEffect.Stunning)
                             monster.StartCoroutine(monster.Stunning());
                         break;
+                    case "Plazma":
+                        if(player.transform.rotation.y == 0)
+                            monster.transform.position = new Vector3( monster.transform.position.x - (data.xRange * 1.5f), monster.transform.position.y, monster.transform.position.z );
+                        else
+                            monster.transform.position = new Vector3(monster.transform.position.x + (data.xRange * 1.5f), monster.transform.position.y, monster.transform.position.z);
+
+
+                        break;
                 }
             }
         }

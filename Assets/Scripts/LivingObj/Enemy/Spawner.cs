@@ -24,10 +24,10 @@ public class Spawner : MonoBehaviour
 
     public void Spawn(int stage)
     {
+        var monsterList = DataTableManager.MonsterTable.GetListWithStage(stage);
         for (int i = 0; i < monsterCntPerArea; i++)
         {
             var spawnPos = (Vector2)transform.position + Random.insideUnitCircle * radius;
-            var monsterList = DataTableManager.MonsterTable.GetListWithStage(stage);
             var monsterStatus = monsterList[Random.Range(0, monsterList.Count)].GetNewData();
             var monster = Instantiate(prefab, spawnPos, Quaternion.identity).GetComponent<Monster>();
             monster.SettingMonster(monsterStatus);

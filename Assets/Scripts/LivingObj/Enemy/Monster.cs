@@ -27,7 +27,7 @@ public class Monster : LivingEntity
     public GameManager gameManager;
     public Animator animator;
     public MonsterHpBar hpBar;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     public Player player;
     private CapsuleCollider2D body;
     private BoxCollider2D attackArea;
@@ -127,7 +127,6 @@ public class Monster : LivingEntity
     }
     private void Start()
     {
-        //StartGame("SPUM_20241203203032691");
         player = GameObject.FindGameObjectWithTag(Tags.Player).GetComponent<Player>();
         gameManager = GameObject.FindGameObjectWithTag(Tags.GameManager).GetComponent<GameManager>();
     }
